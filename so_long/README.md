@@ -11,6 +11,6 @@ Instructions:
 
   - Goal: Your goal is to Collect 'Memory Addresses', avoid 'Seg Faults' and finally get to the 'Exit Pointer'. If a 'Seg Fault' touches the Player or a 'Memory Address'
 you fail.
-  - Movement: (WASD).
-  - Ability.Move_Fire: (Space). You are able to move all 'Seg Faults' at the same time, they will move in the same direction and at the same time that the player does.
+  - Movement: | WASD |.
+  - Ability.Move_Fire: | Space |. You are able to move all 'Seg Faults' at the same time, they will move in the same direction and at the same time that the player does.
 One tap will activate movement, another tap will deactivate. Avoid holding Space since it will switch it on and off continuously.
