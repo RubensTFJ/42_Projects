@@ -2,12 +2,10 @@ The so_long is a game. In this Project your goal is to use a very simple and bas
 
 My project was written in C using the concept of objects. Everything on display is an Object, from the floor and the walls, to the Player itself.
 
-The game is themed around the 42 Piscine. The goal of the game, as a Pisciner, is to Collect 'Memory Addresses', avoid 'Seg Faults' and finally get to the 'Exit Pointer'.
-To achieve your goal you are able to control and move the 'Seg Faults'
+The game is themed around the 42 Piscine. The goal of the game, as a Pisciner, is to Collect 'Memory Addresses', avoid 'Seg Faults' and finally get to the 'Exit Pointer'. To achieve your goal you are able to control and move the 'Seg Faults'.
 
 To achieve Movement and Collision, the floor was used as a reference. If an Object is not a piece of floor or a piece o wall, it will then be on_top of another object. 
-The objects have a pointer to signal that they have an object standing in its area. When an Object moves, it will check the floor's around it, and verify if they have another
-object "on top" of them. If there is, their distance is calculated to verify if they are colliding, and if they are, what actions have to be taken.
+The Floor objects have a linked list to all the objects standing in its area. When an Object moves, it will check the floor's around it, and verify if they have in their linked list another object "on top" of them. If there is, their distance is calculated to verify if they are colliding, and if they are, what actions have to be taken.
 
 Instructions: 
 
