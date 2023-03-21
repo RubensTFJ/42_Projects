@@ -15,3 +15,4 @@ you fail.
   - Movement: | WASD |.
   - Ability.Move_Fire: | Space |. You are able to move all 'Seg Faults' at the same time, they will move in the same direction and at the same time that the player does.
 One tap will activate movement, another tap will deactivate. Avoid holding Space since it will switch it on and off continuously.
+<img width="776" alt="image" src="https://user-images.githubusercontent.com/89268663/226766926-60471dfa-39a4-42ac-8bea-a324cf9cb484.png">
