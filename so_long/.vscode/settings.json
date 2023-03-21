@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"so_long.h": "c",
+		"stdio.h": "c",
+		"unistd.h": "c",
+		"stdlib.h": "c",
+		"ft_printf.h": "c"
+	}
+}
