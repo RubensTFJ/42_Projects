@@ -9,6 +9,7 @@ The Floor objects have a linked list to all the objects standing in its area. Wh
 
 Instructions: 
 
+  - Start Game: To start the game you have to open the so_long Folder in a Linux Terminal, and type the command "./so_long" followed by the name of the map file finished by ".ber". Ex: "./so_long map.ber" ou "./so_long 2map.ber"
   - Goal: Your goal is to Collect 'Memory Addresses', avoid 'Seg Faults' and finally get to the 'Exit Pointer'. If a 'Seg Fault' touches the Player or a 'Memory Address'
 you fail.
   - Movement: | WASD |.
