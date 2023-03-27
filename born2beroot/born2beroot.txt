@@ -1,0 +1,78 @@
+difference between aptitude and apt
+what is SELinux
+What is AppArmor
+SSH on port 4242
+Impossible to connect using SSH as root
+how to setup a new account
+Configure UFW firewall - leave port 4242
+Firewall must be on when machine is launch
+Hostname = rteles-f42
+"Strong Password Policys"
+	- Pass Exp in 30 days
+	- Pass cant change before 2 days.
+	- 7 days warning Pass Exp Date
+	- Pass 10 char long, up, lower, number
+	- Pass cant have user name
+	- New pass atleast 7 different characters that of the last.
+instal SUDO with "strong Policys"
+root user AND my user with my username as login
+user has to belong to user42 and SUDO
+create new user AND assign group
+sudo requirements
+	- authenticaton pass 3 attempts
+	- message to incorrect pass
+	- log history command line /var/log/sudo/folder
+	- tty enabled
+	- sudo restricted paths /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+
+script monitoring.sh developed in bash
+
+root: Abc def ghi 1
+user: rteles-f Ijk lmn opq 2
+encryp: learntoenjoywhatyouhate
+
+inet 10.12.179.22
+
+ executable file 32 lines (30 sloc) 1.61 KB
+#!/bin/bash
+
+archi=$(uname -a)
+
+nofpyshical=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l)
+nofvirtual=$(grep "^processor" /proc/cpuinfo | wc -l)
+
+curr_ram=$(free -m | grep Mem | awk '{print $4}')
+total_ram=$(free -m | grep Mem | awk '{print $2}')
+rate_ram=$(free -m | grep Mem | awk '{printf("%.2f"), $3/$2*100}')
+
+curr_mem=$(df -Bm | grep '^/dev/' | grep -v '/boot$' | awk '{fdisk += $4} END {print fdisk}')
+total_mem=$(df -Bg | grep '^/dev/' | grep -v '/boot$' | awk '{tdisk += $2} END {print tdisk}')
+rate_mem=$(df -Bm | grep '^/dev/' | grep -v '/boot$' | awk '{fdisk += $3} {tdisk += $2} END {printf("%.2f"), fdisk/tdisk*100}')
+
+rate_process=$(top -bn1 | grep '^%Cpu' | awk '{printf("%.1f%%"), $2}')
+
+last_boot=$(who -b | awk '{print $3 " " $4}')
+
+is_lvmactive=$(lsblk | grep 'lvm' | awk '{if ($1) {printf "\033[0;32mYes\033[0m";exit} else {print "\033[0;031mNo\033[0m";exit;}}')
+
+n_connections=$(ss -t | grep ESTAB | wc -l)
+
+u_inserver=$(who | cut -d " " -f 1 | sort -u | wc -l)
+
+ipv4=$(hostname -I)
+mac=$(ip link show | grep ether | awk '{print $2}')
+
+n_commds=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+
+wall "  #Architecture: $archi
+        #CPU physical: $nofpyshical
+        #vCPU: $nofvirtual
+        #Memory Free: $curr_ram/${total_ram}MB ($rate_ram%)
+        #Disk Free: $curr_mem/${total_disk}GB ($rate_mem%)
+        #CPU load: $rate_process
+        #Last boot: $last_boot
+        #LVM use: $is_lvmactive
+        #Connections TCP: $n_connections ESTABLISHED
+        #User log: $u_inserver
+        #Network: IP $ipv4 ($mac)
+        #Sudo: $n_commands_sudo cmd"
