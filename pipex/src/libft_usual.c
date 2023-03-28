@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:32:51 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/24 15:16:10 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:26:01 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ void	*ft_calloc(size_t n, size_t xsize)
 	while (i < total)
 		new[i++] = 0;
 	return (new);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		i;
+	char	*copy;
+
+	copy = ft_calloc(sizeof(char), (ft_strlen(s) + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		copy[i] = s[i];
+		i++;
+	}
+	return (copy);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -70,47 +87,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2[++j])
 		joined[i + j] = s2[j];
 	return (joined);
-}
-
-char	*sttc_itoa(int number)
-{
-	static char	to_ascii[12];
-	int			index;
-	int			sign;
-
-	sign = (number > 0) - (number < 0);
-	index = 11;
-	while (number || index == 11)
-	{
-		to_ascii[--index] = (number % 10) * sign + '0';
-		number = number / 10;
-	}
-	if (sign < 0)
-		to_ascii[--index] = '-';
-	return (&to_ascii[index]);
-}
-
-char	*ft_itoa(int number)
-{
-	char	to_ascii[12];
-	char	*string;
-	int		index;
-	int		sign;
-
-	sign = (number > 0) - (number < 0);
-	index = 11;
-	while (number || index == 11)
-	{
-		to_ascii[--index] = (number % 10) * sign + '0';
-		number = number / 10;
-	}
-	if (sign < 0)
-		to_ascii[--index] = '-';
-	string = ft_calloc(sizeof(char), (12 - index));
-	if (!string)
-		return (NULL);
-	sign = 0;
-	while (index < 11)
-		string[sign++] = to_ascii[index++];
-	return (string);
 }

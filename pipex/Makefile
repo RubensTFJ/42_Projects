@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/03/24 18:41:43 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/03/28 23:31:07 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= 	pipex
 
 CC			= 	cc #-g -fsanitize=address
 
-CFLAGS		= 	-Wall -Wextra -Werror
+CFLAGS		= 	-Wall -Wextra -Werror -g
 
 RM			= 	rm -f
 
@@ -27,7 +27,7 @@ OBJS		= 	$(SRCS:.c=.o)
 all: 		$(NAME)
 
 $(NAME):	$(SRCS) 
-			@$(CC) $(INCLUDES) $(SRCS) -o $(NAME)
+			@$(CC) $(INCLUDES) $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean:
 			@$(RM) $(OBJS)
