@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/28 23:45:48 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:19:46 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	check_start(int argc, char **argv, t_vars *get)
 	get->fd[1] = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
 	if (get->fd[1] < 0)
 		end_pipex(get, 3, "Failed to Open Outfile.");
-	if (pipe(get->pipe) < 0)
-		end_pipex(get, 4, "Failed to Open Pipe");
+	get->pipe1 = ft_calloc(sizeof(int), 2);
+	get->pipe2 = ft_calloc(sizeof(int), 2);
 }
 
 int	get_paths(char **envp, t_vars *get)
@@ -41,6 +41,7 @@ int	get_paths(char **envp, t_vars *get)
 		}
 		i++;
 	}
+	get->envp = envp;
 	return (0);
 }
 
@@ -48,7 +49,7 @@ char	*build_command(t_vars *get, char *command)
 {
 	int		i;
 	char	*full_path;
-
+	
 	i = 0;
 	if (!access(command, F_OK))
 		return (ft_strdup(command));
@@ -92,7 +93,7 @@ int	main(int counter, char **input, char *envp[])
 		end_pipex(&get, 5, "Failed to find Path");
 	if (!get_commands(counter, &get, input))
 		end_pipex(&get, 6, "Invalid Command");
-	pipex(&get, envp);
+	pipex(&get);
 	end_pipex(&get, 0, "");
 	return (0);
 }

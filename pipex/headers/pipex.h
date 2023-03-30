@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:09 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/29 00:27:41 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:19:10 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,30 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# define DEBUG1 write(2, "here\n", 5);
+# define DEBUG2 write(2, "there\n", 6);
+
 
 typedef struct s_vars {
-	int		id[2];
+	int		id;
 	int		fd[2];
-	int		pipe[2];
-	int		inter_pipe[2];
+	int		*pipe1;
+	int		*pipe2;
+	char	**envp;
 	char	**paths;
 	char	***commands;
 	char	**full_command;
 } t_vars;
 
-typedef struct s_pipex
-{
-	pid_t	pid1;
-	pid_t	pid2;
-	int		tube[2];
-	int		infile;
-	int		outfile;
-	char	*paths;
-	char	**cmd_paths;
-	char	**cmd_args;
-	char	*cmd;
-} t_pipex;
+typedef struct s_pipe {
+	int		active_pipe[2];
+	int		index;
+	int		in;
+	int		out;
+	char	*command;
+	char	**flags_cmd;
+	char	**envp;
+} t_pipe;
 
 // Libft
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -64,7 +65,7 @@ void	end_pipex(t_vars *get, int exit_type, char *string);
 // void	free_paths(char **paths);
 
 // Pipex
-void	pipex(t_vars *get, char *envp[]);
+void	pipex(t_vars *get);
 // void	child_process(t_vars *get);
 
 #endif
