@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/30 02:19:46 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:57:09 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	check_start(int argc, char **argv, t_vars *get)
 {
-	// if (argc != 5)
-	// 	end_pipex(get, 1, "Wrong Usage.");
+	if (argc != 5)
+		end_pipex(get, 1, "Wrong Usage.");
 	get->fd[0] = open(argv[1], O_RDONLY);
 	if (get->fd[0] < 0)
 		end_pipex(get, 2, "Failed to Open Infile.");
@@ -49,7 +49,7 @@ char	*build_command(t_vars *get, char *command)
 {
 	int		i;
 	char	*full_path;
-	
+
 	i = 0;
 	if (!access(command, F_OK))
 		return (ft_strdup(command));
@@ -97,9 +97,3 @@ int	main(int counter, char **input, char *envp[])
 	end_pipex(&get, 0, "");
 	return (0);
 }
-	// fd[1] = open(argv[3], O_CREAT | O_RDONLY | O_TRUNC, 420);
-	// command = ft_strjoin(argv[1], argv[2]);
-	// counter = write(fd[1], command, ft_strlen(command));
-	// ft_printf("fd: %i, line: %s, write: %i\n", fd[1], command, counter);
-	// free(command);
-	// close(fd[1]);

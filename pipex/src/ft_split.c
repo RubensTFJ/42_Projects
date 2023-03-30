@@ -6,11 +6,24 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 13:50:23 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/28 23:27:19 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/30 03:00:40 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
+
+void	finish_list_with(char **list, char *put)
+{
+	char	*temp;
+
+	while (*list)
+	{
+		temp = ft_strjoin(*list, put);
+		free(*list);
+		*list = temp;
+		list++;
+	}
+}
 
 static void	fill_list(char const *s, char **list, char c)
 {

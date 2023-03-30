@@ -6,26 +6,13 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:10:45 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/30 02:22:35 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/30 03:00:29 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-void	finish_list_with(char **list, char *put)
-{
-	char	*temp;
-	
-	while (*list)
-	{
-		temp = ft_strjoin(*list, put);
-		free(*list);
-		*list = temp;
-		list++;
-	}
-}
-
-static void	free_list(char **list)
+void	free_list(char **list)
 {
 	int	i;
 
@@ -38,7 +25,7 @@ static void	free_list(char **list)
 	}
 }
 
-static void	free_commands(char ***commands)
+void	free_commands(char ***commands)
 {
 	int	i;
 	int	j;

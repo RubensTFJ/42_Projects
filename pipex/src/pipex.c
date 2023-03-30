@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:27:32 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/30 02:54:57 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:56:42 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	executioner(t_vars *get, int *in_pipe, int *out_pipe, int index)
 	if (get->full_command[index + 1])
 		dup2(out_pipe[1], STDOUT_FILENO);
 	else
-		dup2(get->fd[1], STDOUT_FILENO);	
+		dup2(get->fd[1], STDOUT_FILENO);
 	execve(get->full_command[index], get->commands[index], get->envp);
 }
 

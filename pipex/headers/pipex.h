@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:09 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/30 02:19:10 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/30 02:59:14 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <sys/wait.h>
-# define DEBUG1 write(2, "here\n", 5);
-# define DEBUG2 write(2, "there\n", 6);
-
 
 typedef struct s_vars {
 	int		id;
@@ -32,17 +29,7 @@ typedef struct s_vars {
 	char	**paths;
 	char	***commands;
 	char	**full_command;
-} t_vars;
-
-typedef struct s_pipe {
-	int		active_pipe[2];
-	int		index;
-	int		in;
-	int		out;
-	char	*command;
-	char	**flags_cmd;
-	char	**envp;
-} t_pipe;
+}	t_vars;
 
 // Libft
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -58,14 +45,14 @@ int		get_paths(char **envp, t_vars *get);
 void	finish_list_with(char **list, char *put);
 void	check_start(int argc, char **argv, t_vars *get);
 
-
 // End_Program
 void	end_pipex(t_vars *get, int exit_type, char *string);
-// void	free_commands(char ***commands);
-// void	free_paths(char **paths);
+void	free_commands(char ***commands);
+void	free_list(char **list);
+void	finish_list_with(char **list, char *put);
 
 // Pipex
 void	pipex(t_vars *get);
-// void	child_process(t_vars *get);
+void	executioner(t_vars *get, int *in_pipe, int *out_pipe, int index);
 
 #endif
