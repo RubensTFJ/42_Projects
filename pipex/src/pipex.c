@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:27:32 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/30 18:34:55 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/31 22:51:51 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 void	executioner(t_vars *get, int *in_pipe, int *out_pipe, int index)
 {
 	dup2(in_pipe[0], STDIN_FILENO);
-	dup2(out_pipe[1], STDOUT_FILENO);
-	if (!get->full_command[index + 1])
+	if (get->full_command[index + 1])
+		dup2(out_pipe[1], STDOUT_FILENO);
+	else
 		dup2(get->fd[1], STDOUT_FILENO);
 	execve(get->full_command[index], get->commands[index], get->envp);
+	exit(0);
 }
 
 /*
@@ -34,6 +36,7 @@ executioner
 	Is the only action of the child process. It sets input and output
 for the execve function, which it proceeds to call.
 */
+
 void	pipex(t_vars *get)
 {
 	int	i;
@@ -46,7 +49,7 @@ void	pipex(t_vars *get)
 		pipe(get->pipe2);
 		get->id = fork();
 		if (get->id < 0 || get->pipe2[0] < 0)
-			end_pipex(get, "Failed to Pipe/Fork", 7);
+			end_pipex(get, 7, "Failed to Pipe/Fork");
 		if (!get->id)
 			executioner(get, get->pipe1, get->pipe2, i);
 		else

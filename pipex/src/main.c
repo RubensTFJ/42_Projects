@@ -6,14 +6,15 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/30 18:26:02 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/31 22:51:40 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-void	check_start(int argc, char **argv, t_vars *get)
+void	check_start(int argc, char **argv, char **envp, t_vars *get)
 {
+	get->envp = envp;
 	if (argc < 5)
 		end_pipex(get, 1, "Wrong Usage.");
 	get->fd[0] = open(argv[1], O_RDONLY);
@@ -25,7 +26,7 @@ void	check_start(int argc, char **argv, t_vars *get)
 	get->pipe1 = ft_calloc(sizeof(int), 2);
 	get->pipe2 = ft_calloc(sizeof(int), 2);
 	if (!get->pipe1 || !get->pipe2)
-		return (4);
+		end_pipex(get, 4, "Fail to Allocate Memory");
 }
 
 int	get_paths(char **envp, t_vars *get)
@@ -43,7 +44,6 @@ int	get_paths(char **envp, t_vars *get)
 		}
 		i++;
 	}
-	get->envp = envp;
 	return (0);
 }
 
@@ -63,7 +63,7 @@ char	*build_command(t_vars *get, char *command)
 			return (full_path);
 		free(full_path);
 	}
-	return (NULL);
+	return (ft_strjoin(get->paths[--i], command));
 }
 
 int	get_commands(int size, t_vars *get, char **input)
@@ -80,8 +80,7 @@ int	get_commands(int size, t_vars *get, char **input)
 		if (!get->commands[i])
 			return (0);
 		get->full_command[i] = build_command(get, get->commands[i][0]);
-		if (!get->full_command[i++])
-			return (0);
+		i++;
 	}
 	return (1);
 }
@@ -107,7 +106,7 @@ int	main(int counter, char **input, char *envp[])
 {
 	static t_vars	get;
 
-	check_start(counter, input, &get);
+	check_start(counter, input, envp, &get);
 	if (!get_paths(envp, &get))
 		end_pipex(&get, 5, "Failed to find Path");
 	if (!get_commands(counter, &get, input))
