@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 22:00:53 by rteles-f          #+#    #+#             */
-/*   Updated: 2022/11/20 18:13:49 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/03/30 16:20:01 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*seek_line(int fd, char *buffer)
 	char	*line;
 	int		i;
 
-	line = NULL;
 	if (!buffer[0])
 		return (NULL);
 	i = 0;

@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 19:45:09 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/30 16:20:09 by rteles-f         ###   ########.fr       */
+/*   Created: 2023/03/31 23:36:39 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/04/01 00:18:24 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-char	*get_next_line(int fd)
-{
-	static char		buffer[BUFFER_SIZE + 1];
-	char			*line;
-	int				i;
+# include <ft_printf.h>
+# include <signal.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# define LOOP 1
 
-	if (read(fd, 0, 0) < 0)
-	{
-		i = 0;
-		while (i < BUFFER_SIZE)
-			buffer[i++] = 0;
-		return (NULL);
-	}
-	if (!buffer[0])
-		buffer[read(fd, buffer, BUFFER_SIZE)] = 0;
-	line = seek_line(fd, buffer);
-	over_read(buffer);
-	return (line);
-}
+// Libft
+int		ft_strlen(const char *string);
+int		ft_atoi(const char *nptr);
+char	*ft_strjoin(char const *s1, char const *s2);
+void	*ft_calloc(size_t n, size_t xsize);
+
+#endif

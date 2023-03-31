@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/05 19:45:09 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/30 16:20:09 by rteles-f         ###   ########.fr       */
+/*   Created: 2023/04/01 00:11:41 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/04/01 00:24:24 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include <minitalk.h>
 
-char	*get_next_line(int fd)
-{
-	static char		buffer[BUFFER_SIZE + 1];
-	char			*line;
-	int				i;
+// int main(int counter, char **input)
+// {
+// 	int	process_id;
 
-	if (read(fd, 0, 0) < 0)
-	{
-		i = 0;
-		while (i < BUFFER_SIZE)
-			buffer[i++] = 0;
-		return (NULL);
-	}
-	if (!buffer[0])
-		buffer[read(fd, buffer, BUFFER_SIZE)] = 0;
-	line = seek_line(fd, buffer);
-	over_read(buffer);
-	return (line);
-}
+// 	if (counter != 3)
+// 	{
+// 		ft_printf("Usage: ./server <PID> <Message>");
+// 		return (1);
+// 	}
+// 	process_id = ft_atoi(input[1]);
+// 	ft_printf("%i\n", process_id);
+// 	return (0);
+// }
