@@ -1,79 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   teste.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/03 15:06:51 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/04/03 15:06:51 by rteles-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#define F & (1 << 31)
-#define S & (1 << 30)
 #define C (char)
-#define DEBUG1 write(1, "var\n", 4)
-// int set(int *var, int value);
-int reset(int *var, int value);
 
-
-
-int reset(int *var, int value)
+int	reset(int *var)
 {
-    static int  *compare;
-
-    if (var == compare)
-        return (0);
-    else if (!var)
-        compare = NULL;
-    else
-    {
-        compare = var;
-        *var = value;
-        // set(0, 0);
-        return (1);
-    }
+	var[1] = 1;
+	return (0);
 }
 
-// int set(int *var, int value)
-// {
-//     static int  *compare;
-
-//     if (var == compare)
-//         return (0);
-//     else
-//     {
-//         compare = var;
-//         *var = value;
-//         return (1);
-//     }
-// }
-
-int setter(int type)
+int	set(int *var, int value)
 {
-    static int setter = 31;
+	var[0] = value;
+	var[1] = 0;
+	return (1);
+}
 
-    if (type == 'C')
-    {
-        printf("%c, setter: %i \n", type, setter);
-        if (setter == 31)
-            return (setter);
-        else
-            return (setter + 1);
-    }
-    else if (type == 'G')
-    {
-        printf("%c, setter: %i \n", type, setter); 
-        return (setter--);
-    }
-    return (0);
+int	main(void)
+{
+	int	i[2];
+	
+	while ((!i[1] || set(i, -1)) && ++i[0] < 10)
+	{
+			printf("I: %i, J: %i\n", i[0], j[0]);
+	}
 }
 
 
-
-
-int set(int *var, int value)
+int	set(int *var, int value)
 {
-    *var = value;
-    *var |= (1 << 31);
+	*var = value;
+	*var |= (1 << 30);
+	return (1);
 }
 
-int main(void)
+int	main(void)
 {
-    int  i;
+	int	i;
+	int	j;
 
-    while ((i++ F || set(&i, 0)) && (char)i < 10)
-        printf("%i\n", (char)i);
+	printf("%i\n", (1 << 30));
+	while ((i++ & (1 << 30) || set(&i, 0)) && (char)i < 10)
+	{
+
+	}
 }

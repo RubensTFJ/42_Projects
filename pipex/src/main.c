@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/31 22:51:40 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/03 19:16:02 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	check_start(int argc, char **argv, char **envp, t_vars *get)
 {
-	get->envp = envp;
 	if (argc < 5)
 		end_pipex(get, 1, "Wrong Usage.");
 	get->fd[0] = open(argv[1], O_RDONLY);
@@ -23,10 +22,7 @@ void	check_start(int argc, char **argv, char **envp, t_vars *get)
 	get->fd[1] = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
 	if (get->fd[1] < 0)
 		end_pipex(get, 3, "Failed to Open Outfile.");
-	get->pipe1 = ft_calloc(sizeof(int), 2);
-	get->pipe2 = ft_calloc(sizeof(int), 2);
-	if (!get->pipe1 || !get->pipe2)
-		end_pipex(get, 4, "Fail to Allocate Memory");
+	get->envp = envp;
 }
 
 int	get_paths(char **envp, t_vars *get)
@@ -66,7 +62,7 @@ char	*build_command(t_vars *get, char *command)
 	return (ft_strjoin(get->paths[--i], command));
 }
 
-int	get_commands(int size, t_vars *get, char **input)
+void	get_commands(int size, t_vars *get, char **input)
 {
 	int	i;
 
@@ -78,11 +74,10 @@ int	get_commands(int size, t_vars *get, char **input)
 	{
 		get->commands[i] = ft_split(input[i + 2], ' ');
 		if (!get->commands[i])
-			return (0);
+			end_pipex(get, 6, "Fail to Allocate Memory");
 		get->full_command[i] = build_command(get, get->commands[i][0]);
 		i++;
 	}
-	return (1);
 }
 
 /*
@@ -109,8 +104,7 @@ int	main(int counter, char **input, char *envp[])
 	check_start(counter, input, envp, &get);
 	if (!get_paths(envp, &get))
 		end_pipex(&get, 5, "Failed to find Path");
-	if (!get_commands(counter, &get, input))
-		end_pipex(&get, 6, "Invalid Command");
+	get_commands(counter, &get, input);
 	pipex(&get);
 	end_pipex(&get, 0, "");
 	return (0);
