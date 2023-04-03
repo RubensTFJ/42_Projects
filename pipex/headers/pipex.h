@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:09 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/31 19:41:17 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:57:26 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@
 typedef struct s_vars {
 	int		id;
 	int		fd[2];
-	int		*pipe1;
-	int		*pipe2;
+	int		pipe[2];
 	char	**envp;
 	char	**paths;
 	char	***commands;
@@ -35,7 +34,7 @@ typedef struct s_vars {
 void	check_start(int argc, char **argv, char **envp, t_vars *get);
 int		get_paths(char **envp, t_vars *get);
 void	finish_list_with(char **list, char *put);
-int		get_commands(int size, t_vars *get, char **input);
+void	get_commands(int size, t_vars *get, char **input);
 
 // Pipex
 void	pipex(t_vars *get);

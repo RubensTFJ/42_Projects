@@ -76,3 +76,4 @@ wall "  #Architecture: $archi
         #User log: $u_inserver
         #Network: IP $ipv4 ($mac)
         #Sudo: $n_commands_sudo cmd"
+

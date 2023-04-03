@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:36:13 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/01 00:25:05 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/03 15:51:57 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int counter, char **input)
 		ft_printf("Usage: ./server\n");
 	process_id = getpid();
 	ft_printf("PID -> %i.\n", process_id);	
-	while (LOOP)
+	while (true)
 	{
 		signal(SIGUSR1, signal_handler);
 		signal(SIGUSR2, signal_handler);

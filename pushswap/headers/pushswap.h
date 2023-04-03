@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   pushswap.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 23:36:39 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/03 15:51:50 by rteles-f         ###   ########.fr       */
+/*   Created: 2023/04/01 01:24:19 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/04/01 01:36:29 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef PUSHSWAP_H
+# define PUSHSWAP_H
 
-# include <ft_printf.h>
-# include <signal.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdbool.h>
-# include <stdio.h>
-# define LOOP 1
+#include <ft_printf.h>
+
+typedef struct s_ {
+	/* data */
+} ;
+
+
+typedef struct	l_list {
+	int		content;
+	t_list	*next;
+	t_list	*previous;
+} t_list;
 
 // Libft
-int		ft_strlen(const char *string);
-int		ft_atoi(const char *nptr);
 char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_strlen(const char *string);
 void	*ft_calloc(size_t n, size_t xsize);
+
+// list
+void	ft_lstadd_back(t_list **lst, t_list *new);
+t_list	*ft_lstnew(void *content);
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstadd_front(t_list **lst, t_list *new);
 
 #endif
