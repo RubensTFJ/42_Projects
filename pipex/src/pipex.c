@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:27:32 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/03 20:22:34 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:31:46 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	executioner(t_vars *get, int *out_pipe, int index)
 		close(out_pipe[0]);
 	}
 	else
-	{
 		dup2(get->fd[1], STDOUT_FILENO);
-		close(get->fd[1]);
-	}
 	execve(get->full_command[index], get->commands[index], get->envp);
 	end_pipex(get, 10, "");
 }
