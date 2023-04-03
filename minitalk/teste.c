@@ -62,8 +62,6 @@ int setter(int type)
 }
 
 
-
-
 int set(int *var, int value)
 {
     *var = value;
