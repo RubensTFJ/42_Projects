@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/03/17 22:25:26 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/04/06 16:50:19 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC			= 	gcc -Wall -Wextra -Werror # -g -fsanitize=address
 RM			= 	/bin/rm -f
 INCLUDES	= 	-Iheaders/
 
-SRCS		=	$(shell find src/ -name *.c) 
+SRCS		=	src/*.c
 OBJS		= 	$(SRCS:.c=.o)
 
 MLX_LIB_DIR = mlx_linux/
@@ -31,7 +31,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(^) $(MLX_FLAGS) -o $(@)
 
 %.o: %.c $(MLX_LIB)
-	@$(CC) $(INCLUDES) $(MLX_INCLUDE) -c $(^) -o $(@)
+	@$(CC) $(INCLUDES) $(MLX_INCLUDE) $(SRCS) -o $(@)
 
 clean:
 	@$(RM) $(OBJS)

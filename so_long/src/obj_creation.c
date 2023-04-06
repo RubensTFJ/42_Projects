@@ -6,52 +6,11 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:22:57 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/02/06 17:01:47 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:48:36 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <so_long.h>
-
-int set(int *var, int value)
-{
-    static int  *compare;
-
-    if (var == compare)
-        return (0);
-    else if (!var)
-        compare = NULL;
-    else
-    {
-        compare = var;
-        *var = value;
-        // reset(0, 0);
-        return (1);
-    }
-}
-
-int reset(int *var, int value)
-{
-    static int  *compare;
-
-    if (var == compare)
-        return (0);
-    else if (!var)
-        compare = NULL;
-    else
-    {
-        compare = var;
-        *var = value;
-        set(0, 0);
-        return (1);
-    }
-}
-
-typedef struct s_loop {
-	int	X;
-	int	Y;
-} t_loop;
-
-
 
 void	init_floor_objects(t_vars *vars, t_infomap *map)
 {
@@ -59,10 +18,12 @@ void	init_floor_objects(t_vars *vars, t_infomap *map)
 	int	j;
 
 	map->grid = calloc(sizeof(t_object *), map->height_y);
-	while (set(&i, 0) || ++i && i < map->height_y)
+	i = -1;
+	while (++i < map->height_y)
 	{
 		map->grid[i] = calloc(sizeof(t_object *), map->width_x);
-		while (set(&j, 0) || ++j && j < map->width_x)
+		j = -1;
+		while (++j < map->width_x)
 		{
 			if (map->map[i][j] == '1' || map->map[i][j] == '/')
 				map->grid[i][j] = create_object_1(vars, '1', i, j);

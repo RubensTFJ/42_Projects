@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:09 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/03 18:57:26 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:30:24 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_vars {
 	int		pipe[2];
 	char	**envp;
 	char	**paths;
-	char	***commands;
 	char	**full_command;
+	char	***commands;
 }	t_vars;
 
 // Main
