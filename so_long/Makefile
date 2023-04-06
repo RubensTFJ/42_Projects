@@ -5,24 +5,23 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/04/06 16:50:19 by rteles-f         ###   ########.fr        #
+#    Created: 2023/04/06 22:11:29 by rteles-f          #+#    #+#              #
+#    Updated: 2023/04/06 22:11:34 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= 	so_long
-CC			= 	gcc -Wall -Wextra -Werror # -g -fsanitize=address
-RM			= 	/bin/rm -f
-INCLUDES	= 	-Iheaders/
+NAME			= 	so_long
+CC				= 	gcc -Wall -Wextra -Werror # -g -fsanitize=address
+RM				= 	/bin/rm -f
+INCLUDES		= 	-Iheaders/
+	
+SRCS			=	$(shell find src/ -name *.c) 
+OBJS			= 	$(SRCS:.c=.o)
 
-SRCS		=	src/*.c
-OBJS		= 	$(SRCS:.c=.o)
-
-MLX_LIB_DIR = mlx_linux/
-LIBFT_INCLUDE = -ILIBFT/include
-MLX_INCLUDE = -Imlx_linux
-MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
-
+MLX_LIB_DIR 	= mlx_linux/
+LIBFT_INCLUDE 	= -ILIBFT/include
+MLX_INCLUDE 	= -Imlx_linux
+MLX_FLAGS 		= -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
@@ -31,7 +30,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(^) $(MLX_FLAGS) -o $(@)
 
 %.o: %.c $(MLX_LIB)
-	@$(CC) $(INCLUDES) $(MLX_INCLUDE) $(SRCS) -o $(@)
+	@$(CC) $(INCLUDES) $(MLX_INCLUDE) -c $(^) -o $(@)
 
 clean:
 	@$(RM) $(OBJS)

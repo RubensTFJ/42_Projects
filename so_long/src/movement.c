@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:14:49 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/06 16:30:18 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/06 22:13:27 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	movement(t_vars *vars, t_object *obj)
 	walk = 0.09;
 	if (map()->animation > 1)
 		walk *= 0.85;
-	x = obj->x + ((*on(S) - *on(W) * 1.5) * walk) - walk;
+	x = obj->x + ((*on(S) - *on(W)) * walk);
 	y = obj->y + ((*on(D) - *on(A)) * walk);
 	obj_stack_remove(map()->grid[(int)(obj->x)][(int)(obj->y)], obj);
 	obj->on_top = NULL;
