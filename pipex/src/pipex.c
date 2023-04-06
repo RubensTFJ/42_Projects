@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:27:32 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/03 20:31:46 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:27:51 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,27 @@ void	executioner(t_vars *get, int *out_pipe, int index)
 pipex
 	Opens a pipe and forks the process in loop for each command stored in
 the full_commands variable.
-	Using 2 diferent Pipes, the pipes take turns in being read and writen
-using temp variable to make the switch.
-	The program needs only one pipe open at a time. The Pipe to be 
-written (pipe2), has to be open, the pipe to be read has not.
+	Using 1 pipe variable and a temp variable to read and write. The function
+pipe() creates a new pipe, this new pipe is used to be writen first and read
+in the next loop. The execve in the first loop is going to read from the
+infile, then the temp variable is going to save the door to the readable end
+of that pipe, in the next loop a new pipe is created, the execve is going
+to read from the old pipe, saved in temp, and write to the new pipe and so on.
 
 executioner
-	Is the only action of the child process. It sets input and output
+	Is the only action of the child process. It sets the output
 for the execve function, which it proceeds to call.
 */
 void	pipex(t_vars *get)
 {
 	int	i;
-	int	temp;
+	int	temp_in;
 
-	temp = get->fd[0];
+	temp_in = get->fd[0];
 	i = 0;
 	while (get->full_command[i])
 	{
-		dup2(temp, STDIN_FILENO);
+		dup2(temp_in, STDIN_FILENO);
 		pipe(get->pipe);
 		get->id = fork();
 		if (get->id < 0 || get->pipe[0] < 0)
@@ -56,10 +58,9 @@ void	pipex(t_vars *get)
 			executioner(get, get->pipe, i);
 		else
 		{
-			close(temp);
-			temp = get->pipe[0]:
+			close(temp_in);
 			close(get->pipe[1]);
-			wait(0);
+			temp_in = get->pipe[0];
 		}
 		i++;
 	}

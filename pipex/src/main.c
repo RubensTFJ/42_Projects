@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/03 19:16:02 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/06 15:14:34 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_start(int argc, char **argv, char **envp, t_vars *get)
 		end_pipex(get, 1, "Wrong Usage.");
 	get->fd[0] = open(argv[1], O_RDONLY);
 	if (get->fd[0] < 0)
-		end_pipex(get, 2, "Failed to Open Infile.");
+		ft_printf("%s: No such file or directory", argv[1]);
 	get->fd[1] = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
 	if (get->fd[1] < 0)
 		end_pipex(get, 3, "Failed to Open Outfile.");
@@ -59,6 +59,11 @@ char	*build_command(t_vars *get, char *command)
 			return (full_path);
 		free(full_path);
 	}
+	write (2, "command not found: ", 19);
+	i = 0;
+	while (command[i])
+		write (2, &command[i++], 1);
+	write (2, "\n", 1);
 	return (ft_strjoin(get->paths[--i], command));
 }
 
