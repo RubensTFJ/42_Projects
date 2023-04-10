@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 00:11:41 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/03 15:52:42 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/10 22:09:47 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int main(int counter, char **input)
 
 	if (counter != 3)
 	{
-		ft_printf("Usage: ./server <PID> <Message>");
+		ft_printf("Usage: ./server *message");
 		return (1);
 	}
 	process_id = ft_atoi(input[1]);
-	ft_printf("%i\n", process_id);
+	ft_printf("%i\n");
 	return (0);
 }
