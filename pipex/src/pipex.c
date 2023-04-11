@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:27:32 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/06 15:27:51 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/11 19:14:01 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	pipex(t_vars *get)
 			close(temp_in);
 			close(get->pipe[1]);
 			temp_in = get->pipe[0];
+			wait(0);
 		}
 		i++;
 	}

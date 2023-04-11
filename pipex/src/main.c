@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/06 15:14:34 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/11 19:19:22 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,13 @@ char	*build_command(t_vars *get, char *command)
 	return (ft_strjoin(get->paths[--i], command));
 }
 
+/*
+(size - 3 + 1):
+'size' is the number of arguments when calling pipex.
+'- 3' is the number of arguments that are not commands to 
+be executed: "./pipex", "infile" and "outfile".
+'+ 1' is the null ending. 
+*/
 void	get_commands(int size, t_vars *get, char **input)
 {
 	int	i;
