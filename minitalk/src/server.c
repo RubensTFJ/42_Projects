@@ -6,13 +6,13 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:36:13 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/12 20:43:09 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/12 20:52:12 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minitalk.h>
 
-void	ft_build_message(t_talk *get)
+static void	ft_build_message(t_talk *get)
 {
 	static int	pos;
 
@@ -30,7 +30,7 @@ void	ft_build_message(t_talk *get)
 	}
 }
 
-int	ft_build_package(int signal, int limit)
+static int	ft_build_package(int signal, int limit)
 {
 	static int	pos;
 	static int	variable;
@@ -49,7 +49,7 @@ int	ft_build_package(int signal, int limit)
 	return (0);
 }
 
-void	ft_signal_handler(int signal)
+static void	ft_signal_handler(int signal)
 {
 	static t_talk	get;
 
@@ -76,25 +76,6 @@ int	main(int counter, char **input)
 	signal(SIGUSR1, ft_signal_handler);
 	signal(SIGUSR2, ft_signal_handler);
 	while (true)
-	{
 		pause();
-	}
 	return (0);
 }
-
-// void sigint_handler(int signal)
-// {
-// 	(void)signal;
-//     printf("Received SIGINT signal\n");
-// }
-
-// int main()
-// {
-//     // Register the signal handler function for SIGINT
-//     signal(SIGINT, sigint_handler);
-
-//     // Do some work here...
-//     while(1) {}
-
-//     return 0;
-// }

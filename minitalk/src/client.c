@@ -6,13 +6,13 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 00:11:41 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/12 20:41:46 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/12 20:51:51 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minitalk.h>
 
-void	ft_talk_message(unsigned char *message, int PID, int bytes)
+static void	ft_talk_message(unsigned char *message, int PID, int bytes)
 {
 	int	i;
 	int	pos;
