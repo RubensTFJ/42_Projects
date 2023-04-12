@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:36:39 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/12 20:21:00 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/12 20:54:51 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_talk
 // Libft
 int		ft_strlen(const char *string);
 int		ft_atoi(const char *nptr);
-char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_calloc(size_t n, size_t xsize);
 
 #endif
