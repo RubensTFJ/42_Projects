@@ -6,28 +6,35 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/31 23:39:00 by rteles-f          #+#    #+#              #
-#    Updated: 2023/04/01 00:17:42 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/04/12 19:41:56 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= 	minitalk
+SERVER_NAME		= 	server
 
-CC			= 	cc #-g -fsanitize=address
+CLIENT_NAME		=	client
 
-CFLAGS		= 	-Wall -Wextra -Werror -g
+CC				= 	cc #-g -fsanitize=address
 
-RM			= 	rm -f
+CFLAGS			= 	-Wall -Wextra -Werror -g
 
-INCLUDES	= 	-Iheaders/
+RM				= 	rm -f
 
-SRCS		=	ft_printf/*.c src/*.c
+INCLUDES		= 	-Iheaders/
 
-OBJS		= 	$(SRCS:.c=.o)
+SRC_SERV		=	ft_printf/*.c src/server.c src/libft_usual.c
+	
+SRC_CLIENT		=	ft_printf/*.c src/client.c src/libft_usual.c
+	
+OBJS			= 	$(SRCS:.c=.o)
 
-all: 		$(NAME)
+all: 		$(SERVER_NAME) $(CLIENT_NAME)
 
-$(NAME):	$(SRCS) 
-			@$(CC) $(INCLUDES) $(CFLAGS) $(SRCS) -o $(NAME)
+$(SERVER_NAME):	$(SRC_SERV) 
+			@$(CC) $(INCLUDES) $(CFLAGS) $(SRC_SERV) -o $(SERVER_NAME)
+
+$(CLIENT_NAME):	$(SRC_CLIENT) 
+			@$(CC) $(INCLUDES) $(CFLAGS) $(SRC_CLIENT) -o $(CLIENT_NAME)
 
 clean:
 			@$(RM) $(OBJS)

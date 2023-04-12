@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 23:36:39 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/03 15:51:50 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/12 20:21:00 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <stdio.h>
-# define LOOP 1
+
+typedef struct s_talk
+{
+	int		size;
+	int		bit;
+	int		sent;
+	char	*string;
+} t_talk;
 
 // Libft
 int		ft_strlen(const char *string);

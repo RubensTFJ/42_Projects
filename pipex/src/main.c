@@ -6,13 +6,17 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/11 19:19:22 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/11 20:25:11 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-void	check_start(int argc, char **argv, char **envp, t_vars *get)
+void	check_start(int argc, char **
+		i++;
+	}
+	return (0);
+}argv, char **envp, t_vars *get)
 {
 	if (argc < 5)
 		end_pipex(get, 1, "Wrong Usage.");
@@ -38,10 +42,6 @@ int	get_paths(char **envp, t_vars *get)
 			finish_list_with(get->paths, "/");
 			return (1);
 		}
-		i++;
-	}
-	return (0);
-}
 
 char	*build_command(t_vars *get, char *command)
 {
