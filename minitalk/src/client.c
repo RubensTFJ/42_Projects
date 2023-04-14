@@ -43,7 +43,7 @@ void	ft_recieve_signal(int signal)
 		ft_printf("Message sent.\n");
 }
 
-static void	ft_talk_message(unsigned char *message, int PID, int bytes)
+static void	ft_talk_message(unsigned char *message, int process_id, int bytes)
 {
 	int	i;
 	int	pos;
@@ -55,10 +55,10 @@ static void	ft_talk_message(unsigned char *message, int PID, int bytes)
 		while (++pos < 8)
 		{
 			if (message[i] & (1 << pos))
-				kill(PID, SIGUSR2);
+				kill(process_id, SIGUSR2);
 			else
-				kill(PID, SIGUSR1);
-			usleep(5000);
+				kill(process_id, SIGUSR1);
+			usleep(500000);
 		}
 	}
 }

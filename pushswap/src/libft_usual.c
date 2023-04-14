@@ -1,10 +1,16 @@
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft_usual.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/14 23:24:26 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/04/14 23:34:53 by rteles-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char	*ft_strjoin(char const *s1, char const *s2);
-int		ft_strlen(const char *string);
-void	*ft_calloc(size_t n, size_t xsize);
+#include <pushswap.h>
 
 void	*ft_calloc(size_t n, size_t xsize)
 {
@@ -21,37 +27,6 @@ void	*ft_calloc(size_t n, size_t xsize)
 		new[i++] = 0;
 	return (new);
 }
-
-int	ft_strlen(const char *string)
-{
-	int	counter;
-
-	counter = 0;
-	while (string[counter])
-		counter++;
-	return (counter);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	int		i;
-	int		j;
-	char	*joined;
-
-	if (!s1 || !s2)
-		return (NULL);
-	joined = ft_calloc(sizeof(char), (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!joined)
-		return (NULL);
-	i = -1;
-	while (s1[++i])
-		joined[i] = s1[i];
-	j = -1;
-	while (s2[++j])
-		joined[i + j] = s2[j];
-	return (joined);
-}
-
 
 char	*sttc_itoa(int number)
 {
@@ -96,43 +71,32 @@ char	*ft_itoa(int number)
 	return (string);
 }
 
-#define BASE_16 "0123456789abcdef"
-
-int char_int(char c_number)
-{
-	int	i;
-
-	i = 0;
-	while (i < 16)
-	{
-		if ((c_number == BASE_16[i]) || (c_number == (BASE_16[i] - 32)))
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-int	atoi_base(const char *str_number, int base)
+int	ft_atoi(const char *nptr)
 {
 	int		i;
-	int		length;
+	int		sign;
 	long	number;
 
-	length = ft_strlen(str_number);
 	i = 0;
-	number = 0;
-	while (i < length)
-	{
-		number = char_int(str_number[i]) + number * base;
+	while ((8 < nptr[i] && nptr[i] < 14) || nptr[i] == 32)
 		i++;
-	}
-	return (number);
+	sign = (nptr[i] != '-') - (nptr[i] == '-');
+	i += (nptr[i] == '-' || nptr[i] == '+');
+	number = 0;
+	while (47 < nptr[i] && nptr[i] < 58)
+		number = (nptr[i++] - 48) + (number * 10);
+	return ((int)(number * sign));
 }
 
-
-
-
-int main(void)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	printf("%i\n", atoi_base("25", 16));
+	size_t	i;
+
+	i = 0;
+	if (s1 && s2)
+	{
+		while (s1[i] && s2[i] && s1[i] == s2[i])
+			i++;
+	}
+	return ((((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]));
 }
