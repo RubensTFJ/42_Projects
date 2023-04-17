@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/04/14 23:48:19 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/04/14 23:52:01 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,9 @@ CFLAGS		= 	-Wall -Wextra -Werror
 
 RM			= 	rm -f
 
-INCLUDES	= 	-Iheaders
+INCLUDES	= 	-Iheaders/
 
-SRCS		=	src/main.c src/moves_a.c src/moves_b.c src/moves_both.c \
-				src/list.c src/list_aux.c src/libft_usual.c
+SRCS		=	ft_printf/*.c src/*.c
 
 OBJS		= 	$(SRCS:.c=.o)
 
