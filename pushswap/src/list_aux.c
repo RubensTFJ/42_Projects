@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 01:33:28 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/15 03:28:16 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/17 22:57:30 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list *iterate;
+	t_list	*iterate;
 
 	if (!lst || !new)
 		return ;
@@ -52,7 +52,6 @@ t_list	*ft_lstnew(int content)
 int	ft_lstsize(t_list *lst)
 {
 	int		counter;
-
 	t_list	*interate;
 
 	if (!lst)
@@ -65,4 +64,16 @@ int	ft_lstsize(t_list *lst)
 		interate = interate->next;
 	}
 	return (counter);
+}
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*iterate;
+
+	if (!lst)
+		return (NULL);
+	iterate = lst;
+	while (iterate->next != NULL)
+		iterate = iterate->next;
+	return (iterate);
 }

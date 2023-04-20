@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 23:24:26 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/15 02:28:59 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:39:03 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,33 @@ char	*sttc_itoa(int number)
 	if (sign < 0)
 		to_ascii[--index] = '-';
 	return (&to_ascii[index]);
+}
+
+char	*ft_pad_itoa(int number)
+{
+	char	to_ascii[12];
+	char	*string;
+	int		index;
+	int		sign;
+
+	sign = (number > 0) - (number < 0);
+	index = 11;
+	while (number || index == 11)
+	{
+		to_ascii[--index] = (number % 10) * sign + '0';
+		number = number / 10;
+	}
+	if (sign < 0)
+		to_ascii[--index] = '-';
+	string = ft_calloc(sizeof(char), (12 - index));
+	if (!string)
+		return (NULL);
+	sign = 0;
+	while (sign < index)
+		string[sign++] = 'x';
+	while (index < 11)
+		string[index] = to_ascii[index];
+	return (string);
 }
 
 char	*ft_itoa(int number)

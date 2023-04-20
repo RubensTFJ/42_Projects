@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/04/14 23:52:01 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/04/20 14:14:03 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,29 +20,29 @@ RM			= 	rm -f
 
 INCLUDES	= 	-Iheaders/
 
-SRCS		=	ft_printf/*.c src/*.c
+SRCS		=	src/*.c ft_printf/*.c
 
 OBJS		= 	$(SRCS:.c=.o)
 
-all: 		$(NAME)
+all: 			$(NAME)
 
-$(NAME):	$(SRCS) 
-			$(CC) $(INCLUDES) $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME):		$(SRCS) 
+				$(CC) $(INCLUDES) $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean:
-			@$(RM) $(OBJS)
+				@$(RM) $(OBJS)
 
 fclean: clean
-			@$(RM) $(NAME)
+				@$(RM) $(NAME)
 
 re: fclean all
 
 norm :
-			@norminette -R CheckForbiddenSourceHeader $(SRCS) headers/
+				@norminette -R CheckForbiddenSourceHeader $(SRCS) headers/
 
-m: 			fclean
+m: 				fclean
 
 r:
-			make && clear && ./$(NAME)
+				make && clear && ./$(NAME)
 
-.PHONY: 	all re clean fclean m
+.PHONY: 		all re clean fclean m
