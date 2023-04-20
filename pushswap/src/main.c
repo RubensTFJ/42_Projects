@@ -60,7 +60,7 @@ int	count_wins(t_list *list, int value)
 
 int	middle_value(t_list *list, int half)
 {
-	t_list *start;
+	t_list*start;
 	int	value;
 
 	start = list;
@@ -89,12 +89,52 @@ void	rescale(t_list **list)
 	*list = new;
 }
 
+void	divide_stack(void)
+{
+	int	go = 1;
+
+	while (go)
+	{
+		// print_push(get());
+		if (get()->first.list->content > get()->middle_value)
+			pb();
+		else
+			ra();
+		// print_push(get());
+	go--;
+	}
+}
+
+void	last_bit(t_list *list)
+{
+	int	pos;
+	int	last_bit;
+
+	last_bit = 0;
+	while (list)
+	{
+		pos = 0;
+		while (pos < 32)
+		{
+			if (list->content & (1 << pos) && pos > last_bit)
+				last_bit = pos;
+			pos++;
+		}
+		list = list->next;
+	}
+	get()->last_bit = last_bit;
+}
+
 int	main(int counter, char **input)
 {
 	(void)counter;
 	start_list((input + 1), &get()->first, get());
 	rescale(&get()->first.list);
 	get()->middle_value = middle_value(get()->first.list, get()->first.size / 2 + 1);
+	last_bit(get()->first.list);
+	push_bit_a(0);
+	print_push(get());
+	// radix();
 	print_push(get());
 	ft_printf("(Moves: %i), Middle_value: %i\n", get()->moves, get()->middle_value);
 	end_pushswap(get());

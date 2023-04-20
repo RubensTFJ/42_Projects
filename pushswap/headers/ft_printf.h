@@ -30,6 +30,6 @@ int	int_case(va_list *arg_list);
 int	pointer_case(size_t number);
 int	char_case(va_list *arg_list);
 int	string_case(va_list *arg_list);
-int	put_base_number(t_ull n, char *base, t_ui bsize);
+int	put_base_number(t_ull n, char *base, t_ull bsize);
 
 #endif

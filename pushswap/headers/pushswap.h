@@ -40,6 +40,7 @@ struct s_push {
 	t_stack	second;
 	int		middle_value;
 	int		moves;
+	int		last_bit;
 };
 
 //Pushswap_utils
@@ -77,5 +78,10 @@ void	*ft_calloc(size_t n, size_t xsize);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*sttc_itoa(int number);
 int		ft_atoi(const char *nptr);
+
+void	radix(void);
+void    push_bit_position(int list_id, int pos);
+void    push_bit_a(int pos);
+void    push_bit_b(int pos);
 
 #endif
