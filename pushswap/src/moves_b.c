@@ -65,6 +65,7 @@ void	rrb(void)
 		return ;
 	temp = stack->list;
 	go = 0;
+	stack->size = ft_lstsize(stack->list);
 	while (temp->next && go++ < (stack->size - 1))
 		temp = temp->next;
 	if (temp->next)

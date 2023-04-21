@@ -27,15 +27,23 @@ void    push_bit_b(int pos)
 {
     int i;
     int size;
+    int pos2;
 
     if (pos > get()->last_bit)
         return ;
+    pos2 = pos + 1;
+    if (pos2 > get()->last_bit)
+        pos2 = pos;
     i = 0;
     size = ft_lstsize(get()->second.list);
     while (i < size && get()->second.list)
     {
-        if (get()->second.list->content & (1 << pos))
+        if (get()->second.list->content & (1 << pos)
+            || get()->second.list->content & (1 << pos2))
+        {
+            ra();
             pa();
+        }
         else
             rb();
         i++;
@@ -47,14 +55,19 @@ void    push_bit_a(int pos)
 {
     int i;
     int size;
+    int pos2;
 
     if (pos > get()->last_bit)
         return ;
+    pos2 = pos + 1;
+    if (pos2 > get()->last_bit)
+        pos2 = pos;
     i = 0;
     size = ft_lstsize(get()->first.list);
     while (i < size && get()->first.list)
     {
-        if (get()->first.list->content & (1 << pos))
+        if (get()->first.list->content & (1 << pos)
+            || get()->first.list->content & (1 << pos2))
             pb();
         else
             ra();
