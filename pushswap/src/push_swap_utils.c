@@ -19,53 +19,6 @@ t_push	*get(void)
 	return (&get);
 }
 
-void	last_bit(t_list *list)
-{
-	int	pos;
-	int	last_bit;
-
-	last_bit = 0;
-	while (list)
-	{
-		pos = 0;
-		while (pos < 32)
-		{
-			if (list->content & (1 << pos) && pos > last_bit)
-				last_bit = pos;
-			pos++;
-		}
-		list = list->next;
-	}
-	get()->last_bit = last_bit;
-}
-
-void	print_push(t_push *get)
-{
-	t_list	*first;
-	t_list	*second;
-	int		n[2];
-
-	first = get->first;
-	second = get->second;
-	while (first || second)
-	{
-		if (first)
-			n[0] = first->content;
-		else
-			n[0] = 0;
-		if (second)
-			n[1] = second->content;
-		else
-			n[1] = 0;
-		ft_printf("%i, %i\n", n[0], n[1]);
-		if (first)
-			first = first->next;
-		if (second)
-			second = second->next;
-	}
-	ft_printf("f, s\n\n\n");
-}
-
 void	free_list(t_list *list)
 {
 	t_list	*temp;
@@ -84,6 +37,30 @@ void	end_pushswap(t_push *get)
 		free_list(get->first);
 	if (get->second)
 		free_list(get->second);
-	exit(0);
 }
+// void	print_push(t_push *get)
+// {
+// 	t_list	*first;
+// 	t_list	*second;
+// 	int		n[2];
 
+// 	first = get->first;
+// 	second = get->second;
+// 	while (first || second)
+// 	{
+// 		if (first)
+// 			n[0] = first->content;
+// 		else
+// 			n[0] = 0;
+// 		if (second)
+// 			n[1] = second->content;
+// 		else
+// 			n[1] = 0;
+// 		ft_printf("%i, %i\n", n[0], n[1]);
+// 		if (first)
+// 			first = first->next;
+// 		if (second)
+// 			second = second->next;
+// 	}
+// 	ft_printf("f, s\n\n\n");
+// }

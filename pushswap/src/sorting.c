@@ -54,159 +54,41 @@ void    fix_three(t_list *list)
 	}
 }
 
-int	list_bigger(t_list *list)
-{
-	int	save;
-
-	save = 0;
-	while (list)
-	{
-		if (list->content > save)
-			save = list->content;
-		list = list->next;
-	}
-	return (save);
-}
-
-int	list_smaller(t_list *list)
-{
-	int	save;
-
-	save = get()->size;
-	while (list)
-	{
-		if (list->content < save)
-			save = list->content;
-		list = list->next;
-	}
-	return (save);
-}
-
-int	find_position(t_list *list, int number)
-{
-	int	position;
-	int	min;
-	int	max;
-	int	size;
-
-	size = ft_lstsize(list);
-	min = list_smaller(list);
-	max = list_bigger(list);
-	position = 0;
-	if (number < min || number > max)
-	{
-		while (list->content != max)
-		{
-			list = list->next;
-			position++;
-		}
-	}
-	else
-	{
-		while (!(number > list->content
-			&& number < ft_lstlast(list)->content))
-		{
-			list = list->next;
-			position++;
-		}
-	}
-	return (position);
-}
-
-void	ma(t_push *get)
-{
-	while (get->second)
-	{
-		if (get->second->content == 1)
-		{
-			while (get->first->content != get)
-		}
-		else if (get->second->content == get->size)
-		{
-			while (get->first->content != (get->size - 1))
-				ra();
-			pa();
-		}
-		else
-		{
-			while (!(get->second->content > get->first->content
-				&& get->second->content < ft_lstlast(get->first)->content))
-				ra();
-			pa();
-		}
-	}
-}
-
-void	ma(t_push *get)
-{
-	while (get->second)
-	{
-		while (!(get->second > get->first && get->second < ft_lstlast(get->first)->content))
-		if (get->second->content > get->first->content)
-			pa();
-		else if (get->second->content < get->first->content
-			&& get->second->content < list_smaller(get->first))
-		{
-			pa();
-			rra();
-		}
-		else
-		{
-			while (get->second->content < get->first->content)
-				ra();
-			pa();
-		}
-	}
-	while (get->first->content != get->size)
-			ra();			
-}
-
 void    small_sort(t_push *get)
 {
-	int	push;
-	push = get->size - 3;
-	while (push)
+	int	middle;
+
+	middle = middle_value(get->first, (get->size / 2));
+	while (ft_lstsize(get->first) > 3)
 	{
-		pb();
-		push--;
+		if (get->first->content > middle)
+			pb();
+		else
+			ra();
 	}
-	fix_three(get->first);
+	if (ft_lstsize(get->first) == 3)
+		fix_three(get->first);
+	else
+	{
+		if (get->first && get->first->next
+			&& get->first->content < get->first->next->content)
+			sa();	
+	}
 	if (get->second && get->second->next
-		&& get->second->content < get->second->next->content)
+		&& get->second->content > get->second->next->content)
 		sb();
-	print_push(get);
-	if (get->second)
-		ma(get);
+	while (get->second)
+		pa();
 }
-
-void	radix(t_push *get)
-{
-	int i;
-	int pos;
-
-	pos = 0;
-	while (pos <= get->last_bit)
-	{
-		i = 0;
-		while (i < get->size)
-		{
-			if (get->first->content & (1 << pos))
-				pb();
-			else
-				ra();
-			i++;
-		}
-		while (get->second)
-			pa();
-		pos++;
-	}
-}
-
 
 void	start_sort(t_push *get)
 {
 	if (get->size < 6)
 		small_sort(get);
 	else
+	{
+		rescale(&get->first);
+		last_bit(get->first);
 		radix(get);
+	}
 }

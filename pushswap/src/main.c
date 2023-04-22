@@ -44,48 +44,11 @@ void	start_list(char **ascii_numbers, t_push *get)
 	get->size = ft_lstsize(get->first);
 }
 
-int	count_wins(t_list *list, int value)
-{
-	int	wins;
-
-	wins = 0;
-	while (list)
-	{
-		if (value > list->content)
-			wins++;
-		list = list->next;
-	}
-	return (wins);
-}
-
-void	rescale(t_list **list)
-{
-	t_list	*iterate;
-	t_list	*new;
-
-	new = NULL;
-	iterate = *list;
-	while (iterate)
-	{
-		ft_lstadd_back(&new, ft_lstnew(get()->size
-			 - count_wins((*list), iterate->content)));
-		iterate = iterate->next;
-	}
-	free_list((*list));
-	*list = new;
-}
-
 int	main(int counter, char **input)
 {
 	(void)counter;
 	start_list((input + 1), get());
-	rescale(&get()->first);
-	print_push(get());
-	last_bit(get()->first);
 	start_sort(get());
-	// radix(get());
-	print_push(get());
-	ft_printf("(Moves: %i), Middle_value: %i\n", get()->moves, get()->middle_value);
 	end_pushswap(get());
 	return (0);
 }
