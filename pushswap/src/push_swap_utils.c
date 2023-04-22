@@ -19,14 +19,34 @@ t_push	*get(void)
 	return (&get);
 }
 
+void	last_bit(t_list *list)
+{
+	int	pos;
+	int	last_bit;
+
+	last_bit = 0;
+	while (list)
+	{
+		pos = 0;
+		while (pos < 32)
+		{
+			if (list->content & (1 << pos) && pos > last_bit)
+				last_bit = pos;
+			pos++;
+		}
+		list = list->next;
+	}
+	get()->last_bit = last_bit;
+}
+
 void	print_push(t_push *get)
 {
 	t_list	*first;
 	t_list	*second;
 	int		n[2];
 
-	first = get->first.list;
-	second = get->second.list;
+	first = get->first;
+	second = get->second;
 	while (first || second)
 	{
 		if (first)
@@ -60,9 +80,10 @@ void	free_list(t_list *list)
 
 void	end_pushswap(t_push *get)
 {
-	if (get->first.list)
-		free_list(get->first.list);
-	if (get->second.list)
-		free_list(get->second.list);
+	if (get->first)
+		free_list(get->first);
+	if (get->second)
+		free_list(get->second);
 	exit(0);
 }
+

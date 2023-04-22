@@ -17,7 +17,7 @@ void	sa(void)
 	t_list	*list;
 	int		temp;
 
-	list = get()->first.list;
+	list = get()->first;
 	if (!list || !list->next)
 		return ;
 	temp = list->content;
@@ -31,12 +31,12 @@ void	pa(void)
 {
 	t_list	*first;
 
-	first = get()->first.list;
-	if (!get()->second.list)
+	first = get()->first;
+	if (!get()->second)
 		return ;
-	first = get()->second.list;
-	get()->second.list = get()->second.list->next;
-	ft_lstadd_front(&get()->first.list, first);
+	first = get()->second;
+	get()->second = get()->second->next;
+	ft_lstadd_front(&get()->first, first);
 	get()->moves++;
 	ft_printf("pa\n");
 }
@@ -46,7 +46,7 @@ void	ra(void)
 	t_list	**list;
 	t_list	*first;
 
-	list = &get()->first.list;
+	list = &get()->first;
 	if (!list || !(*list) || !(*list)->next)
 		return ;
 	first = *list;
@@ -58,24 +58,20 @@ void	ra(void)
 
 void	rra(void)
 {
-	t_stack	*stack;
 	t_list	*temp;
 	t_list	*last;
-	int		go;
 
-	stack = &get()->first;
-	if (!stack->list)
+	if (!get()->first)
 		return ;
-	temp = stack->list;
-	go = 1;
-	while (temp->next && go++ < (stack->size - 1))
+	temp = get()->first;
+	while (temp->next && temp->next->next)
 		temp = temp->next;
 	if (temp->next)
 	{
 		last = temp->next;
 		temp->next = NULL;
-		ft_lstadd_front(&stack->list, last);
+		ft_lstadd_front(&get()->first, last);
+		ft_printf("rra\n");
+		get()->moves++;
 	}
-	get()->moves++;
-	ft_printf("rra\n");
 }

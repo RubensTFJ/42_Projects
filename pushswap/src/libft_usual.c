@@ -46,58 +46,6 @@ char	*sttc_itoa(int number)
 	return (&to_ascii[index]);
 }
 
-char	*ft_pad_itoa(int number)
-{
-	char	to_ascii[12];
-	char	*string;
-	int		index;
-	int		sign;
-
-	sign = (number > 0) - (number < 0);
-	index = 11;
-	while (number || index == 11)
-	{
-		to_ascii[--index] = (number % 10) * sign + '0';
-		number = number / 10;
-	}
-	if (sign < 0)
-		to_ascii[--index] = '-';
-	string = ft_calloc(sizeof(char), (12 - index));
-	if (!string)
-		return (NULL);
-	sign = 0;
-	while (sign < index)
-		string[sign++] = 'x';
-	while (index < 11)
-		string[index] = to_ascii[index];
-	return (string);
-}
-
-char	*ft_itoa(int number)
-{
-	char	to_ascii[12];
-	char	*string;
-	int		index;
-	int		sign;
-
-	sign = (number > 0) - (number < 0);
-	index = 11;
-	while (number || index == 11)
-	{
-		to_ascii[--index] = (number % 10) * sign + '0';
-		number = number / 10;
-	}
-	if (sign < 0)
-		to_ascii[--index] = '-';
-	string = ft_calloc(sizeof(char), (12 - index));
-	if (!string)
-		return (NULL);
-	sign = 0;
-	while (index < 11)
-		string[sign++] = to_ascii[index++];
-	return (string);
-}
-
 int	ft_atoi(const char *nptr)
 {
 	int		i;

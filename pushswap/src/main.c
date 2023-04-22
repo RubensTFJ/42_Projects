@@ -23,7 +23,7 @@ int	list_cointain(t_list *list, int check)
 	return (0);
 }
 
-void	start_list(char **ascii_numbers, t_stack *stack, t_push *get)
+void	start_list(char **ascii_numbers, t_push *get)
 {
 	int	i;
 	int	renumber;
@@ -33,15 +33,15 @@ void	start_list(char **ascii_numbers, t_stack *stack, t_push *get)
 	{
 		renumber = ft_atoi(ascii_numbers[i]);
 		if (!ft_strcmp(sttc_itoa(renumber), ascii_numbers[i])
-			&& !list_cointain(stack->list, renumber))
-			ft_lstadd_back(&stack->list, ft_lstnew(renumber));
+			&& !list_cointain(get->first, renumber))
+			ft_lstadd_back(&get->first, ft_lstnew(renumber));
 		else
 		{
 			ft_printf("Wrong input: %i#: %s\n", (i + 1), ascii_numbers[i]);
 			end_pushswap(get);
 		}
 	}
-	stack->size = ft_lstsize(stack->list);
+	get->size = ft_lstsize(get->first);
 }
 
 int	count_wins(t_list *list, int value)
@@ -51,26 +51,11 @@ int	count_wins(t_list *list, int value)
 	wins = 0;
 	while (list)
 	{
-		if (value >= list->content)
+		if (value > list->content)
 			wins++;
 		list = list->next;
 	}
 	return (wins);
-}
-
-int	middle_value(t_list *list, int half)
-{
-	t_list*start;
-	int	value;
-
-	start = list;
-	while (list)
-	{
-		if (count_wins(start, list->content) == half)
-			value = list->content;
-		list = list->next;
-	}
-	return (value);
 }
 
 void	rescale(t_list **list)
@@ -82,59 +67,23 @@ void	rescale(t_list **list)
 	iterate = *list;
 	while (iterate)
 	{
-		ft_lstadd_back(&new, ft_lstnew(count_wins((*list), iterate->content)));
+		ft_lstadd_back(&new, ft_lstnew(get()->size
+			 - count_wins((*list), iterate->content)));
 		iterate = iterate->next;
 	}
 	free_list((*list));
 	*list = new;
 }
 
-void	divide_stack(void)
-{
-	int	go = 1;
-
-	while (go)
-	{
-		// print_push(get());
-		if (get()->first.list->content > get()->middle_value)
-			pb();
-		else
-			ra();
-		// print_push(get());
-	go--;
-	}
-}
-
-void	last_bit(t_list *list)
-{
-	int	pos;
-	int	last_bit;
-
-	last_bit = 0;
-	while (list)
-	{
-		pos = 0;
-		while (pos < 32)
-		{
-			if (list->content & (1 << pos) && pos > last_bit)
-				last_bit = pos;
-			pos++;
-		}
-		list = list->next;
-	}
-	get()->last_bit = last_bit;
-}
-
 int	main(int counter, char **input)
 {
 	(void)counter;
-	start_list((input + 1), &get()->first, get());
-	rescale(&get()->first.list);
-	get()->middle_value = middle_value(get()->first.list, get()->first.size / 2 + 1);
-	last_bit(get()->first.list);
-	push_bit_a(0);
+	start_list((input + 1), get());
+	rescale(&get()->first);
 	print_push(get());
-	// radix();
+	last_bit(get()->first);
+	start_sort(get());
+	// radix(get());
 	print_push(get());
 	ft_printf("(Moves: %i), Middle_value: %i\n", get()->moves, get()->middle_value);
 	end_pushswap(get());

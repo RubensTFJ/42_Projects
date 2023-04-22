@@ -30,14 +30,10 @@ struct	s_list {
 	t_list	*next;
 };
 
-struct	s_stack {
-	t_list	*list;
-	int		size;
-};
-
 struct s_push {
-	t_stack	first;
-	t_stack	second;
+	t_list	*first;
+	t_list	*second;
+	int		size;
 	int		middle_value;
 	int		moves;
 	int		last_bit;
@@ -79,9 +75,39 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*sttc_itoa(int number);
 int		ft_atoi(const char *nptr);
 
-void	radix(void);
-void    push_bit_position(int list_id, int pos);
-void    push_bit_a(int pos);
-void    push_bit_b(int pos);
+void    start_sort(t_push *get);
+void    small_sort(t_push *get);
+void	radix(t_push *get);
+void	last_bit(t_list *list);
+int		count_wins(t_list *list, int value);
+
+// list of 3 > 3 max.
+// list of 5 > 12 max.
+// list of 100 > 1100 max.
+
+/*
+3 1 2 - rra, sa
+
+2 3 1 - sa - X
+2 1 3 - rra - X
+1 3 2 - ra - X
+1 2 3 - sa, rra - X
+3 2 1 - na - X
+
+
+1 2 3 - na
+1 3 2 - rra, sa
+2 1 3 - sa
+2 3 1 - rra
+3 1 2 - ra
+3 2 1 - sa, rra
+*/
+
+// ./push_swap 3 1 2 | ./checker_linux 3 1 2 &&
+// ./push_swap 2 3 1 | ./checker_linux 2 3 1 &&
+// ./push_swap 2 1 3 | ./checker_linux 2 1 3 &&
+// ./push_swap 1 3 2 | ./checker_linux 1 3 2 &&
+// ./push_swap 1 2 3 | ./checker_linux 1 2 3 &&
+// ./push_swap 3 2 1 | ./checker_linux 3 2 1
 
 #endif

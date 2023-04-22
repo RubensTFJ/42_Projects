@@ -17,7 +17,7 @@ void	silent_ra(void)
 	t_list	**list;
 	t_list	*first;
 
-	list = &get()->first.list;
+	list = &get()->first;
 	first = *list;
 	*list = (*list)->next;
 	ft_lstadd_back(list, first);
@@ -28,7 +28,7 @@ void	silent_rb(void)
 	t_list	**list;
 	t_list	*first;
 
-	list = &get()->first.list;
+	list = &get()->first;
 	first = *list;
 	*list = (*list)->next;
 	ft_lstadd_back(list, first);
