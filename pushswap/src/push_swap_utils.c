@@ -37,6 +37,7 @@ void	end_pushswap(t_push *get)
 		free_list(get->first);
 	if (get->second)
 		free_list(get->second);
+	exit(0);
 }
 // void	print_push(t_push *get)
 // {
