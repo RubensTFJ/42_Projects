@@ -39,29 +39,30 @@ void	end_pushswap(t_push *get)
 		free_list(get->second);
 	exit(0);
 }
-// void	print_push(t_push *get)
-// {
-// 	t_list	*first;
-// 	t_list	*second;
-// 	int		n[2];
 
-// 	first = get->first;
-// 	second = get->second;
-// 	while (first || second)
-// 	{
-// 		if (first)
-// 			n[0] = first->content;
-// 		else
-// 			n[0] = 0;
-// 		if (second)
-// 			n[1] = second->content;
-// 		else
-// 			n[1] = 0;
-// 		ft_printf("%i, %i\n", n[0], n[1]);
-// 		if (first)
-// 			first = first->next;
-// 		if (second)
-// 			second = second->next;
-// 	}
-// 	ft_printf("f, s\n\n\n");
-// }
+void	print_push(t_push *get)
+{
+	t_list	*first;
+	t_list	*second;
+	int		n[2];
+
+	first = get->first;
+	second = get->second;
+	while (first || second)
+	{
+		if (first)
+			n[0] = first->content;
+		else
+			n[0] = 0;
+		if (second)
+			n[1] = second->content;
+		else
+			n[1] = 0;
+		ft_printf("%i, %i\n", n[0], n[1]);
+		if (first)
+			first = first->next;
+		if (second)
+			second = second->next;
+	}
+	ft_printf("f, s\n\n\n");
+}

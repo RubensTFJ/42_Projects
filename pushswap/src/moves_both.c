@@ -18,9 +18,12 @@ void	silent_ra(void)
 	t_list	*first;
 
 	list = &get()->first;
+	if (!list || !(*list) || !(*list)->next)
+		return ;
 	first = *list;
 	*list = (*list)->next;
 	ft_lstadd_back(list, first);
+	get()->moves++;
 }
 
 void	silent_rb(void)
@@ -28,10 +31,13 @@ void	silent_rb(void)
 	t_list	**list;
 	t_list	*first;
 
-	list = &get()->first;
+	list = &get()->second;
+	if (!list || !(*list) || !(*list)->next)
+		return ;
 	first = *list;
 	*list = (*list)->next;
 	ft_lstadd_back(list, first);
+	get()->moves++;
 }
 
 void	rr(void)

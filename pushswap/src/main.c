@@ -28,7 +28,7 @@ void	start_list(char **ascii_numbers, t_push *get)
 	int	i;
 	int	renumber;
 
-	i = -1;
+	i = 0;
 	while (ascii_numbers[++i])
 	{
 		renumber = ft_atoi(ascii_numbers[i]);
@@ -40,6 +40,7 @@ void	start_list(char **ascii_numbers, t_push *get)
 			ft_printf("Wrong input: %i#: %s\n", (i + 1), ascii_numbers[i]);
 			end_pushswap(get);
 		}
+		i++;
 	}
 	get->size = ft_lstsize(get->first);
 }
