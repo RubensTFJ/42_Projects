@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 01:24:19 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/20 16:16:25 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/23 10:21:18 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@
 # include <stdio.h>
 # include <ft_printf.h>
 
-# define DEBUG1 write(1, "here\n", 5);
-# define DEBUG2 write(1, "there\n", 6);
-
-typedef struct s_list t_list;
-typedef struct s_stack t_stack;
-typedef struct s_push t_push;
+typedef struct s_list	t_list;
+typedef struct s_stack	t_stack;
+typedef struct s_push	t_push;
 
 struct	s_list {
 	int		content;
@@ -46,13 +43,13 @@ void	end_pushswap(t_push *get);
 void	free_list(t_list *list);
 
 // Moves_a
-void    sa(void);
+void	sa(void);
 void	pa(void);
 void	ra(void);
 void	rra(void);
 
 // Moves_b
-void    sb(void);
+void	sb(void);
 void	pb(void);
 void	rb(void);
 void	rrb(void);
@@ -76,8 +73,8 @@ char	*sttc_itoa(int number);
 int		ft_atoi(const char *nptr);
 
 // Sorting
-void    start_sort(t_push *get);
-void    small_sort(t_push *get);
+void	start_sort(t_push *get);
+void	small_sort(t_push *get);
 
 // Radix
 void	radix(t_push *get);

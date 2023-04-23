@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   radix.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/23 10:16:59 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/04/23 10:16:59 by rteles-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <pushswap.h>
 
 void	last_bit(t_list *list)
@@ -44,7 +56,7 @@ void	rescale(t_list **list)
 	while (iterate)
 	{
 		ft_lstadd_back(&new, ft_lstnew(get()->size
-			 - count_wins((*list), iterate->content)));
+				- count_wins((*list), iterate->content)));
 		iterate = iterate->next;
 	}
 	free_list((*list));
@@ -53,8 +65,8 @@ void	rescale(t_list **list)
 
 void	radix(t_push *get)
 {
-	int i;
-	int pos;
+	int	i;
+	int	pos;
 
 	pos = 0;
 	while (pos <= get->last_bit)

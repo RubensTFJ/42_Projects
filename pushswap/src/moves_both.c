@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 23:21:52 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/20 16:05:59 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/23 10:21:56 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	silent_ra(void)
 	first = *list;
 	*list = (*list)->next;
 	ft_lstadd_back(list, first);
-	get()->moves++;
 }
 
 void	silent_rb(void)
@@ -37,7 +36,6 @@ void	silent_rb(void)
 	first = *list;
 	*list = (*list)->next;
 	ft_lstadd_back(list, first);
-	get()->moves++;
 }
 
 void	rr(void)

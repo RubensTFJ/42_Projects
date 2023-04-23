@@ -31,9 +31,17 @@ root: Abc def ghi 1
 user: rteles-f Ijk lmn opq 2
 encryp: learntoenjoywhatyouhate
 
-inet 10.12.179.22
+inet 10.12.249.39 /16
+10.12.255.255
 
  executable file 32 lines (30 sloc) 1.61 KB
+
+
+
+
+
+
+
 #!/bin/bash
 
 archi=$(uname -a)
@@ -77,3 +85,14 @@ wall "  #Architecture: $archi
         #Network: IP $ipv4 ($mac)
         #Sudo: $n_commands_sudo cmd"
 
+
+Problemas:
+
+memory free
+disk free
+cpu load
+
+
+
+
+getent group sudo

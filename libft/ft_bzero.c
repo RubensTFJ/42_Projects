@@ -6,13 +6,13 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:44:32 by rteles-f          #+#    #+#             */
-/*   Updated: 2022/10/27 20:57:59 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/23 10:04:45 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
 

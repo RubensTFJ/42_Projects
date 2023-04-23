@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix.c                                            :+:      :+:    :+:   */
+/*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:56:46 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/20 16:07:03 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/23 10:19:23 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	middle_value(t_list *list, int half)
 {
-	t_list  *start;
-	int	    value;
+	t_list	*start;
+	int		value;
 
 	start = list;
 	while (list)
@@ -27,7 +27,7 @@ int	middle_value(t_list *list, int half)
 	return (value);
 }
 
-void    fix_three(t_list *list)
+void	fix_three(t_list *list)
 {
 	int	num[3];
 
@@ -54,7 +54,7 @@ void    fix_three(t_list *list)
 	}
 }
 
-void    small_sort(t_push *get)
+void	small_sort(t_push *get)
 {
 	int	middle;
 
@@ -72,7 +72,7 @@ void    small_sort(t_push *get)
 	{
 		if (get->first && get->first->next
 			&& get->first->content < get->first->next->content)
-			sa();	
+			sa();
 	}
 	if (get->second && get->second->next
 		&& get->second->content > get->second->next->content)
