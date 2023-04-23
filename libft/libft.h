@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/30 16:53:39 by rteles-f          #+#    #+#             */
-/*   Updated: 2022/11/20 19:05:42 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/23 10:40:08 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 void			ft_putnbr_fd(int n, int fd);
+void			ft_bzero(void *s, size_t n);
 
-void			*ft_bzero(void *s, size_t n);
 void			*ft_memchr(const void *s, int c, size_t n);
 void			*ft_memcpy(void *dest, const void *src, size_t n);
 void			*ft_memmove(void *dest, const void *src, size_t n);

@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:56:46 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/23 10:19:23 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:41:52 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,20 @@ void	fix_three(t_list *list)
 	num[0] = list->content;
 	num[1] = list->next->content;
 	num[2] = list->next->next->content;
-	if (num[0] > num[1] && num[1] > num [2])
+	if (num[0] < num[1] && num[1] < num [2])
 		return ;
-	else if (num[0] < num[1] && num[1] < num[2])
+	else if (num[0] > num[1] && num[1] > num[2])
 	{
 		sa();
 		rra();
 	}
-	else if (num[0] < num[1] && num[0] < num[2] && num[1] > num[2])
-		ra();
-	else if (num[0] > num[1] && num[1] < num[2] && num[2] > num[0])
-		rra();
-	else if (num[2] < num[0] && num[2] < num[1] && num[1] > num[2])
-		sa();
 	else if (num[0] > num[1] && num[0] > num[2] && num[1] < num[2])
+		ra();
+	else if (num[0] < num[1] && num[1] > num[2] && num[2] < num[0])
+		rra();
+	else if (num[2] > num[0] && num[2] > num[1] && num[1] < num[2])
+		sa();
+	else if (num[0] < num[1] && num[1] > num[2] && num[0] < num[2])
 	{
 		rra();
 		sa();

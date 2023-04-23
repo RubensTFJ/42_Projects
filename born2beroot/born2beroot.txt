@@ -27,9 +27,7 @@ sudo requirements
 
 script monitoring.sh developed in bash
 
-root: Abc def ghi 1
-user: rteles-f Ijk lmn opq 2
-encryp: learntoenjoywhatyouhate
+
 
 inet 10.12.249.39 /16
 10.12.255.255
@@ -86,13 +84,42 @@ wall "  #Architecture: $archi
         #Sudo: $n_commands_sudo cmd"
 
 
-Problemas:
 
-memory free
-disk free
-cpu load
+Evaluation:
 
+Encryp: learntoenjoywhatyouhate
+Root: Abc def ghi 1
+User: rteles-f
+Senha: Ijk lmn opq 2
 
+Leave root: su - <username>
 
+See Partitions: lsblk
 
-getent group sudo
+Host Name: /etc/hostname && /etc/hosts
+
+Add user to Group: sudo groupadd <group name>
+Check Group Members: getent group <group name>
+
+SSH: sudo systemctl status ssh
+UFW: sudo ufw status
+
+Enter through SSH: ssh -p 4242 <user>@<ip>
+
+Password Policy: libpam-pwquality
+https://linux.die.net/man/8/pam_pwquality
+/etc/login.defs
+/etc/pam.d/common-password
+
+sudo visudo
+
+Script: /usr/local/bin/monitoring.sh
+Run and Time Script: crontab
+
+why sudo: Security
+
+How LVM works
+
+journalctl
+
+/VAR/LOG/SUDO/ - NAO EXISTE.

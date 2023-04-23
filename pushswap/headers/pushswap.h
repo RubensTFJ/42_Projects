@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 01:24:19 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/23 10:21:18 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:43:58 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,3 +83,12 @@ void	last_bit(t_list *list);
 int		count_wins(t_list *list, int value);
 
 #endif
+
+/*
+./push_swap 1 2 3 | ./checker_linux 1 2 3 &&
+./push_swap 1 3 2 | ./checker_linux 1 3 2 &&
+./push_swap 2 1 3 | ./checker_linux 2 1 3 &&
+./push_swap 2 3 1 | ./checker_linux 2 3 1 &&
+./push_swap 3 1 2 | ./checker_linux 3 1 2 &&
+./push_swap 3 2 1 | ./checker_linux 3 2 1
+*/

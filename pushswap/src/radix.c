@@ -55,7 +55,7 @@ void	rescale(t_list **list)
 	iterate = *list;
 	while (iterate)
 	{
-		ft_lstadd_back(&new, ft_lstnew(get()->size
+		ft_lstadd_back(&new, ft_lstnew(get()->size - 1
 				- count_wins((*list), iterate->content)));
 		iterate = iterate->next;
 	}

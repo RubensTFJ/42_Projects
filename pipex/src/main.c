@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/14 23:44:49 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:53:42 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int	main(int counter, char **input, char *envp[])
 	check_start(counter, input, envp, &get);
 	if (!get_paths(envp, &get))
 		end_pipex(&get, 5, "Failed to find Path");
-	get_commands(counter, &get, input);
+	get_commands(counter, &get, (input + 3));
 	pipex(&get);
 	end_pipex(&get, 0, "");
 	return (0);

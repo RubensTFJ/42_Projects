@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/19 16:16:59 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/23 13:43:03 by rteles-f         ###   ########.fr       */
+/*   Created: 2023/04/23 15:45:59 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/04/23 15:47:59 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	int_case(va_list *arg_list)
 		counter += write(1, "-", 1);
 		number = -number;
 	}
-	counter += put_base_number(number, "0123456789", 10);
+	counter += put_base_number(number, DEX, 10);
 	return (counter);
 }
 
