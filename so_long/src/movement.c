@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:14:49 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/25 18:11:26 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/26 09:45:13 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	print_movement(float origin[2], float x, float y)
 	if (origin[0] != x || origin[1] != y)
 	{
 		map()->typed++;
-		ft_printf("moves: %i\n", map()->typed);
 	}
 }
 
@@ -59,8 +58,8 @@ void	verify_position(t_object *obj, t_object ***grid, double x, double y)
 			}
 		}
 	}
-	if (obj->id == 'P')
-		print_movement(save, x, y);
+	if (obj->id == 'P' && (save[0] != x || save[1] != y))
+		map()->typed++;
 }
 
 void	movement(t_vars *vars, t_object *obj)

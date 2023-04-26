@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:13:24 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/25 18:26:33 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:21:38 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct map_struct {
 	int			collectables[2];
 	u_long		time;
 	int			typed;
+	t_object	*counter;
 	char		animation;
 }	t_infomap;
 
@@ -162,6 +163,8 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
 void		obj_stack_remove(t_object *list, t_object *remove);
 void		obj_stack_add(t_object *list, t_object *add);
 
+void		ft_print_moves(t_vars *game);
+char		*sttc_itoa(int number);
 u_long		get_time(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 22:42:02 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/01/27 13:33:04 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:23:39 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ void	free_map(t_infomap *map)
 	}
 	free(map->map);
 	map->map = NULL;
+}
+
+void	ft_print_moves(t_vars *game)
+{
+	static int	last_move;
+
+	if (last_move == map()->typed)
+		return ;
+	mlx_string_put(game->mlx, game->win, 1, (map()->height_y + 1) * 64,
+		0x00000000, sttc_itoa(last_move));
+	mlx_string_put(game->mlx, game->win, 1, (map()->height_y + 1) * 64,
+		0x0000FF00, sttc_itoa(map()->typed));
+	last_move = map()->typed;
 }
 
 // -1 tem motivo, outra funçao usa como sinalizaçao

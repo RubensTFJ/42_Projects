@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:14:14 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/06 16:30:48 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/26 10:22:09 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	update(t_vars *game)
 		put_active_objects(game, *obj_list());
 		mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	}
+	ft_print_moves(game);
 	if (map()->game != 1)
 	{
 		end_game_message(map()->game);
