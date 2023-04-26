@@ -92,34 +92,75 @@ Root: Abc def ghi 1
 User: rteles-f
 Senha: Ijk lmn opq 2
 
-Leave root: su - <username>
+VM cria hardware digital.
 
-See Partitions: lsblk
+Debian: Package availability, user frendly aplications.
+Centos: mais usado no mercado
+
+Proposito: Multiples sitemas operacionais. Simular multiplos computadores em uma rede
+
+APPArmor: Crua modulo de Perfil para cada programa para controlar e restringir o acesso personalizado a cada programa.
+
+Apt e Aptitude: Package management tools
+
+Apt: Mais Simples, oferece menos controle e menos ferramentas.
+Aptitude: Mais completo com funcoes automaticas, mais dificil de aprender
+
+SSH (Secure Shell): Encriptacao. Servidor e computador criam uma chave de encriptacao perosnalizada para aquela comunicacao
+o que mantem seguro mesmo que a conexao seja interceptada.
+
+Cron: Unix Utility para agendar a execucao de comandos.
+
+SSH: sudo systemctl status ssh
+UFW: sudo ufw status - regras
+
+Check Sistema Operacional: uname -a
+
+Check user no grupo user42: getent group user42
+
+Create user: sudo adduser <name>
+Create Group: sudo addgroup <name>
+Add User to Group: sudo adduser <name> <group>
 
 Host Name: /etc/hostname && /etc/hosts
 
-Add user to Group: sudo groupadd <group name>
-Check Group Members: getent group <group name>
+See Partitions: lsblk
 
-SSH: sudo systemctl status ssh
-UFW: sudo ufw status
+Check sudo install: sudo --version
 
-Enter through SSH: ssh -p 4242 <user>@<ip>
-
-Password Policy: libpam-pwquality
-https://linux.die.net/man/8/pam_pwquality
+Rules Implementations:
 /etc/login.defs
 /etc/pam.d/common-password
 
-sudo visudo
+Check sudo commands: /var/log/sudo/sudo.log
+
+UFW (Uncomplicated Firewall): Interface para controlar o Firewall com facilidade.
+Controla entrada e saida de informacao de IPs e ports
+
+sudo ufw allow <port>
+sudo ufw delete allow <port>
+
+sudo nano /etc/ssh/sshd_config
+
+Enter through SSH: ssh -p 4242 <user>@<ip>
 
 Script: /usr/local/bin/monitoring.sh
-Run and Time Script: crontab
+Run and Time Script: sudo crontab -e
+
+
+
+Leave root: su - <username>
+
+
+
+Password Policy: libpam-pwquality
+https://linux.die.net/man/8/pam_pwquality
+
+sudo visudo
+
 
 why sudo: Security
 
 How LVM works
 
 journalctl
-
-/VAR/LOG/SUDO/ - NAO EXISTE.

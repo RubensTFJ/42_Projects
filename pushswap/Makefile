@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/04/23 10:34:52 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/04/25 17:13:09 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RM			= 	rm -f
 INCLUDES	= 	-Iheaders/
 
 SRCS		=	src/libft_usual.c src/list_aux.c src/main.c src/moves_a.c src/moves_b.c \
-				src/moves_both.c src/push_swap_utils.c src/radix.c src/sorting.c \
+				src/moves_both.c src/push_swap_utils.c src/radix.c src/sorting.c src/ft_split.c \
 				src/ft_printf.c src/ft_printf_utils.c
 
 OBJS		= 	$(SRCS:.c=.o)

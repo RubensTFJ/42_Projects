@@ -39,7 +39,7 @@ int	count_wins(t_list *list, int value)
 	wins = 0;
 	while (list)
 	{
-		if (value > list->content)
+		if (value >= list->content)
 			wins++;
 		list = list->next;
 	}
@@ -55,7 +55,7 @@ void	rescale(t_list **list)
 	iterate = *list;
 	while (iterate)
 	{
-		ft_lstadd_back(&new, ft_lstnew(get()->size - 1
+		ft_lstadd_back(&new, ft_lstnew(get()->size
 				- count_wins((*list), iterate->content)));
 		iterate = iterate->next;
 	}

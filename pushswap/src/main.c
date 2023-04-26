@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 01:28:08 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/23 15:46:42 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:45:41 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,28 @@ int	list_cointain(t_list *list, int check)
 	return (0);
 }
 
+void	free_split(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	if (!matrix)
+		return ;
+	if (!(*matrix))
+	{
+		free(matrix);
+		ft_printf("Error\n");
+		end_pushswap(get());
+		return ;
+	}
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
 void	start_list(char **ascii_numbers, t_push *get)
 {
 	int	i;
@@ -37,18 +59,20 @@ void	start_list(char **ascii_numbers, t_push *get)
 			ft_lstadd_back(&get->first, ft_lstnew(renumber));
 		else
 		{
-			ft_printf("Wrong input: %i#: %s\n", (i + 1), ascii_numbers[i]);
+			ft_printf("Error\n");
 			end_pushswap(get);
 		}
 		i++;
 	}
+	free_split(ascii_numbers);
 	get->size = ft_lstsize(get->first);
 }
 
 int	main(int counter, char **input)
 {
 	(void)counter;
-	start_list((input + 1), get());
+	while (++input && (*input))
+		start_list(ft_split((*input), ' '), get());
 	start_sort(get());
 	end_pushswap(get());
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 01:24:19 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/23 15:43:58 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:12:15 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	*ft_calloc(size_t n, size_t xsize);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*sttc_itoa(int number);
 int		ft_atoi(const char *nptr);
+char	**ft_split(char const *s, char c);
 
 // Sorting
 void	start_sort(t_push *get);
@@ -91,4 +92,11 @@ int		count_wins(t_list *list, int value);
 ./push_swap 2 3 1 | ./checker_linux 2 3 1 &&
 ./push_swap 3 1 2 | ./checker_linux 3 1 2 &&
 ./push_swap 3 2 1 | ./checker_linux 3 2 1
+
+./push_swap 1 2 3 &&
+./push_swap 1 3 2 &&
+./push_swap 2 1 3 &&
+./push_swap 2 3 1 &&
+./push_swap 3 1 2 &&
+./push_swap 3 2 1
 */

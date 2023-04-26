@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:13:24 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/17 21:00:21 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:26:33 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@
 # define PLAYER_BURN 3
 # define WIN 4
 
-typedef struct s_list t_list;
-typedef struct s_object t_object;
-typedef struct s_vars t_vars;
-typedef unsigned long u_long;
+typedef struct s_list	t_list;
+typedef struct s_object	t_object;
+typedef struct s_vars	t_vars;
+typedef unsigned long	t_ulong;
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -57,7 +57,7 @@ struct	s_vars {
 	t_data	img;
 };
 
-struct s_object {
+struct	s_object {
 	int			id;
 	char		collide;
 	float		self_space;
@@ -65,7 +65,7 @@ struct s_object {
 	double		y;
 	void		(*new_pos)(t_vars *vars, t_object *obj);
 	void		(*print)(t_vars *vars, t_object *obj);
-	int			(*collision)(t_object *obj, t_object * target);
+	int			(*collision)(t_object *obj, t_object *target);
 	void		(*set_animation)(t_object *obj, u_long time, int animation);
 	void		(*pixel_put)(t_data *data, int x, int y, int color);
 	t_data		data;
@@ -136,7 +136,8 @@ void		sprite_to_image(t_vars *game, t_object *obj);
 void		make_frame(t_vars *vars, t_infomap *map);
 
 void		movement(t_vars *vars, t_object *obj);
-void		verify_position(t_object *obj, t_object ***grid, double x, double y);
+void		verify_position(t_object *obj, t_object ***grid,
+				double x, double y);
 int			player_collide(t_object *obj, t_object *target);
 int			fire_collide(t_object *obj, t_object *target);
 float		pixel_collision(t_object *obj, t_object *target);
@@ -147,7 +148,7 @@ t_list		**obj_list(void);
 void		put_active_objects(t_vars *game, t_list *list);
 void		fire_dont_move(t_list *list);
 int			key_down(int keycode, t_vars *vars);
-int 		key_up(int keycode, t_vars *vars);
+int			key_up(int keycode, t_vars *vars);
 void		pop_exit(t_list *list);
 void		burn(t_vars *vars, t_object *obj);
 

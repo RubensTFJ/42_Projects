@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:14:49 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/06 22:13:27 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:11:26 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ void	verify_position(t_object *obj, t_object ***grid, double x, double y)
 		j = -2;
 		while (++j < 2)
 		{
-			if ((((int)x + i) > -1) && (((int)y + j) > -1))
-				if (is_collision(obj, grid[(int)x + i][(int)y + j]))
-				{
-					obj->x = save[0];
-					obj->y = save[1];
-					return ;
-				}
+			if ((((int)x + i) > -1) && (((int)y + j) > -1)
+				&& is_collision(obj, grid[(int)x + i][(int)y + j]))
+			{
+				obj->x = save[0];
+				obj->y = save[1];
+				return ;
+			}
 		}
 	}
 	if (obj->id == 'P')

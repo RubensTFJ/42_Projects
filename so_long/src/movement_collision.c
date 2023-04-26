@@ -17,7 +17,7 @@ float	pixel_collision(t_object *obj, t_object *target)
 	float	x;
 	float	y;
 	float	distance;
-	float 	space;
+	float	space;
 
 	space = obj->self_space;
 	if (obj->y > target->y)
@@ -35,12 +35,12 @@ float	pixel_collision(t_object *obj, t_object *target)
 int	wall_check(t_object *obj, t_object ***grid)
 {
 	if ((grid[(int)obj->x][(int)obj->y]->id == '1') \
-|| (grid[(int)(obj->x + ((float)obj->data.real_size[1] / SCALE))] \
-[(int)obj->y]->id == '1') \
-|| (grid[(int)obj->x] \
-[(int)(obj->y + ((float)obj->data.real_size[0] / SCALE))]->id =='1')
-|| (grid[(int)(obj->x + ((float)obj->data.real_size[1] / SCALE))] \
-[(int)(obj->y + ((float)obj->data.real_size[0] / SCALE))]->id == '1'))
+	|| (grid[(int)(obj->x + ((float)obj->data.real_size[1] / SCALE))] \
+	[(int)obj->y]->id == '1') \
+	|| (grid[(int)obj->x] \
+	[(int)(obj->y + ((float)obj->data.real_size[0] / SCALE))]->id == '1')
+	|| (grid[(int)(obj->x + ((float)obj->data.real_size[1] / SCALE))] \
+	[(int)(obj->y + ((float)obj->data.real_size[0] / SCALE))]->id == '1'))
 		return (1);
 	return (0);
 }
