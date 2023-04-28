@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:09 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/06 15:30:24 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:01:55 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <stdio.h>
 # include <sys/wait.h>
 
+# define DEBUG1 write(2, "here\n", 5)
+# define DEBUG2 write(2, "there\n", 6)
+
 typedef struct s_vars {
 	int		id;
 	int		fd[2];
@@ -31,7 +34,7 @@ typedef struct s_vars {
 }	t_vars;
 
 // Main
-void	check_start(int argc, char **argv, char **envp, t_vars *get);
+void	check_start(int *argc, char ***argv, char **envp, t_vars *get);
 int		get_paths(char **envp, t_vars *get);
 void	finish_list_with(char **list, char *put);
 void	get_commands(int size, t_vars *get, char **input);
@@ -39,6 +42,10 @@ void	get_commands(int size, t_vars *get, char **input);
 // Pipex
 void	pipex(t_vars *get);
 // void	executioner(t_vars *get, int *in_pipe, int *out_pipe, int index);
+
+void	ft_init_here_doc(char *end, t_vars *get, char *outfile);
+char	*get_next_line(int fd);
+
 
 // End_Program
 void	end_pipex(t_vars *get, int exit_type, char *string);
@@ -51,7 +58,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strlen(const char *string);
 void	*ft_calloc(size_t n, size_t xsize);
 char	**ft_split(char const *s, char c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(char *s1, char *s2, size_t n);
 char	*ft_strdup(const char *s);
 
 #endif

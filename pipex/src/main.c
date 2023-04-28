@@ -6,22 +6,31 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/23 15:53:42 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:34:20 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-void	check_start(int argc, char **argv, char **envp, t_vars *get)
+void	check_start(int *argc, char ***argv, char **envp, t_vars *get)
 {
-	if (argc < 5)
+	if ((*argc) < 5)
 		end_pipex(get, 1, "Wrong Usage.");
-	get->fd[0] = open(argv[1], O_RDONLY);
-	if (get->fd[0] < 0)
-		ft_printf("%s: No such file or directory", argv[1]);
-	get->fd[1] = open(argv[argc - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
-	if (get->fd[1] < 0)
-		end_pipex(get, 3, "Failed to Open Outfile.");
+	if (!ft_strncmp((*argv)[1], "here_doc", 8))
+	{
+		ft_init_here_doc((*argv)[2], get, (*argv)[(*argc) - 1]);
+		(*argv)++;
+		(*argc)--;
+	}
+	else
+	{
+		get->fd[0] = open((*argv)[1], O_RDONLY);
+		if (get->fd[0] < 0)
+			ft_printf("%s: No such file or directory", (*argv)[1]);
+		get->fd[1] = open((*argv)[(*argc) - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
+		if (get->fd[1] < 0)
+			end_pipex(get, 3, "Failed to Open Outfile.");
+	}
 	get->envp = envp;
 }
 
@@ -113,10 +122,10 @@ int	main(int counter, char **input, char *envp[])
 {
 	static t_vars	get;
 
-	check_start(counter, input, envp, &get);
+	check_start(&counter, &input, envp, &get);
 	if (!get_paths(envp, &get))
 		end_pipex(&get, 5, "Failed to find Path");
-	get_commands(counter, &get, (input + 3));
+	get_commands(counter, &get, input);
 	pipex(&get);
 	end_pipex(&get, 0, "");
 	return (0);

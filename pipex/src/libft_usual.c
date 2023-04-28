@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:32:51 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/28 23:26:01 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:01:43 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strdup(const char *s)
 	return (copy);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	size_t	i;
 
@@ -53,9 +53,11 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	if (n == 0)
 		return (0);
 	n--;
-	while (s1[i] && s2[i] && (i < n)
+	while (s1[i] && s2[i] && i < n
 		&& s1[i] == s2[i])
 		i++;
+	if (s1[i] == '\n')
+		s1[i] = 0;
 	return ((((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]));
 }
 

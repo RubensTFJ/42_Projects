@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/03/28 23:31:07 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/04/26 17:09:11 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM			= 	rm -f
 
 INCLUDES	= 	-Iheaders/
 
-SRCS		=	ft_printf/*.c src/*.c
+SRCS		=	src/*.c
 
 OBJS		= 	$(SRCS:.c=.o)
 
