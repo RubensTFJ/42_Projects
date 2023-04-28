@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:09 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/26 20:01:55 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:10:12 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <sys/wait.h>
-
-# define DEBUG1 write(2, "here\n", 5)
-# define DEBUG2 write(2, "there\n", 6)
 
 typedef struct s_vars {
 	int		id;
@@ -45,7 +42,6 @@ void	pipex(t_vars *get);
 
 void	ft_init_here_doc(char *end, t_vars *get, char *outfile);
 char	*get_next_line(int fd);
-
 
 // End_Program
 void	end_pipex(t_vars *get, int exit_type, char *string);

@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:27:32 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/28 18:45:34 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:07:17 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	pipex(t_vars *get)
 	while (get->full_command[i])
 	{
 		dup2(temp_in, STDIN_FILENO);
-		tee();
 		pipe(get->pipe);
 		get->id = fork();
 		if (get->id < 0 || get->pipe[0] < 0)
