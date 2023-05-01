@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 std::string	ask_input(char *string) {
 	std::string	input;
 
