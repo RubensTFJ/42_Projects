@@ -1,28 +1,51 @@
 #include <iostream>
 
-class Contact {
-	const char	*name;
-	const char	*last_name;
-	const char	*nickname;
-	const char	*secret;
-	int			number;
+using namespace std;
 
-	void	table_print(const char *string) {
+
+std::string	ask_input(char *string) {
+	std::string	input;
+
+	input.clear();
+	while (input.empty())
+	{
+		cout << string << endl;
+		getline(cin, input);
+		if (input.empty())
+			cout << "Invalid Input." << endl;
+	}
+	return (input);
+}
+
+void	str_tolower(std::string	string)
+{
+	for (char& c : string)
+		c = tolower(c);
+}
+
+class Contact {
+	std::string	name;
+	std::string	last_name;
+	std::string	nickname;
+	std::string	secret;
+	std::string	number;
+
+	void	table_print(std::string string) {
 		int i = 0;
-		while (string[i] && i < 7)
-			std::cout << string[i++];
-		if (string[i] && i == 7)
-			std::cout << '. ';
+		while (string[i] && i < 8)
+			cout << string[i++];
+		if (string[i] && i == 8)
+			cout << '.';
 		else
 		{
-			while (i < 8)
-				std::cout << " ";	
+			while (i++ < 8)
+				cout << " ";	
 		}
 	}
 
 	public:
-		void	Update(const char *name, const char *last_name, const char *nickname,
-			const char *secret, int number) {
+		void	Update(std::string name, std::string last_name, std::string nickname,
+			std::string secret, std::string number) {
 			this->name = name;
 			this->last_name = last_name;
 			this->nickname = nickname;
@@ -31,18 +54,22 @@ class Contact {
 		}
 
 		void	MiniPrint(int index) {
-			std::cout << index << "         ";
-			std::cout << "| ";
+			cout << " " << index << "        ";
+			cout << "| ";
 			table_print(name);
-			std::cout << "| ";
+			cout << "| ";
 			table_print(last_name);
-			std::cout << "| ";
+			cout << "| ";
 			table_print(nickname);
-			std::cout << std::endl;
+			cout << endl;
 		}
 
 		void	FullPrint(void) {
-
+			cout << "Name: " << name << endl;
+			cout << "Last Name: " << last_name << endl;
+			cout << "Nickname: " << nickname << endl;
+			cout << "Darkest Secret: " << secret << endl;
+			cout << "Phone Number: " << number << endl;
 		}
 } ;
 
@@ -50,18 +77,13 @@ class PhoneBook {
 	int		keeper = 0;
 	Contact	*contacts[8];
 
-	int	get_index(const char *input) {
-		std::cout << "Enter Contact Index: " << std::endl;
-		return (atoi(input));
-	}
-
 	public:
-		void	Add(const char *name, const char *last_name, const char *nickname,
-			const char *secret, int number) 
+		void	Add(void) 
 		{
 			if (!contacts[keeper])
 				contacts[keeper] = new Contact;
-			contacts[keeper]->Update(name, last_name, nickname, secret, number);
+			contacts[keeper]->Update(ask_input("Enter First Name: "), ask_input("Enter Last Name: "), ask_input("Enter Nickname: "),
+				ask_input("Enter Phone Number: "), ask_input("Enter Dark Secret: "));
 			keeper++;
 			if (keeper > 7)
 				keeper = 0;
@@ -71,11 +93,11 @@ class PhoneBook {
 		{
 			for (int i = 0; contacts[i]; i++)
 				contacts[i]->MiniPrint(i);
-			int	index = get_index("blabla");
+			int	index = atoi(ask_input("Enter Desired Contact: ").c_str());
 			if (-1 < index && index < 8 && contacts[index])
 				contacts[index]->FullPrint();
 			else
-				std::cout << "Invalid Index" << std::endl;
+				cout << "Invalid Index." << endl;
 		}
 
 		void	Exit(void) {
@@ -86,10 +108,24 @@ class PhoneBook {
 
 int	main(int counter, char **input)
 {
-	PhoneBook book;
+	PhoneBook	book;
+	std::string	command;
 
 	while (true)
 	{
-		if (input)
+		cout << "Enter Command: " << endl;
+		getline(cin, command);
+		str_tolower(command);
+		if (command == "add")
+			book.Add();
+		else if (command == "search")
+			book.Search();
+		else if (command == "exit")
+		{
+			book.Exit();
+			return (0);
+		}
+		else
+			cout << "Wrong Usage. Valid commands: 'ADD', 'SEARCH' and 'EXIT'" << endl;
 	}
 }
