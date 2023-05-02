@@ -2,15 +2,11 @@
 
 using namespace std;
 
-class Zombie {
-	std::string	name;
+void	Zombie::Announce(void) {
+	std::cout << name << ": " << "BraiiiiiiinnnzzzZ..." << std::endl;
+}
 
-	public:
-		void	Zombie::Announce(void) {
-			std::cout << name << ": " << "BraiiiiiiinnnzzzZ..." << std::endl;
-	}
+void	Zombie::Destroy (Zombie *zombie) {
+	delete zombie;
+}
 
-		void	Zombie::Destroy (Zombie *zombie) {
-			delete zombie;
-	}
-} ;
