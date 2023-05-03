@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/05/02 20:26:14 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/05/03 19:26:24 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= 	philosophers
 
 CC			= 	cc #-g -fsanitize=address
 
-CFLAGS		= 	-Wall -Wextra -Werror -g
+CFLAGS		= 	-Wall -Wextra -Werror -pthread -g
 
 RM			= 	rm -f
 
