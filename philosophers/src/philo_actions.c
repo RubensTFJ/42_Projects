@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 20:46:03 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/03 20:02:53 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:51:19 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	*decorum(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	sleep(2);
 	while (philo->alive(philo))
 	{
 		if (philo->turn(philo))

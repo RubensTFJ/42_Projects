@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:12 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/03 20:02:45 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:54:09 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	*start_dinner(void *arg)
 			get->turn = 1;
 		while (forks_down(get))
 			;
+		printf("turno: %i\n", get->turn);
 	}
 	return (arg);
 }
@@ -57,25 +58,37 @@ void	put_philosophers_on_table(t_control *get)
 	{
 		get->philosophers[i] = new_philosopher(get, (i + 1));
 		if (pthread_create(&get->philosophers[i]->thread, NULL,
-				decorum, get) != 0)
+			decorum, get->philosophers[i]) != 0)
+		{
+
 			end_dinner("Failed to Create Thread.\n", get);
+		}
+		i++;
 	}
+	// i = 0;
+	// while (get->philosophers[i])
+	// {
+	// 	pthread_join(get->philosophers[i]->thread, NULL);
+	// 		DEBUG2;
+	// 	i++;
+	// }
 }
 
 void	check_start(t_control *get, int counter, char **input)
 {
 	if (counter < 4 || counter > 6)
 		end_dinner("Wrong Usage.\n", get);
-	get->total = ft_atoi(input[0]);
-	get->death_timer = ft_atoi(input[1]);
-	get->eat_timer = ft_atoi(input[2]);
-	get->sleep_timer = ft_atoi(input[3]);
-	get->last_meal = ft_atoi(input[4]);
+	get->total = ft_atoi(input[1]);
+	get->death_timer = ft_atoi(input[2]);
+	get->eat_timer = ft_atoi(input[3]);
+	get->sleep_timer = ft_atoi(input[4]);
+	if (input[5])
+		get->last_meal = ft_atoi(input[5]);
 }
 
 int	main(int counter, char **input)
 {
-	t_control		get;
+	static t_control	get;
 
 	check_start(&get, counter, input);
 	put_philosophers_on_table(&get);

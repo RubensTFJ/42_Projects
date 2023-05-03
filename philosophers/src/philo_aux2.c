@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:39:19 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/03 20:04:15 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:51:23 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_ulong	get_time(void)
 
 int	is_philo_alive(t_philo *philo)
 {
-	if ((get_time() - philo->last_eat) > philo->info->death_timer)
+	if ((get_time() - philo->last_eat) < philo->info->death_timer)
 		return (0);
 	return (1);
 }

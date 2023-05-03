@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:27 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/03 20:05:56 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:23:45 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # define LEFT -1
 # define MY 0
 # define RIGHT +1
+
+# define DEBUG1 write(1, "here\n", 5)
+# define DEBUG2 write(1, "there\n", 6)
 
 typedef unsigned long		t_ulong;
 typedef struct s_control	t_control;
@@ -82,7 +85,7 @@ void	*decorum(void *arg);
 void	wait_next_turn(t_philo *philo);
 t_philo	*new_philosopher(t_control *get, int id);
 int		forks_down(t_control *get);
-void	message(int type, t_philo *philo);
+int		message(int type, t_philo *philo);
 int		is_turn(t_philo *philo);
 
 // Philo_aux2
