@@ -6,23 +6,21 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 18:35:12 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/03 20:29:36 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:02:02 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-void	free_biarray(void **arg)
+void	free_biarray(void **arg, int size)
 {
-	int		**temp;
 	int		i;
 
 	if (!arg)
 		return ;
-	temp = ((int **)arg);
 	i = 0;
-	while (temp[i])
-		free(temp[i++]);
+	while (i < size)
+		free(arg[i++]);
 	free(arg);
 }
 
@@ -40,10 +38,11 @@ void	end_dinner(char *string, t_control *get)
 	if (string)
 		ft_printf("%s", string);
 	if (get->philosophers)
-		free_biarray((void **)get->philosophers);
+		free_biarray((void **)get->philosophers, get->total);
+	THERE;
 	if (get->forks)
 	{
 		destroy_mutex(get->forks);
-		free_biarray((void **)get->forks);
+		free_biarray((void **)get->forks, get->total);
 	}
 }

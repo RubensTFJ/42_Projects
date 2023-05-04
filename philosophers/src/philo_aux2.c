@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:39:19 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/03 21:51:23 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:08:26 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,21 @@ t_ulong	get_time(void)
 
 int	is_philo_alive(t_philo *philo)
 {
-	if ((get_time() - philo->last_eat) < philo->info->death_timer)
+	// printf("philo: %i, time: %li\n", philo->id, (get_time() - philo->last_eat));
+	// if (!(philo->id % 2))
+	// {
+	// 	printf("id: %i, status: %i\n",philo->id, philo->status);
+	// }
+	if (!philo->status)
 		return (0);
+	if ((get_time() - philo->last_eat) > philo->info->death_timer
+		|| !philo->info->total)
+	{
+		message(DEAD, philo);
+		philo->status = 0;
+		philo->info->total = 0;
+		return (0);
+	}
 	return (1);
 }
 
@@ -49,6 +62,7 @@ int	is_turn(t_philo *philo)
 	total = philo->info->total;
 	id = philo->id;
 	turn = philo->info->turn;
+	philo->wait = philo->info->turn;
 	if (!(total % 2))
 		turn = (turn % 2);
 	if ((id % 2) == (turn % 2) && id >= turn)
@@ -61,3 +75,31 @@ int	is_turn(t_philo *philo)
 		return (1);
 	return (0);
 }
+
+// int main(void)
+// {
+// 	int	i;
+// 	int	j;
+// 	t_philo philo;
+// 	t_control get;
+
+// 	philo.info = &get;
+// 	philo.info->turn = 1;
+// 	philo.info->total = 5;
+// 	i = 1;
+// 	while (i <= philo.info->total)
+// 	{
+// 		philo.info->turn = i;
+// 		j = 1;
+// 		printf("turn: %i\n",i);
+// 		while (j <= philo.info->total)
+// 		{
+// 			philo.id = j;
+// 			if (is_turn(&philo))
+// 				printf("%i, ", j);
+// 			j++;
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// }

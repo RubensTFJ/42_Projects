@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/05/03 19:26:24 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/05/04 17:20:36 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM			= 	rm -f
 
 INCLUDES	= 	-Iheaders/
 
-SRCS		=	src/*.c
+SRCS		=	src/*.c src/*/*.c
 
 OBJS		= 	$(SRCS:.c=.o)
 
@@ -46,3 +46,5 @@ r:
 			make && clear && ./$(NAME)
 
 .PHONY: 	all re clean fclean m
+
+# SRCS		=	src/*.c src/*/*.c

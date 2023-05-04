@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:27 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/03 20:23:45 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:59:09 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define MY 0
 # define RIGHT +1
 
-# define DEBUG1 write(1, "here\n", 5)
-# define DEBUG2 write(1, "there\n", 6)
+# define HERE write(1, "here\n", 5)
+# define THERE write(1, "there\n", 6)
 
 typedef unsigned long		t_ulong;
 typedef struct s_control	t_control;
@@ -46,6 +46,7 @@ struct s_control {
 	t_ulong		sleep_timer;
 	t_philo		**philosophers;
 	t_fork		**forks;
+	pthread_t	joiner;
 } ;
 
 struct s_philo {
@@ -55,7 +56,6 @@ struct s_philo {
 	int			wait;
 	t_ulong		last_eat;
 	void		(*eat)(t_philo *philo);
-	void		(*death)(t_philo *philo);
 	int			(*alive)(t_philo *philo);
 	int			(*turn)(t_philo *philo);
 	void		(*sleep)(t_philo *philo);
@@ -97,7 +97,7 @@ void	take_fork(t_fork *get, t_philo *philo);
 // End_philosophers
 void	end_dinner(char *string, t_control *get);
 void	destroy_mutex(t_fork **forks);
-void	free_biarray(void **arg);
+void	free_biarray(void **arg, int size);
 
 // Auxiliars
 t_ulong	get_time(void);
