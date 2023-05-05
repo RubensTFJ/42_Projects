@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:12 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 16:27:54 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:36:24 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,11 @@ void	put_philosophers_on_table(t_control *get)
 	{
 		get->philosophers[i] = new_philosopher(get, (i + 1));
 		if (pthread_create(&get->philosophers[i]->thread, NULL,
-			table_manners, get->philosophers[i]) != 0)
+				table_manners, get->philosophers[i]) != 0)
 			end_dinner("Failed to Create Thread.\n", get);
 		i++;
 	}
 }
-	// if ((pthread_create(&get->joiner, NULL, thread_joiner, get) != 0))
-	// 	end_dinner("Failed to Create Thread.\n", get);
 
 void	check_start(t_control *get, int counter, char **input)
 {

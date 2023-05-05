@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 20:46:03 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 16:33:11 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:36:53 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_usleep(t_philo *philo, t_ulong time)
 {
-	t_ulong start;
-	
+	t_ulong	start;
+
 	start = get_time();
 	while ((get_time() - start) < time && philo->alive(philo))
 		;

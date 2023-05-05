@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:27 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 16:26:39 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:37:42 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define SLEEPING 2
 # define THINKING 3
 # define TAKE_FORK 4
-# define HERE write(1, "here\n", 5)
-# define THERE write(1, "there\n", 6)
+// # define HERE write(1, "here\n", 5)
+// # define THERE write(1, "there\n", 6)
 
 typedef unsigned long		t_ulong;
 typedef struct s_control	t_control;

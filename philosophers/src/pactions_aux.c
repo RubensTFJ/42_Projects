@@ -6,11 +6,9 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:56:45 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 16:34:28 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:36:43 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <philosophers.h>
 
 #include <philosophers.h>
 
@@ -65,9 +63,9 @@ int	is_philo_alive(t_philo *philo)
 
 int	is_turn(t_philo *philo)
 {
-	int	total;
-	int	id;
-	int	turn;
+	int			total;
+	int			id;
+	int			turn;
 	static int	passed;
 
 	total = philo->table->total;
