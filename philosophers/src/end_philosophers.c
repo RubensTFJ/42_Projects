@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 18:35:12 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/04 19:02:02 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:31:28 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,19 @@ void	free_biarray(void **arg, int size)
 {
 	int		i;
 
-	if (!arg)
-		return ;
 	i = 0;
 	while (i < size)
 		free(arg[i++]);
 	free(arg);
 }
 
-void	destroy_mutex(t_fork **forks)
+void	destroy_mutex(t_fork **forks, int size)
 {
 	int	i;
 
 	i = 0;
-	while (forks[i])
-		pthread_mutex_destroy(&forks[i]->lock);
+	while (i < size)
+		pthread_mutex_destroy(&forks[i++]->lock);
 }
 
 void	end_dinner(char *string, t_control *get)
@@ -39,10 +37,35 @@ void	end_dinner(char *string, t_control *get)
 		ft_printf("%s", string);
 	if (get->philosophers)
 		free_biarray((void **)get->philosophers, get->total);
-	THERE;
 	if (get->forks)
 	{
-		destroy_mutex(get->forks);
+		destroy_mutex(get->forks, get->total);
 		free_biarray((void **)get->forks, get->total);
 	}
+}
+
+t_ulong	get_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+t_philo	*new_philosopher(t_control *get, int id)
+{
+	t_philo	*philo;
+
+	philo = ft_calloc(sizeof(t_philo), 1);
+	philo->id = id;
+	philo->wait = 1;
+	philo->status = 3;
+	philo->last_eat = get_time();
+	philo->turn = is_turn;
+	philo->eat = philo_eat;
+	philo->think = philo_think;
+	philo->sleep = philo_sleep;
+	philo->alive = is_philo_alive;
+	philo->table = get;
+	return (philo);
 }

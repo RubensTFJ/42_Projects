@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:27 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/04 18:59:09 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:44:46 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ struct s_control {
 	int			last_meal;
 	int			turn;
 	t_ulong		death_timer;
+	t_ulong		watch;
 	t_ulong		eat_timer;
 	t_ulong		sleep_timer;
 	t_philo		**philosophers;
@@ -61,7 +62,7 @@ struct s_philo {
 	void		(*sleep)(t_philo *philo);
 	void		(*think)(t_philo *philo);
 	pthread_t	thread;
-	t_control	*info;
+	t_control	*table;
 } ;
 
 struct s_fork {
@@ -73,38 +74,28 @@ struct s_fork {
 void	check_start(t_control *get, int counter, char **input);
 void	put_philosophers_on_table(t_control *get);
 void	serve_forks(t_control *get);
-void	*start_dinner(void *arg);
+void	thread_joiner(t_control *get);
 
 // Philo_actions
+void	ft_usleep(t_philo *philo, t_ulong time);
 void	philo_think(t_philo *philo);
 void	philo_sleep(t_philo *philo);
 void	philo_eat(t_philo *philo);
-void	*decorum(void *arg);
+void	*table_manners(void *arg);
 
-// Philo_aux
-void	wait_next_turn(t_philo *philo);
-t_philo	*new_philosopher(t_control *get, int id);
-int		forks_down(t_control *get);
-int		message(int type, t_philo *philo);
-int		is_turn(t_philo *philo);
-
-// Philo_aux2
-t_ulong	get_time(void);
-int		is_philo_alive(t_philo *philo);
-void	release_fork(t_fork *get);
+// Pactions_aux
 void	take_fork(t_fork *get, t_philo *philo);
+void	release_fork(t_fork *get);
+int		ft_message(int type, t_philo *philo);
+int		is_philo_alive(t_philo *philo);
+int		is_turn(t_philo *philo);
 
 // End_philosophers
 void	end_dinner(char *string, t_control *get);
-void	destroy_mutex(t_fork **forks);
+void	destroy_mutex(t_fork **forks, int size);
 void	free_biarray(void **arg, int size);
-
-// Auxiliars
+t_philo	*new_philosopher(t_control *get, int id);
 t_ulong	get_time(void);
-int		is_philo_alive(t_philo *philo);
-void	release_fork(t_fork *get);
-void	take_fork(t_fork *get, t_philo *philo);
-int		is_turn(t_philo *philo);
 
 // Libft
 void	*ft_calloc(size_t n, size_t xsize);
