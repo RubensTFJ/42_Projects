@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 20:46:03 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 12:50:52 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:33:11 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@ void	ft_usleep(t_philo *philo, t_ulong time)
 	t_ulong start;
 	
 	start = get_time();
-	while ((get_time() - start) < time)
-		philo->alive(philo);
+	while ((get_time() - start) < time && philo->alive(philo))
+		;
 }
 
 void	philo_eat(t_philo *philo)
 {
-	if (!philo->table->turn)
-		return ;
 	take_fork(philo->table->forks[philo->id], philo);
 	take_fork(philo->table->forks[philo->id - 1], philo);
 	ft_message(EATING, philo);
@@ -37,21 +35,17 @@ void	philo_eat(t_philo *philo)
 
 void	philo_think(t_philo *philo)
 {
-	if (!philo->table->turn)
-		return ;
 	ft_message(THINKING, philo);
-	usleep((philo->table->eat_timer * 0.75) * 1000);
+	usleep(50);
 	if (philo->turn(philo))
 	{
 		philo->eat(philo);
-		philo->sleep(philo);	
+		philo->sleep(philo);
 	}
 }
 
 void	philo_sleep(t_philo *philo)
 {
-	if (!philo->table->turn)
-		return ;
 	ft_message(SLEEPING, philo);
 	ft_usleep(philo, philo->table->sleep_timer);
 }
@@ -59,16 +53,15 @@ void	philo_sleep(t_philo *philo)
 void	*table_manners(void *arg)
 {
 	t_philo	*philo;
-	
+
 	philo = (t_philo *)arg;
-	sleep(1);
 	philo->last_eat = get_time();
 	while (philo->alive(philo))
 	{
 		if (philo->turn(philo))
 		{
 			philo->eat(philo);
-			philo->sleep(philo);	
+			philo->sleep(philo);
 		}
 		else
 			philo->think(philo);

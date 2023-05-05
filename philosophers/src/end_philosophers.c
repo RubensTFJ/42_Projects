@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 18:35:12 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 12:31:28 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:13:12 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ t_philo	*new_philosopher(t_control *get, int id)
 
 	philo = ft_calloc(sizeof(t_philo), 1);
 	philo->id = id;
-	philo->wait = 1;
 	philo->status = 3;
 	philo->last_eat = get_time();
 	philo->turn = is_turn;

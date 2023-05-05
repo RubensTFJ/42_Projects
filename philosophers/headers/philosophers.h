@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:27 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 12:44:46 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:26:39 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@
 # define SLEEPING 2
 # define THINKING 3
 # define TAKE_FORK 4
-# define LEFT -1
-# define MY 0
-# define RIGHT +1
-
 # define HERE write(1, "here\n", 5)
 # define THERE write(1, "there\n", 6)
 
@@ -41,6 +37,7 @@ struct s_control {
 	int			total;
 	int			last_meal;
 	int			turn;
+	int			service;
 	t_ulong		death_timer;
 	t_ulong		watch;
 	t_ulong		eat_timer;
@@ -54,7 +51,6 @@ struct s_philo {
 	int			id;
 	int			eat_times;
 	int			status;
-	int			wait;
 	t_ulong		last_eat;
 	void		(*eat)(t_philo *philo);
 	int			(*alive)(t_philo *philo);

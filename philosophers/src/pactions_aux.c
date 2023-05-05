@@ -6,9 +6,11 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:56:45 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 12:47:03 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:34:28 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <philosophers.h>
 
 #include <philosophers.h>
 
@@ -28,27 +30,34 @@ void	release_fork(t_fork *get)
 int	ft_message(int type, t_philo *philo)
 {
 	if (type == DEAD)
-		return (printf(" XXX   %li: Philosopher: %i Died.\n", get_time() - philo->table->watch, philo->id));
+		return (printf("%li: Philosopher: %i Died.\n",
+				get_time() - philo->table->watch, philo->id));
+	if (!philo->table->service)
+		return (0);
 	if (type == EATING)
-		return (printf(" %li: Philosopher: %i Started Eating.\n",get_time() - philo->table->watch, philo->id));
+		return (printf("%li %i is eating.\n",
+				get_time() - philo->table->watch, philo->id));
 	if (type == SLEEPING)
-		return (printf(" %li: Philosopher: %i Is Sleeping.\n",get_time() - philo->table->watch, philo->id));
+		return (printf("%li %i is sleeping.\n",
+				get_time() - philo->table->watch, philo->id));
 	if (type == THINKING)
-		return (printf(" %li: Philosopher: %i Is Thinking.\n",get_time() - philo->table->watch, philo->id));
+		return (printf("%li %i is thinking.\n",
+				get_time() - philo->table->watch, philo->id));
 	if (type == TAKE_FORK)
-		return (printf(" %li: Philosopher: %i Took a Fork.\n",get_time() - philo->table->watch, philo->id));
-	return (0);	
+		return (printf("%li %i has taken a Fork.\n",
+				get_time() - philo->table->watch, philo->id));
+	return (0);
 }
 
 int	is_philo_alive(t_philo *philo)
 {
-	if (!philo->status || !philo->turn)
+	if (!philo->status || !philo->table->service)
 		return (0);
 	if ((get_time() - philo->last_eat) > philo->table->death_timer)
 	{
-		ft_message(DEAD, philo);
+		philo->table->service = 0;
 		philo->status = 0;
-		philo->table->turn = 0;
+		ft_message(DEAD, philo);
 		return (0);
 	}
 	return (1);
@@ -59,44 +68,29 @@ int	is_turn(t_philo *philo)
 	int	total;
 	int	id;
 	int	turn;
+	static int	passed;
 
 	total = philo->table->total;
 	id = philo->id;
+	if (++passed >= total)
+	{
+		passed = 0;
+		if (philo->table->turn + 1 > total)
+			philo->table->turn = 1;
+		else
+			philo->table->turn++;
+	}
 	turn = philo->table->turn;
-	philo->wait = philo->table->turn;
-	if (!turn)
+	if (!philo->table->watch)
 		return (0);
 	if (!(total % 2))
 		turn = (turn % 2);
 	if ((id % 2) == (turn % 2) && id >= turn)
-	{
-		if (turn == 1 && id == total)
-			return (0 * ++philo->table->turn);
-		return (++philo->table->turn);
-	}
+		return (1);
 	else if ((id % 2) != (turn % 2) && (id + 1) < turn)
-		return (++philo->table->turn);
-	return (0 * ++philo->table->turn);
+		return (1);
+	return (0);
 }
-
-// void	wait_next_turn(t_philo *philo)
-// {
-// 	// printf("wait: %i, turn :%i\n", philo->wait, philo->table->turn);
-// 	while (philo->wait == philo->table->turn || philo->table->turn == 1)
-// 	{
-// 		// if (!(philo->id % 2))
-// 		// 	DEBUG1;
-// 		if ((philo->wait == philo->table->total || philo->wait == philo->table->total - 1)
-// 			&& philo->table->turn == 1)
-// 		{
-// 			philo->wait = philo->table->turn;
-// 			return ;
-// 		}
-// 		if (!philo->alive(philo))
-// 			return ;
-// 	}
-// }
-
 // int main(void)
 // {
 // 	int	i;
