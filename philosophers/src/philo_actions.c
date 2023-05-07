@@ -21,12 +21,27 @@ void	ft_usleep(t_philo *philo, t_ulong time)
 		;
 }
 
+void	att_turn(t_control *get)
+{
+	static int	eat;
+
+	usleep(100);
+	if (++eat == (get->total / 2))
+	{
+		eat = 0;
+		if (get->turn + 1 > get->total)
+			get->turn = 1;
+		else
+			get->turn++;
+	}
+}
+
 void	philo_eat(t_philo *philo)
 {
 	take_fork(philo->table->forks[philo->id], philo);
 	take_fork(philo->table->forks[philo->id - 1], philo);
 	ft_message(EATING, philo);
-	philo->status = EATING;
+	att_turn(philo->table);
 	usleep(1000 * philo->table->eat_timer);
 	philo->last_eat = get_time();
 	philo->eat_times++;

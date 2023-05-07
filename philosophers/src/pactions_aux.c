@@ -28,8 +28,8 @@ void	release_fork(t_fork *get)
 int	ft_message(int type, t_philo *philo)
 {
 	if (type == DEAD)
-		return (printf("%li: Philosopher: %i Died.\n",
-				get_time() - philo->table->watch, philo->id));
+		return (printf("((Turn: %i)) %li: Philosopher: %i Died.\n",
+				philo->table->turn, get_time() - philo->table->watch, philo->id));
 	if (!philo->table->service)
 		return (0);
 	if (type == EATING)
@@ -66,23 +66,18 @@ int	is_turn(t_philo *philo)
 	int			total;
 	int			id;
 	int			turn;
-	static int	passed;
 
 	total = philo->table->total;
 	id = philo->id;
-	if (++passed > total)
-	{
-		passed = 0;
-		if (philo->table->turn + 1 > total)
-			philo->table->turn = 1;
-		else
-			philo->table->turn++;
-	}
 	turn = philo->table->turn;
 	if (!(total % 2))
 		turn = (turn % 2);
-	if ((id % 2) == (turn % 2) && id >= turn)
+	if ((id % 2) == (turn % 2)  && id >= turn)
+	{
+		if (turn == 1 && philo->id == philo->table->total)
+			return (0);
 		return (1);
+	}
 	else if ((id % 2) != (turn % 2) && (id + 1) < turn)
 		return (1);
 	return (0);

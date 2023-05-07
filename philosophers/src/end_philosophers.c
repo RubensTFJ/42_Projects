@@ -58,7 +58,7 @@ t_philo	*new_philosopher(t_control *get, int id)
 
 	philo = ft_calloc(sizeof(t_philo), 1);
 	philo->id = id;
-	philo->status = 3;
+	philo->status = 1;
 	philo->last_eat = get_time();
 	philo->turn = is_turn;
 	philo->eat = philo_eat;
