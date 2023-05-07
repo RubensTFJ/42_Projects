@@ -22,25 +22,25 @@ void	free_biarray(void **arg, int size)
 	free(arg);
 }
 
-void	destroy_mutex(t_fork **forks, int size)
+void	destroy_mutex(t_fork **utensils, int size)
 {
 	int	i;
 
 	i = 0;
 	while (i < size)
-		pthread_mutex_destroy(&forks[i++]->lock);
+		pthread_mutex_destroy(&utensils[i++]->lock);
 }
 
 void	end_dinner(char *string, t_control *get)
 {
 	if (string)
-		ft_printf("%s", string);
+		printf("%s", string);
 	if (get->philosophers)
 		free_biarray((void **)get->philosophers, get->total);
-	if (get->forks)
+	if (get->utensils)
 	{
-		destroy_mutex(get->forks, get->total);
-		free_biarray((void **)get->forks, get->total);
+		destroy_mutex(get->utensils, get->total);
+		free_biarray((void **)get->utensils, get->total);
 	}
 }
 

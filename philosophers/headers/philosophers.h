@@ -13,7 +13,6 @@
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
-# include <ft_printf.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -25,8 +24,8 @@
 # define SLEEPING 2
 # define THINKING 3
 # define TAKE_FORK 4
-// # define HERE write(1, "here\n", 5)
-// # define THERE write(1, "there\n", 6)
+# define HERE write(1, "here\n", 5)
+# define THERE write(1, "there\n", 6)
 
 typedef unsigned long		t_ulong;
 typedef struct s_control	t_control;
@@ -35,15 +34,15 @@ typedef struct s_fork		t_fork;
 
 struct s_control {
 	int			total;
-	int			last_meal;
 	int			turn;
 	int			service;
+	int			last_meal;
+	t_ulong		clock;
+	t_philo		**philosophers;
+	t_fork		**utensils;
 	t_ulong		death_timer;
-	t_ulong		watch;
 	t_ulong		eat_timer;
 	t_ulong		sleep_timer;
-	t_philo		**philosophers;
-	t_fork		**forks;
 	pthread_t	joiner;
 } ;
 
@@ -67,9 +66,9 @@ struct s_fork {
 } ;
 
 // Main
-void	check_start(t_control *get, int counter, char **input);
-void	put_philosophers_on_table(t_control *get);
-void	serve_forks(t_control *get);
+int		check_start(t_control *get, int counter, char **input);
+int		put_philosophers_on_table(t_control *get);
+int		serve_utensils(t_control *get);
 void	thread_joiner(t_control *get);
 
 // Philo_actions
@@ -88,7 +87,7 @@ int		is_turn(t_philo *philo);
 
 // End_philosophers
 void	end_dinner(char *string, t_control *get);
-void	destroy_mutex(t_fork **forks, int size);
+void	destroy_mutex(t_fork **utensils, int size);
 void	free_biarray(void **arg, int size);
 t_philo	*new_philosopher(t_control *get, int id);
 t_ulong	get_time(void);

@@ -12,43 +12,6 @@
 
 #include <philosophers.h>
 
-void	take_fork(t_fork *get, t_philo *philo)
-{
-	while (!get->fork)
-		philo->alive(philo);
-	pthread_mutex_lock(&get->lock);
-	ft_message(TAKE_FORK, philo);
-	get->fork = 0;
-}
-
-void	release_fork(t_fork *get)
-{
-	get->fork = 1;
-	pthread_mutex_unlock(&get->lock);
-}
-
-int	ft_message(int type, t_philo *philo)
-{
-	if (!philo->table->service)
-		return (0);
-	if (type == DEAD)
-		return (printf("%li %i Died.\n",
-				get_time() - philo->table->watch, philo->id));
-	if (type == EATING)
-		return (printf("%li %i is eating.\n",
-				get_time() - philo->table->watch, philo->id));
-	if (type == SLEEPING)
-		return (printf("%li %i is sleeping.\n",
-				get_time() - philo->table->watch, philo->id));
-	if (type == THINKING)
-		return (printf("%li %i is thinking.\n",
-				get_time() - philo->table->watch, philo->id));
-	if (type == TAKE_FORK)
-		return (printf("%li %i has taken a Fork.\n",
-				get_time() - philo->table->watch, philo->id));
-	return (0);
-}
-
 int	check_table(t_philo *philo)
 {
 	if (!philo->status || !philo->table->service)
@@ -87,6 +50,43 @@ int	is_turn(t_philo *philo)
 	}
 	else if ((id % 2) != (turn % 2) && (id + 1) < turn)
 		return (1);
+	return (0);
+}
+
+void	take_fork(t_fork *get, t_philo *philo)
+{
+	while (!get->fork)
+		philo->alive(philo);
+	pthread_mutex_lock(&get->lock);
+	ft_message(TAKE_FORK, philo);
+	get->fork = 0;
+}
+
+void	release_fork(t_fork *get)
+{
+	get->fork = 1;
+	pthread_mutex_unlock(&get->lock);
+}
+
+int	ft_message(int type, t_philo *philo)
+{
+	if (!philo->table->service)
+		return (0);
+	if (type == DEAD)
+		return (printf("%li %i Died.\n",
+				get_time() - philo->table->clock, philo->id));
+	if (type == EATING)
+		return (printf("%li %i is eating.\n",
+				get_time() - philo->table->clock, philo->id));
+	if (type == SLEEPING)
+		return (printf("%li %i is sleeping.\n",
+				get_time() - philo->table->clock, philo->id));
+	if (type == THINKING)
+		return (printf("%li %i is thinking.\n",
+				get_time() - philo->table->clock, philo->id));
+	if (type == TAKE_FORK)
+		return (printf("%li %i has taken a Fork.\n",
+				get_time() - philo->table->clock, philo->id));
 	return (0);
 }
 // int main(void)
