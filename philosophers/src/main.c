@@ -64,7 +64,7 @@ void	check_start(t_control *get, int counter, char **input)
 	if (counter < 4 || counter > 6)
 		end_dinner("Wrong Usage.\n", get);
 	get->total = ft_atoi(input[1]);
-	get->death_timer = ft_atoi(input[2]) + 2;
+	get->death_timer = ft_atoi(input[2]);
 	get->eat_timer = ft_atoi(input[3]);
 	get->sleep_timer = ft_atoi(input[4]);
 	get->turn = 1;

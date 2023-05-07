@@ -27,11 +27,11 @@ void	release_fork(t_fork *get)
 
 int	ft_message(int type, t_philo *philo)
 {
+	if (!philo->table->service)
+		return (0);
 	if (type == DEAD)
 		return (printf("((Turn: %i)) %li: Philosopher: %i Died.\n",
 				philo->table->turn, get_time() - philo->table->watch, philo->id));
-	if (!philo->table->service)
-		return (0);
 	if (type == EATING)
 		return (printf("%li %i is eating.\n",
 				get_time() - philo->table->watch, philo->id));
@@ -53,9 +53,9 @@ int	is_philo_alive(t_philo *philo)
 		return (0);
 	if ((get_time() - philo->last_eat) > philo->table->death_timer)
 	{
+		ft_message(DEAD, philo);
 		philo->table->service = 0;
 		philo->status = 0;
-		ft_message(DEAD, philo);
 		return (0);
 	}
 	return (1);
@@ -72,7 +72,7 @@ int	is_turn(t_philo *philo)
 	turn = philo->table->turn;
 	if (!(total % 2))
 		turn = (turn % 2);
-	if ((id % 2) == (turn % 2)  && id >= turn)
+	if ((id % 2) == (turn % 2) && id >= turn)
 	{
 		if (turn == 1 && philo->id == philo->table->total)
 			return (0);
