@@ -50,6 +50,8 @@ void	put_philosophers_on_table(t_control *get)
 	while (i < get->total)
 	{
 		get->philosophers[i] = new_philosopher(get, (i + 1));
+		if (!(get->philosophers[i]->id % 2))
+			usleep(100);
 		if (pthread_create(&get->philosophers[i]->thread, NULL,
 				table_manners, get->philosophers[i]) != 0)
 			end_dinner("Failed to Create Thread.\n", get);

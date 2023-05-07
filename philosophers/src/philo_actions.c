@@ -26,6 +26,7 @@ void	philo_eat(t_philo *philo)
 	take_fork(philo->table->forks[philo->id], philo);
 	take_fork(philo->table->forks[philo->id - 1], philo);
 	ft_message(EATING, philo);
+	philo->status = EATING;
 	usleep(1000 * philo->table->eat_timer);
 	philo->last_eat = get_time();
 	philo->eat_times++;
@@ -35,18 +36,18 @@ void	philo_eat(t_philo *philo)
 
 void	philo_think(t_philo *philo)
 {
-	ft_message(THINKING, philo);
-	usleep(50);
-	if (philo->turn(philo))
+	if (philo->status != THINKING)
 	{
-		philo->eat(philo);
-		philo->sleep(philo);
+		ft_message(THINKING, philo);
+		philo->status = THINKING;
 	}
+	usleep(100);
 }
 
 void	philo_sleep(t_philo *philo)
 {
 	ft_message(SLEEPING, philo);
+	philo->status = SLEEPING;
 	ft_usleep(philo, philo->table->sleep_timer);
 }
 
@@ -55,8 +56,6 @@ void	*table_manners(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (!(philo->id % 2))
-		usleep(50);
 	philo->last_eat = get_time();
 	while (philo->alive(philo))
 	{

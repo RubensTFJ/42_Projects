@@ -70,7 +70,7 @@ int	is_turn(t_philo *philo)
 
 	total = philo->table->total;
 	id = philo->id;
-	if (++passed >= total)
+	if (++passed > total)
 	{
 		passed = 0;
 		if (philo->table->turn + 1 > total)
@@ -79,8 +79,6 @@ int	is_turn(t_philo *philo)
 			philo->table->turn++;
 	}
 	turn = philo->table->turn;
-	if (!philo->table->watch)
-		return (0);
 	if (!(total % 2))
 		turn = (turn % 2);
 	if ((id % 2) == (turn % 2) && id >= turn)
