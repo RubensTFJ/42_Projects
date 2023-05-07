@@ -50,8 +50,8 @@ void	put_philosophers_on_table(t_control *get)
 	while (i < get->total)
 	{
 		get->philosophers[i] = new_philosopher(get, (i + 1));
-		if (!(get->philosophers[i]->id % 2))
-			usleep(200);
+		// if (!(get->philosophers[i]->id % 2))
+		// 	usleep(200);
 		if (pthread_create(&get->philosophers[i]->thread, NULL,
 				table_manners, get->philosophers[i]) != 0)
 			end_dinner("Failed to Create Thread.\n", get);
@@ -72,6 +72,8 @@ void	check_start(t_control *get, int counter, char **input)
 	get->watch = get_time();
 	if (input[5])
 		get->last_meal = ft_atoi(input[5]);
+	else
+		get->last_meal = -1;
 }
 
 int	main(int counter, char **input)

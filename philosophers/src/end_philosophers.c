@@ -64,7 +64,7 @@ t_philo	*new_philosopher(t_control *get, int id)
 	philo->eat = philo_eat;
 	philo->think = philo_think;
 	philo->sleep = philo_sleep;
-	philo->alive = is_philo_alive;
+	philo->alive = check_table;
 	philo->table = get;
 	return (philo);
 }

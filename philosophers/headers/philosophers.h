@@ -83,7 +83,7 @@ void	*table_manners(void *arg);
 void	take_fork(t_fork *get, t_philo *philo);
 void	release_fork(t_fork *get);
 int		ft_message(int type, t_philo *philo);
-int		is_philo_alive(t_philo *philo);
+int		check_table(t_philo *philo);
 int		is_turn(t_philo *philo);
 
 // End_philosophers

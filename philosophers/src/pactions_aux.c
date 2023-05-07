@@ -14,6 +14,8 @@
 
 void	take_fork(t_fork *get, t_philo *philo)
 {
+	while (!get->fork)
+		philo->alive(philo);
 	pthread_mutex_lock(&get->lock);
 	ft_message(TAKE_FORK, philo);
 	get->fork = 0;
@@ -30,8 +32,8 @@ int	ft_message(int type, t_philo *philo)
 	if (!philo->table->service)
 		return (0);
 	if (type == DEAD)
-		return (printf("((Turn: %i)) %li: Philosopher: %i Died.\n",
-				philo->table->turn, get_time() - philo->table->watch, philo->id));
+		return (printf("%li %i Died.\n",
+				get_time() - philo->table->watch, philo->id));
 	if (type == EATING)
 		return (printf("%li %i is eating.\n",
 				get_time() - philo->table->watch, philo->id));
@@ -47,7 +49,7 @@ int	ft_message(int type, t_philo *philo)
 	return (0);
 }
 
-int	is_philo_alive(t_philo *philo)
+int	check_table(t_philo *philo)
 {
 	if (!philo->status || !philo->table->service)
 		return (0);
@@ -56,6 +58,11 @@ int	is_philo_alive(t_philo *philo)
 		ft_message(DEAD, philo);
 		philo->table->service = 0;
 		philo->status = 0;
+		return (0);
+	}
+	if (philo->eat_times == philo->table->last_meal)
+	{
+		philo->table->service = 0;
 		return (0);
 	}
 	return (1);
