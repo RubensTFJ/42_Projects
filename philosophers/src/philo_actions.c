@@ -6,26 +6,16 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 20:46:03 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 19:47:12 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 19:00:06 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-void	ft_usleep(t_philo *philo, t_ulong time)
-{
-	t_ulong	start;
-
-	start = get_time();
-	while ((get_time() - start) < time && philo->alive(philo))
-		;
-}
-
 void	att_turn(t_control *get)
 {
 	static int	eat;
 
-	usleep(100);
 	if (++eat == (get->total / 2))
 	{
 		eat = 0;
@@ -47,9 +37,14 @@ void	philo_think(t_philo *philo)
 
 void	philo_sleep(t_philo *philo)
 {
+	t_ulong	start;
+
 	ft_message(SLEEPING, philo);
 	philo->status = SLEEPING;
-	ft_usleep(philo, philo->table->sleep_timer);
+	start = get_time();
+	while ((get_time() - start) < philo->table->sleep_timer
+		&& philo->alive(philo))
+		;
 }
 
 void	philo_eat(t_philo *philo)

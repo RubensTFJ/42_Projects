@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:27 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 16:37:42 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 19:01:18 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # define SLEEPING 2
 # define THINKING 3
 # define TAKE_FORK 4
-# define HERE write(1, "here\n", 5)
-# define THERE write(1, "there\n", 6)
 
 typedef unsigned long		t_ulong;
 typedef struct s_control	t_control;
@@ -72,7 +70,7 @@ int		serve_utensils(t_control *get);
 void	thread_joiner(t_control *get);
 
 // Philo_actions
-void	ft_usleep(t_philo *philo, t_ulong time);
+void	att_turn(t_control *get);
 void	philo_think(t_philo *philo);
 void	philo_sleep(t_philo *philo);
 void	philo_eat(t_philo *philo);

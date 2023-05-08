@@ -5,47 +5,42 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/31 23:39:00 by rteles-f          #+#    #+#              #
-#    Updated: 2023/05/05 20:19:26 by rteles-f         ###   ########.fr        #
+#    Created: 2023/05/05 19:58:41 by rteles-f          #+#    #+#              #
+#    Updated: 2023/05/05 20:00:02 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SERVER_NAME		= 	server
+NAME		= 	PhoneBook
 
-CLIENT_NAME		=	client
+CC			= 	c++ #-g -fsanitize=address
 
-CC				= 	cc #-g -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror -std=c++98
 
-CFLAGS			= 	-Wall -Wextra -Werror -g
+RM			= 	rm -f
 
-RM				= 	rm -f
+INCLUDES	= 	-I
 
-INCLUDES		= 	-Iheaders/
+SRCS		=	Main.cpp Contact.cpp PhoneBook.cpp
 
-SRC_SERV		=	ft_printf/*.c src/server.c src/libft_usual.c
-	
-SRC_CLIENT		=	ft_printf/*.c src/client.c src/libft_usual.c
+OBJS		= 	$(SRCS:.cpp=.o)
 
-OBJS			= 	$(SRCS:.c=.o)
+all: 		$(NAME)
 
-all: 		$(SERVER_NAME) $(CLIENT_NAME)
-
-$(SERVER_NAME):	$(SRC_SERV) 
-			@$(CC) $(INCLUDES) $(CFLAGS) $(SRC_SERV) -o $(SERVER_NAME)
-
-$(CLIENT_NAME):	$(SRC_CLIENT) 
-			@$(CC) $(INCLUDES) $(CFLAGS) $(SRC_CLIENT) -o $(CLIENT_NAME)
+$(NAME):	$(OBJS) 
+			@$(CC) $(INCLUDES) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 			@$(RM) $(OBJS)
 
-fclean: clean
-			@$(RM) $(NAME)
+fclean: 	clean
+				@$(RM) $(NAME)
 
-re: fclean all
+re: 		 all
 
 norm :
 			@norminette -R CheckForbiddenSourceHeader $(SRCS) headers/
+
+m: 			fclean
 
 r:
 			make && clear && ./$(NAME)

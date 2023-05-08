@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:56:45 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 16:36:43 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 18:58:48 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,9 @@ int	is_turn(t_philo *philo)
 	turn = philo->table->turn;
 	if (!(total % 2))
 		turn = (turn % 2);
-	if ((id % 2) == (turn % 2) && id >= turn)
-	{
-		if (turn == 1 && philo->id == philo->table->total)
-			return (0);
+	if ((id % 2) == (turn % 2) && id >= turn
+		&& !(turn == 1 && philo->id == philo->table->total))
 		return (1);
-	}
 	else if ((id % 2) != (turn % 2) && (id + 1) < turn)
 		return (1);
 	return (0);
@@ -56,7 +53,10 @@ int	is_turn(t_philo *philo)
 void	take_fork(t_fork *get, t_philo *philo)
 {
 	while (!get->fork)
+	{
+		philo->think(philo);
 		philo->alive(philo);
+	}
 	pthread_mutex_lock(&get->lock);
 	ft_message(TAKE_FORK, philo);
 	get->fork = 0;
