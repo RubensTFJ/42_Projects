@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 20:46:03 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/08 19:00:06 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 23:26:47 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	att_turn(t_control *get)
 {
 	static int	eat;
 
-	if (++eat == (get->total / 2))
+	if (++eat >= (get->total / 2))
 	{
 		eat = 0;
 		if (get->turn + 1 > get->total)
