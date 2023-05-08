@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 22:11:29 by rteles-f          #+#    #+#              #
-#    Updated: 2023/04/26 09:24:42 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/05/08 23:05:53 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,11 @@ CC				= 	gcc -Wall -Wextra -Werror # -g -fsanitize=address
 RM				= 	/bin/rm -f
 INCLUDES		= 	-Iheaders/
 	
-SRCS			=	src/end_game.c src/ft_printf.c src/ft_printf_utils.c src/get_next_line.c src/global.c src/image.c \
-					src/image_utils.c src/is_map_valid.c src/is_map_valid_utils.c src/libft_func.c src/list.c src/main.c \
-					src/map_functions.c src/movement.c src/movement_collision.c src/obj_creation.c src/object_types.c \
-					src/update_utils.c
+SRCS			=	src/end_game.c src/global.c src/image.c src/image_utils.c src/is_map_valid.c \
+					src/is_map_valid_utils.c src/main.c src/map_functions.c src/movement.c \
+					src/movement_collision.c src/obj_creation.c src/object_types.c src/update_utils.c \
+					src/utils/ft_printf.c src/utils/ft_printf_utils.c src/utils/get_next_line.c \
+					src/utils/libft_func.c src/utils/list.c
 
 OBJS			= 	$(SRCS:.c=.o)
 
