@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/31 23:39:00 by rteles-f          #+#    #+#              #
-#    Updated: 2023/05/05 20:19:26 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/05/08 23:07:40 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ clean:
 			@$(RM) $(OBJS)
 
 fclean: clean
-			@$(RM) $(NAME)
+			@$(RM) $(CLIENT_NAME) $(SERVER_NAME)
 
 re: fclean all
 
