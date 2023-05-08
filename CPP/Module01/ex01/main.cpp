@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   randomChump.cpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 20:38:58 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/08 21:20:45 by rteles-f         ###   ########.fr       */
+/*   Created: 2023/05/08 20:58:38 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/05/08 21:39:26 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-void randomChump(std::string name)
+int	main(void)
 {
-	Zombie	zombie;
+	int	nzombies;
 
-	zombie.setName(name);
-	zombie.announce();
+	nzombies = 10;
+	Zombie	*horde = zombieHorde(nzombies, "foo");
+	for (int i = 0; i < nzombies; i++)
+	{
+		horde[i].announce();
+	}
+	delete[] horde;
+
+	return (0);
 }

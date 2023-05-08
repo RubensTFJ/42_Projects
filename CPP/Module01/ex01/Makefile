@@ -5,38 +5,37 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/05/08 19:27:53 by rteles-f         ###   ########.fr        #
+#    Created: 2023/05/02 20:08:19 by rteles-f          #+#    #+#              #
+#    Updated: 2023/05/08 21:38:15 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= 	philosophers
+NAME		= 	Zombies
 
-CC			= 	cc #-g -fsanitize=address
+CC			= 	c++ #-g -fsanitize=address
 
-CFLAGS		= 	-Wall -Wextra -Werror -Iheaders/ -pthread -g
+CFLAGS		= 	-Wall -Wextra -Werror -std=c++98
 
 RM			= 	rm -f
 
-# INCLUDES	= 	-Iheaders/
+INCLUDES	= 	-I
 
-SRCS		=	src/main.c src/philo_actions.c src/pactions_aux.c src/end_philosophers.c \
-				src/utils/libft_usual.c
+SRCS		=	main.cpp Zombie.cpp zombieHorde.cpp
 
-OBJS		= 	$(SRCS:.c=.o)
+OBJS		= 	$(SRCS:.cpp=.o)
 
 all: 		$(NAME)
 
 $(NAME):	$(OBJS) 
-			@$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+			@$(CC) $(INCLUDES) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 			@$(RM) $(OBJS)
 
-fclean: clean
-			@$(RM) $(NAME)
+fclean: 	clean
+				@$(RM) $(NAME)
 
-re: fclean all
+re: 		 all
 
 norm :
 			@norminette -R CheckForbiddenSourceHeader $(SRCS) headers/
@@ -47,5 +46,3 @@ r:
 			make && clear && ./$(NAME)
 
 .PHONY: 	all re clean fclean m
-
-# SRCS		=	src/*.c src/*/*.c

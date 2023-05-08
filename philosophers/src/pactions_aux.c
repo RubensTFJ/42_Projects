@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:56:45 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/08 19:06:35 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:43:33 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,19 @@ int	ft_message(int type, t_philo *philo)
 	if (!philo->table->service)
 		return (0);
 	if (type == DEAD)
-		return (printf("%li %i Died.\n",
+		return (printf("%.05li %i Died.\n",
 				get_time() - philo->table->clock, philo->id));
 	if (type == EATING)
-		return (printf("%li %i is eating.\n",
+		return (printf("%.05li %i is eating.\n",
 				get_time() - philo->table->clock, philo->id));
 	if (type == SLEEPING)
-		return (printf("%li %i is sleeping.\n",
+		return (printf("%.05li %i is sleeping.\n",
 				get_time() - philo->table->clock, philo->id));
 	if (type == THINKING)
-		return (printf("%li %i is thinking.\n",
+		return (printf("%.05li %i is thinking.\n",
 				get_time() - philo->table->clock, philo->id));
 	if (type == TAKE_FORK)
-		return (printf("%li %i has taken a Fork.\n",
+		return (printf("%.05li %i has taken a Fork.\n",
 				get_time() - philo->table->clock, philo->id));
 	return (0);
 }

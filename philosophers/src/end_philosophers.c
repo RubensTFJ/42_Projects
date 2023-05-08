@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 18:35:12 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 16:36:17 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:36:24 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	destroy_mutex(t_fork **utensils, int size)
 		pthread_mutex_destroy(&utensils[i++]->lock);
 }
 
-void	end_dinner(char *string, t_control *get)
+int	end_dinner(char *string, t_control *get)
 {
 	if (string)
 		printf("%s", string);
@@ -42,6 +42,7 @@ void	end_dinner(char *string, t_control *get)
 		destroy_mutex(get->utensils, get->total);
 		free_biarray((void **)get->utensils, get->total);
 	}
+	return (0);
 }
 
 t_ulong	get_time(void)

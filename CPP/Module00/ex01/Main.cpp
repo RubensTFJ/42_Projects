@@ -41,16 +41,14 @@ int	main(int counter, char **input)
 	{
 		std::cout << "Enter Command: " << std::endl;
 		getline(std::cin, command);
+		std::cout << std::endl;
 		str_tolower(command);
 		if (command == "add")
 			book.Add();
 		else if (command == "search")
 			book.Search();
 		else if (command == "exit")
-		{
-			book.Exit();
 			return (0);
-		}
 		else
 			std::cout << "Wrong Usage. Valid commands: 'ADD', 'SEARCH' and 'EXIT'" << std::endl;
 	}

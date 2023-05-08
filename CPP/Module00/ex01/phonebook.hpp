@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:48:49 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 20:35:04 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 20:25:07 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ class Contact {
 		void	table_print(std::string string);
 
 	public:
+		Contact();
+		~Contact();
 		void	Update(std::string secret, std::string number,
 			std::string nickname, std::string last_name, std::string name);
 		void	MiniPrint(int index);
@@ -42,7 +44,6 @@ class PhoneBook {
 		~PhoneBook();
 		void	Add(void);
 		void	Search(void);
-		void	Exit(void);
 } ;
 
 std::string	ask_input(const char *string);

@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:27 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/08 19:01:18 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:37:49 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		check_table(t_philo *philo);
 int		is_turn(t_philo *philo);
 
 // End_philosophers
-void	end_dinner(char *string, t_control *get);
+int		end_dinner(char *string, t_control *get);
 void	destroy_mutex(t_fork **utensils, int size);
 void	free_biarray(void **arg, int size);
 t_philo	*new_philosopher(t_control *get, int id);

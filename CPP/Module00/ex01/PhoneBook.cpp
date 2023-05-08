@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:54:11 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/05 20:33:02 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/08 19:50:10 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,3 @@ void	PhoneBook::Search(void)
 		std::cout << "Invalid Index." << std::endl;
 }
 
-void	PhoneBook::Exit(void) 
-{
-}
