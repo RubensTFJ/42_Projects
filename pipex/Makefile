@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/04/26 17:09:11 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/05/08 23:02:52 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,20 +14,22 @@ NAME		= 	pipex
 
 CC			= 	cc #-g -fsanitize=address
 
-CFLAGS		= 	-Wall -Wextra -Werror -g
+CFLAGS		= 	-Wall -Wextra -Werror -Iheaders/ -g
 
 RM			= 	rm -f
 
 INCLUDES	= 	-Iheaders/
 
-SRCS		=	src/*.c
+SRCS		=	src/end_program.c src/here_doc.c src/main.c src/pipex.c \
+				src/utils/ft_printf.c src/utils/ft_printf_utils.c \
+				src/utils/get_next_line.c src/utils/ft_split.c src/utils/libft_usual.c
 
 OBJS		= 	$(SRCS:.c=.o)
 
 all: 		$(NAME)
 
-$(NAME):	$(SRCS) 
-			@$(CC) $(INCLUDES) $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME):	$(OBJS) 
+			@$(CC) $(INCLUDES) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 			@$(RM) $(OBJS)
