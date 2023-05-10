@@ -6,13 +6,13 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:12 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/08 22:41:25 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/09 19:48:11 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-void	thread_joiner(t_control *get)
+void	wait_dinner(t_control *get)
 {
 	int	i;
 
@@ -77,6 +77,8 @@ int	check_start(t_control *get, int counter, char **input)
 	get->clock = get_time();
 	get->turn = 1;
 	get->service = 1;
+	pthread_mutex_init(&get->turn_lock, NULL);
+	pthread_mutex_init(&get->service_lock, NULL);
 	if (input[5])
 		get->last_meal = ft_atoi(input[5]);
 	else
@@ -92,7 +94,7 @@ int	main(int counter, char **input)
 		!serve_utensils(&get) || \
 		!put_philosophers_on_table(&get))
 		return (1);
-	thread_joiner(&get);
+	wait_dinner(&get);
 	end_dinner("", &get);
 	return (0);
 }

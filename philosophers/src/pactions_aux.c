@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:56:45 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/08 22:43:33 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/10 18:24:25 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 int	check_table(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->table->service_lock);
 	if (!philo->status || !philo->table->service)
-		return (0);
+		return (pthread_mutex_unlock(&philo->table->service_lock) * 0);
 	if ((get_time() - philo->last_eat) > philo->table->death_timer)
 	{
 		ft_message(DEAD, philo);
 		philo->table->service = 0;
 		philo->status = 0;
-		return (0);
+		return (pthread_mutex_unlock(&philo->table->service_lock) * 0);
 	}
 	if (philo->eat_times == philo->table->last_meal)
 	{
 		philo->table->service = 0;
-		return (0);
+		return (pthread_mutex_unlock(&philo->table->service_lock) * 0);
 	}
+	pthread_mutex_unlock(&philo->table->service_lock);
 	return (1);
 }
 
@@ -37,6 +39,7 @@ int	is_turn(t_philo *philo)
 	int			id;
 	int			turn;
 
+	pthread_mutex_lock(&philo->table->turn_lock);
 	total = philo->table->total;
 	id = philo->id;
 	turn = philo->table->turn;
@@ -44,19 +47,14 @@ int	is_turn(t_philo *philo)
 		turn = (turn % 2);
 	if ((id % 2) == (turn % 2) && id >= turn
 		&& !(turn == 1 && philo->id == philo->table->total))
-		return (1);
+		return (pthread_mutex_unlock(&philo->table->turn_lock) * 0 + 1);
 	else if ((id % 2) != (turn % 2) && (id + 1) < turn)
-		return (1);
-	return (0);
+		return (pthread_mutex_unlock(&philo->table->turn_lock) * 0 + 1);
+	return (pthread_mutex_unlock(&philo->table->turn_lock) * 0);
 }
 
 void	take_fork(t_fork *get, t_philo *philo)
 {
-	while (!get->fork)
-	{
-		philo->think(philo);
-		philo->alive(philo);
-	}
 	pthread_mutex_lock(&get->lock);
 	ft_message(TAKE_FORK, philo);
 	get->fork = 0;
@@ -70,11 +68,13 @@ void	release_fork(t_fork *get)
 
 int	ft_message(int type, t_philo *philo)
 {
-	if (!philo->table->service)
-		return (0);
 	if (type == DEAD)
 		return (printf("%.05li %i Died.\n",
 				get_time() - philo->table->clock, philo->id));
+	pthread_mutex_lock(&philo->table->service_lock);
+	if (!philo->table->service)
+		return (pthread_mutex_unlock(&philo->table->service_lock) * 0);
+	pthread_mutex_unlock(&philo->table->service_lock);
 	if (type == EATING)
 		return (printf("%.05li %i is eating.\n",
 				get_time() - philo->table->clock, philo->id));

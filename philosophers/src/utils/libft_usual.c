@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 23:24:26 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/03 19:38:33 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/10 18:43:48 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,14 @@ int	ft_atoi(const char *nptr)
 	while (47 < nptr[i] && nptr[i] < 58)
 		number = (nptr[i++] - 48) + (number * 10);
 	return ((int)(number * sign));
+}
+
+void	watch_sleep(t_ulong time, t_philo *philo)
+{
+	t_ulong	start;
+
+	start = get_time();
+	while ((get_time() - start) < time
+		&& philo->alive(philo))
+		usleep(2000);
 }

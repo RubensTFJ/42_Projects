@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 20:46:03 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/08 23:26:47 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/10 18:34:00 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	att_turn(t_control *get)
 {
 	static int	eat;
 
+	pthread_mutex_lock(&get->turn_lock);
 	if (++eat >= (get->total / 2))
 	{
 		eat = 0;
@@ -24,6 +25,7 @@ void	att_turn(t_control *get)
 		else
 			get->turn++;
 	}
+	pthread_mutex_unlock(&get->turn_lock);
 }
 
 void	philo_think(t_philo *philo)
@@ -33,27 +35,24 @@ void	philo_think(t_philo *philo)
 		ft_message(THINKING, philo);
 		philo->status = THINKING;
 	}
+	usleep(150);
 }
 
 void	philo_sleep(t_philo *philo)
 {
-	t_ulong	start;
-
 	ft_message(SLEEPING, philo);
 	philo->status = SLEEPING;
-	start = get_time();
-	while ((get_time() - start) < philo->table->sleep_timer
-		&& philo->alive(philo))
-		;
+	watch_sleep(philo->table->sleep_timer, philo);
 }
 
 void	philo_eat(t_philo *philo)
 {
+
 	take_fork(philo->table->utensils[philo->id], philo);
 	take_fork(philo->table->utensils[philo->id - 1], philo);
 	ft_message(EATING, philo);
 	att_turn(philo->table);
-	usleep(1000 * philo->table->eat_timer);
+	watch_sleep(philo->table->eat_timer, philo);
 	philo->last_eat = get_time();
 	philo->eat_times++;
 	release_fork(philo->table->utensils[philo->id]);
