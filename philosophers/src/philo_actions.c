@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 20:46:03 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/10 18:34:00 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/10 19:13:04 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	philo_sleep(t_philo *philo)
 
 void	philo_eat(t_philo *philo)
 {
-
 	take_fork(philo->table->utensils[philo->id], philo);
 	take_fork(philo->table->utensils[philo->id - 1], philo);
 	ft_message(EATING, philo);
