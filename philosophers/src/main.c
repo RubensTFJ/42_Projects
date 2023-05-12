@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 01:07:12 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/10 19:12:50 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/12 22:46:27 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,18 @@ int	check_start(t_control *get, int counter, char **input)
 	get->death_timer = ft_atoi(input[2]);
 	get->eat_timer = ft_atoi(input[3]);
 	get->sleep_timer = ft_atoi(input[4]);
-	if ((int)get->eat_timer < 0 || (int)get->death_timer < 0
-		|| (int)get->sleep_timer < 0 || (int)get->total < 0)
+	if (input[5])
+		get->last_meal = ft_atoi(input[5]);
+	if ((int)get->eat_timer < 0 || (int)get->total < 0 || get->last_meal < 0
+		|| (int)get->sleep_timer < 0 || (int)get->death_timer < 0)
 		return (end_dinner("Input Can't be negative.\n", get));
+	if (!input[5])
+		get->last_meal = -1;
 	get->clock = get_time();
 	get->turn = 1;
 	get->service = 1;
 	pthread_mutex_init(&get->turn_lock, NULL);
 	pthread_mutex_init(&get->service_lock, NULL);
-	if (input[5])
-		get->last_meal = ft_atoi(input[5]);
-	else
-		get->last_meal = -1;
 	return (1);
 }
 
@@ -98,25 +98,3 @@ int	main(int counter, char **input)
 	end_dinner("", &get);
 	return (0);
 }
-	// start_dinner(&get);
-
-// void	*start_dinner(void *arg)
-// {
-// 	t_control	*get;
-
-// 	get = (t_control *)arg;
-// 	while (get->total)
-// 	{
-// 		// !utensils_down(get) && 
-// 		// while (get->all_utensils != get->total)
-// 		// 	;
-// 		// if ((get->turn + 1) > get->total)
-// 		// 	get->turn = 1;
-// 		// else
-// 		// 	get->turn++;
-// 		// while (get->all_utensils == get->total)
-// 		// 	;
-// 	}
-// 	// HERE;
-// 	return (arg);
-// }

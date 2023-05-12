@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/02 20:08:19 by rteles-f          #+#    #+#              #
-#    Updated: 2023/05/10 20:47:56 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/05/12 21:10:44 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS		= 	$(SRCS:.cpp=.o)
 all: 		$(NAME)
 
 $(NAME):	$(OBJS) 
-			@$(CC) $(INCLUDES) $(CFLAGS) $(OBJS) -o $(NAME)
+			@$(CC) -I $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 			@$(RM) $(OBJS)
@@ -35,7 +35,7 @@ clean:
 fclean: 	clean
 				@$(RM) $(NAME)
 
-re: 		 all
+re: 		fclean all
 
 norm :
 			@norminette -R CheckForbiddenSourceHeader $(SRCS) headers/
