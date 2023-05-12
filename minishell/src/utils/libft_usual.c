@@ -26,28 +26,28 @@ void	*ft_calloc(size_t n, size_t xsize)
 	return (new);
 }
 
-char	*ft_stradd(char **original, char *add)
-{
-	int		i;
-	int		j;
-	char	*joined;
+// char	*ft_stradd(char **original, char *add)
+// {
+// 	int		i;
+// 	int		j;
+// 	char	*joined;
 
-	if (!(*original) || !add)
-		return ;
-	joined = ft_calloc(sizeof(char),
-		(ft_strlen((*original)) + ft_strlen(add) + 1));
-	if (!joined)
-		return ;
-	i = -1;
-	while ((*original)[++i])
-		joined[i] = (*original)[i];
-	j = -1;
-	while (add[++j])
-		joined[i + j] = add[j];
-	free((*original));
-	*original = joined;
-	return (joined);
-}
+// 	if (!(*original) || !add)
+// 		return ;
+// 	joined = ft_calloc(sizeof(char),
+// 		(ft_strlen((*original)) + ft_strlen(add) + 1));
+// 	if (!joined)
+// 		return ;
+// 	i = -1;
+// 	while ((*original)[++i])
+// 		joined[i] = (*original)[i];
+// 	j = -1;
+// 	while (add[++j])
+// 		joined[i + j] = add[j];
+// 	free((*original));
+// 	*original = joined;
+// 	return (joined);
+// }
 
 int	ft_strlen(const char *string)
 {

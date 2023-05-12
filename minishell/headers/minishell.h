@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:44:21 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/09 16:24:33 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/13 00:03:20 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,18 @@ typedef struct s_control	t_control;
 typedef struct s_list		t_list;
 typedef struct s_shell		t_shell;
 typedef struct s_command	t_command;
+typedef void (*exe)();
+
 
 struct s_control {
 	int		argc;
 	char	**argv;
 	char	**envp;
 	char	*line;
+	char	find[7];
+	char	*test[5];
+	exe		functions[5];
+	t_list	*commands;
 } ;
 
 struct s_list {

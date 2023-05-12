@@ -50,21 +50,21 @@
 // 	return (newnode);
 // }
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list	*delete;
+// void	ft_lstclear(t_list **lst, void (*del)(void *))
+// {
+// 	t_list	*delete;
 
-	if (!lst || !del)
-		return ;
-	while ((*lst))
-	{
-		delete = (*lst);
-		(*lst) = (*lst)->next;
-		(*del)(delete->content);
-		free(delete);
-		delete = NULL;
-	}
-}
+// 	if (!lst || !del)
+// 		return ;
+// 	while ((*lst))
+// 	{
+// 		delete = (*lst);
+// 		(*lst) = (*lst)->next;
+// 		(*del)(delete->content);
+// 		free(delete);
+// 		delete = NULL;
+// 	}
+// }
 
 // int	ft_lstsize(t_list *lst)
 // {
