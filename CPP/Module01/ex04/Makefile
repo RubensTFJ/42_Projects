@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/02 20:08:19 by rteles-f          #+#    #+#              #
-#    Updated: 2023/05/12 21:43:06 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/05/13 01:04:04 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM			= 	rm -f
 
 INCLUDES	= 	-I
 
-SRCS		=	
+SRCS		=	main.cpp
 
 OBJS		= 	$(SRCS:.cpp=.o)
 
