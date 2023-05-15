@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:44:21 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/13 00:03:20 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:11:23 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ struct s_control {
 } ;
 
 struct s_list {
-	void	*content;
+	exe		content;
+	char	*type;
 	t_list	*next;
 } ;
 

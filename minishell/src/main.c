@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:43:59 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/13 00:04:09 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:20:29 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,30 @@ void	input_parse(t_control *get)
 	}
 }
 
+t_list	**list_functions(void)
+{
+	static t_list	*f;
+
+	return (&f);
+}
+
+exe	functions(char *find)
+{
+	t_list	*node;
+
+	node = *list_functions();
+	while (node)
+	{
+		if (!ft_strncmp(node->type, find, ft_strlen(find)))
+			return (node->content);
+		node = node->next;
+	}
+	return (NULL);
+}
+
 void	set_functions(t_control *get)
 {
+	functions("cat")(get);
 	get->functions[0] = space_case;
 	get->functions[1] = pipe_case;
 	get->functions[2] = amper_case;

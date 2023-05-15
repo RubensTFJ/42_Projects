@@ -1,49 +1,50 @@
-#include <iostream>
-#include <map>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/15 17:57:45 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/05/15 17:57:45 by rteles-f         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-class Harls {
-	private:
-		void debug(void);
-		void info(void);
-		void warning(void);
-		void error(void);
-		std::map<std::string, void(*)(void)> functions;
+#include "Harl.hpp"
 
-	public:
-		Harls();
-		~Harls();
-		void complain(std::string level);
-} ;
+Harl::Harl() :
+	functions({
+		{"DEBUG", &Harl::debug},
+		{"INFO", &Harl::info},
+		{"WARNING", &Harl::warning},
+		{"ERROR", &Harl::error}
+	})
+{}
 
-void	debug(void){
+void	Harl::complain(std::string level)
+{
+	if (functions.find(level) == functions.end())
+	{
+		std::cout << "Not a Valid Level." << std::endl;
+		return ;
+	}
+	functions[level]();
+}
+
+void	Harl::debug(void){
 	std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!" << std::endl;
 }
 
-void	info(void){
+void	Harl::info(void){
 	std::cout << "I cannot believe adding extra bacon costs more money. You didn’t put \
 		enough bacon in my burger! If you did, I wouldn’t be asking for more!" << std::endl;
 }
 
-void	warning(void){
+void	Harl::warning(void){
 	std::cout << "I think I deserve to have some extra bacon for free. I’ve been coming for \
 		years whereas you started working here since last month." << std::endl;
 }
 
-void	error(void){
+void	Harl::error(void){
 	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
-}
-
-Harls::Harls() :
-	functions({
-		{"DEBUG", &Harls::debug},
-		{"INFO", &Harls::info},
-		{"WARNING", &Harls::warning},
-		{"ERROR", &Harls::error}
-	})
-{
-
-}
-
-void	Harls::complain(std::string level){
-	functions[level]();
 }
