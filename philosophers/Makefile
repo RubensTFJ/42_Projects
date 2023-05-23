@@ -6,13 +6,13 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/10 21:45:53 by rteles-f          #+#    #+#              #
-#    Updated: 2023/05/15 16:58:40 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/05/23 23:05:59 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philosophers
 
-CC			= 	cc #-g -fsanitize=leak
+CC			= 	cc #-g -fsanitize=thread
 
 CFLAGS		= 	-Wall -Wextra -Werror -Iheaders/ -pthread -g
 

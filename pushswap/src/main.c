@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/01 01:28:08 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/25 17:45:41 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:11:00 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	main(int counter, char **input)
 	while (++input && (*input))
 		start_list(ft_split((*input), ' '), get());
 	start_sort(get());
+	print_push(get());
 	end_pushswap(get());
 	return (0);
 }
