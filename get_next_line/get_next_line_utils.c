@@ -12,25 +12,29 @@
 
 #include "get_next_line.h"
 
+int	found_breakline(char *string)
+{
+	int	i;
+
+	i = 0;
+	while (string[i] && string[i] != '\n')
+		i++;
+	return ((string[i] == '\n'));
+}
+
 char	*seek_line(int fd, char *buffer)
 {
 	char	*line;
-	int		i;
 
 	if (!buffer[0])
 		return (NULL);
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	while (buffer[0] && buffer[i] != '\n')
+	line = NULL;
+	while (buffer[0] && !found_breakline(buffer))
 	{
 		line = bl_strjoin(line, buffer);
 		if (!line)
 			return (NULL);
 		buffer[read(fd, buffer, BUFFER_SIZE)] = 0;
-		i = 0;
-		while (buffer[i] && buffer[i] != '\n')
-			i++;
 	}
 	line = bl_strjoin(line, buffer);
 	return (line);
@@ -48,7 +52,7 @@ char	*bl_strjoin(char *line, char *add)
 	length[1] = 0;
 	while (add && add[length[1]] && add[length[1]] != '\n')
 		length[1]++;
-	joined = malloc (sizeof(char) * (length[0] + length[1] + \
+	joined = malloc(sizeof(char) * (length[0] + length[1] + \
 		1 + (add[length[1]] == '\n')));
 	if (!joined)
 		return (NULL);
@@ -79,3 +83,26 @@ void	over_read(char *buffer)
 	while (j < BUFFER_SIZE)
 		buffer[j++] = 0;
 }
+// char	*seek_line(int fd, char *buffer)
+// {
+// 	char	*line;
+// 	int		i;
+
+// 	if (!buffer[0])
+// 		return (NULL);
+// 	i = 0;
+// 	while (buffer[i] && buffer[i] != '\n')
+// 		i++;
+// 	while (buffer[0] && buffer[i] != '\n')
+// 	{
+// 		line = bl_strjoin(line, buffer);
+// 		if (!line)
+// 			return (NULL);
+// 		buffer[read(fd, buffer, BUFFER_SIZE)] = 0;
+// 		i = 0;
+// 		while (buffer[i] && buffer[i] != '\n')
+// 			i++;
+// 	}
+// 	line = bl_strjoin(line, buffer);
+// 	return (line);
+// }
