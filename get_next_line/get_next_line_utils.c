@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 22:00:53 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/03/30 16:20:01 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:40:35 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ char	*seek_line(int fd, char *buffer)
 			return (NULL);
 		buffer[read(fd, buffer, BUFFER_SIZE)] = 0;
 	}
-	line = bl_strjoin(line, buffer);
-	return (line);
+	return (bl_strjoin(line, buffer));
 }
 
 char	*bl_strjoin(char *line, char *add)
@@ -62,7 +61,7 @@ char	*bl_strjoin(char *line, char *add)
 	i = -1;
 	while (add && add[++i] && (i == 0 || add[i - 1] != '\n'))
 		joined[length[0] + i] = add[i];
-	joined[length[0] + i] = '\0';
+	joined[length[0] + i] = 0;
 	if (line)
 		free(line);
 	return (joined);
