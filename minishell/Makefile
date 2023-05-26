@@ -15,7 +15,7 @@ NAME		= 	minishell
 
 CC			= 	cc #-g -fsanitize=address
 
-CFLAGS		= 	-Wall -Wextra -Werror -Iheaders/ -pthread -g
+CFLAGS		= 	-Iheaders/ #-Wall -Wextra -Werror -pthread -g
 
 RM			= 	rm -f
 

@@ -27,7 +27,7 @@ int	ft_printf(const char *string, ...)
 			i++;
 		printed += write (1, string, i);
 		string += i;
-		if (*string && *string++ == '%')
+		if (*string && *string++ == '%' && *string)
 			printed += put_var(&var_sweep, (*string++));
 	}
 	va_end(var_sweep);
@@ -37,17 +37,17 @@ int	ft_printf(const char *string, ...)
 int	put_var(va_list *arg_list, char var)
 {
 	if (var == 'i' || var == 'd')
-		return ((int_case(arg_list)));
+		return ((int_case(va_arg(*arg_list, int))));
 	if (var == 'c')
-		return (char_case(arg_list));
+		return (char_case(va_arg(*arg_list, int)));
 	if (var == 's')
-		return (string_case(arg_list));
+		return (string_case(va_arg(*arg_list, char *)));
 	if (var == 'u')
-		return (put_base_number(va_arg(*arg_list, t_ui), HEX, 10));
+		return (put_base_number(va_arg(*arg_list, size_t), HEX, 10));
 	if (var == 'x')
-		return (put_base_number(va_arg(*arg_list, t_ui), HEX, 16));
+		return (put_base_number(va_arg(*arg_list, size_t), HEX, 16));
 	if (var == 'X')
-		return (put_base_number(va_arg(*arg_list, t_ui), UPHEX, 16));
+		return (put_base_number(va_arg(*arg_list, size_t), UPHEX, 16));
 	if (var == 'p')
 		return (pointer_case(va_arg(*arg_list, size_t)));
 	if (var == '%')

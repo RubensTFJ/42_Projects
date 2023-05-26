@@ -12,20 +12,15 @@
 
 #include "ft_printf.h"
 
-int	char_case(va_list *arg_list)
+int	char_case(int c)
 {
-	int	c;
-
-	c = va_arg(*arg_list, int);
 	return (write(1, &c, 1));
 }
 
-int	string_case(va_list *arg_list)
+int	string_case(char *string)
 {
-	char	*string;
 	int		i;
 
-	string = va_arg(*arg_list, char *);
 	i = 0;
 	if (!string)
 		string = "(null)";
@@ -33,6 +28,20 @@ int	string_case(va_list *arg_list)
 		i++;
 	return (write(1, string, i));
 }
+
+// int	string_case(va_list *arg_list)
+// {
+// 	char	*string;
+// 	int		i;
+
+// 	string = va_arg(*arg_list, char *);
+// 	i = 0;
+// 	if (!string)
+// 		string = "(null)";
+// 	while (string[i])
+// 		i++;
+// 	return (write(1, string, i));
+// }
 
 int	put_base_number(t_ull n, char *base, t_ull bsize)
 {
@@ -44,13 +53,11 @@ int	put_base_number(t_ull n, char *base, t_ull bsize)
 	return ((counter + write(1, &base[n % bsize], 1)));
 }
 
-int	int_case(va_list *arg_list)
+int	int_case(long long number)
 {
-	long long	number;
 	int			counter;
 
 	counter = 0;
-	number = va_arg(*arg_list, int);
 	if (number < 0)
 	{
 		counter += write(1, "-", 1);
@@ -59,6 +66,21 @@ int	int_case(va_list *arg_list)
 	counter += put_base_number(number, "0123456789", 10);
 	return (counter);
 }
+// int	int_case(va_list *arg_list)
+// {
+// 	long long	number;
+// 	int			counter;
+
+// 	counter = 0;
+// 	number = va_arg(*arg_list, int);
+// 	if (number < 0)
+// 	{
+// 		counter += write(1, "-", 1);
+// 		number = -number;
+// 	}
+// 	counter += put_base_number(number, "0123456789", 10);
+// 	return (counter);
+// }
 
 int	pointer_case(size_t number)
 {
