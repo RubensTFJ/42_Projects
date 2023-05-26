@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:56:45 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/26 23:35:54 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/26 23:38:26 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	take_fork(t_fork *get, t_philo *philo)
 		{
 			pthread_mutex_unlock(&get->lock);
 			philo->alive(philo);
-			usleep(150);
+			philo->think(philo);
 		}
 	}
 }
