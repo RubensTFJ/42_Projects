@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 18:38:32 by rteles-f          #+#    #+#             */
-/*   Updated: 2022/11/20 18:51:32 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:29:32 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int	put_var(va_list *arg_list, char var)
 	if (var == 's')
 		return (string_case(va_arg(*arg_list, char *)));
 	if (var == 'u')
-		return (put_base_number(va_arg(*arg_list, size_t), HEX, 10));
+		return (put_base_number(va_arg(*arg_list, unsigned int), HEX, 10));
 	if (var == 'x')
-		return (put_base_number(va_arg(*arg_list, size_t), HEX, 16));
+		return (put_base_number(va_arg(*arg_list, unsigned int), HEX, 16));
 	if (var == 'X')
-		return (put_base_number(va_arg(*arg_list, size_t), UPHEX, 16));
+		return (put_base_number(va_arg(*arg_list, unsigned int), UPHEX, 16));
 	if (var == 'p')
-		return (pointer_case(va_arg(*arg_list, size_t)));
+		return (pointer_case(va_arg(*arg_list, unsigned long)));
 	if (var == '%')
 		return (write (1, "%", 1));
 	return (0);
