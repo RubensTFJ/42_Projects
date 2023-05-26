@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:30:02 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/23 19:03:49 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:55:01 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ class Fixed {
 		int		toInt(void) const;
 } ;
 
-std::ostream & operator<<(std::ostream & obj, Fixed const & i);
+std::ostream& operator<<(std::ostream& stream, const Fixed& obj);
 
 #endif

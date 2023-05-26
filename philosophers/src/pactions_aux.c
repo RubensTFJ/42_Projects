@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 19:56:45 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/10 18:24:25 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/26 23:35:54 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,31 @@ int	is_turn(t_philo *philo)
 
 void	take_fork(t_fork *get, t_philo *philo)
 {
-	pthread_mutex_lock(&get->lock);
-	ft_message(TAKE_FORK, philo);
-	get->fork = 0;
+	int	go;
+
+	go = 1;
+	while (go)
+	{
+		pthread_mutex_lock(&get->lock);
+		if (get->fork)
+		{
+			get->fork = 0;
+			go = 0;
+			ft_message(TAKE_FORK, philo);
+			pthread_mutex_unlock(&get->lock);
+		}
+		else
+		{
+			pthread_mutex_unlock(&get->lock);
+			philo->alive(philo);
+			usleep(150);
+		}
+	}
 }
 
 void	release_fork(t_fork *get)
 {
+	pthread_mutex_lock(&get->lock);
 	get->fork = 1;
 	pthread_mutex_unlock(&get->lock);
 }

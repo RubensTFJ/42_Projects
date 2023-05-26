@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:44:21 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/15 17:11:23 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/26 23:02:12 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_shell		t_shell;
 typedef struct s_command	t_command;
 typedef void (*exe)();
 
-
 struct s_control {
 	int		argc;
 	char	**argv;
@@ -45,8 +44,8 @@ struct s_list {
 } ;
 
 struct s_command {
-	char	*line;
-	char	**split;
+	char	*path;
+	char	**command;
 	int		input;
 	int		output;
 } ;
