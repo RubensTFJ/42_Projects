@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 21:33:10 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/29 10:15:16 by rteles-f         ###   ########.fr       */
+/*   Created: 2023/05/29 10:10:35 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/05/29 10:11:32 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-ScavTrap::ScavTrap(std::string name):
-	name(name)
-{}
+#include "ClapTrap.hpp"
+#include <iostream>
 
-ScavTrap::~ScavTrap()
-{}
+class FragTrap: public ClapTrap {
+	private:
+		std::string name;
+		ClapTrap 	c;
 
-void	ScavTrap::guardGate(void)
-{
-	std::cout << this->name << " is on Guard Mode." << std::endl;
-	gateMode = 1; 
-}
+	public:
+		FragTrap(std::string name);
+		~FragTrap();
+		void highFivesGuys(void);
+} ;
+
+#endif

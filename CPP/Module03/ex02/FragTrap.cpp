@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 21:33:10 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/29 10:15:16 by rteles-f         ###   ########.fr       */
+/*   Created: 2023/05/29 09:48:49 by rteles-f          #+#    #+#             */
+/*   Updated: 2023/05/29 10:13:11 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name):
-	name(name)
+FragTrap::FragTrap(std::string name):
+	name(name), c(name, 100, 100, 30)
 {}
 
-ScavTrap::~ScavTrap()
+FragTrap::~FragTrap()
 {}
-
-void	ScavTrap::guardGate(void)
-{
-	std::cout << this->name << " is on Guard Mode." << std::endl;
-	gateMode = 1; 
-}

@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:14:10 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/29 10:15:18 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/29 09:53:55 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 ClapTrap::ClapTrap(std::string name):
 	name(name), hitPoints(100), energyPoints(50), attackDamage(20)
+{}
+
+ClapTrap::ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage):
+	name(name), hitPoints(hitPoints), energyPoints(energyPoints), attackDamage(attackDamage)
 {}
 
 ClapTrap::~ClapTrap() {
