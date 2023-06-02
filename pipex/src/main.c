@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 11:17:38 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/04/28 20:09:56 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:33:40 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ char	*build_command(t_vars *get, char *command)
 	int		i;
 	char	*full_path;
 
-	i = 0;
 	if (!access(command, F_OK))
 		return (ft_strdup(command));
 	i = 0;

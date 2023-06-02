@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:44:21 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/06/01 21:22:22 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/06/02 12:16:21 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef void (*exe)();
 
 struct s_control {
 	char	*input;
+	char	**split;
 	char	**envp;
 	char	**paths;
 	char	***pieces;
@@ -51,5 +52,7 @@ struct s_command {
 char	*sttc_itoa(int number);
 void	free_biarray(void **arg, int size);
 char	*ft_stradd(char **original, char *add);
+char	**shell_split(char *s, char c);
+void	free_split(char **arg);
 
 #endif

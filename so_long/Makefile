@@ -6,7 +6,7 @@
 #    By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/06 22:11:29 by rteles-f          #+#    #+#              #
-#    Updated: 2023/05/08 23:05:53 by rteles-f         ###   ########.fr        #
+#    Updated: 2023/05/31 17:51:41 by rteles-f         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ MLX_FLAGS 		=	-L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 all: 			$(NAME)
 
-$(NAME): 		$(OBJS) 
+$(NAME): 		$(OBJS)
 					@$(MAKE) -s -C mlx_linux
 					@$(CC) $(^) $(MLX_FLAGS) -o $(@)
 

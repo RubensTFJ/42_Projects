@@ -6,11 +6,12 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 20:09:16 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/06/01 23:25:33 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/06/02 13:08:20 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
 
 static int	getwords(char *s, char c);
 static int	fill_list(char *s, char **list, char c);
@@ -44,8 +45,8 @@ int	split_case(char *line)
 		return (2);
 	else if (*line == '>' || *line == '<')
 		return (1);
-	// else if (*line == "\"" || *line == "\'")
-	// 	return (ignore_quotes(line));
+	else if (*line == '|')
+		return (1);
 	return (0);
 }
 
@@ -64,27 +65,6 @@ int	ignore_quotes(char *string)
 			return (0);
 	}
 	return (i);
-}
-
-
-void	save_quotes(char *line)
-{
-	int		i;
-	char	stop;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '\"' || line[i] == '\'')
-		{
-			stop = line[i++];
-			while (line[i] && line[i] != stop)
-				i++;
-		}
-		if (line[i] == ' ')
-			line[i] = -1;
-		i++;
-	}
 }
 
 static int	getwords(char *s, char c)
@@ -164,16 +144,4 @@ void	free_split(char **arg)
 	while (arg[i])
 		free(arg[i++]);
 	free(arg);
-}
-
-int main(int c, char **v)
-{
-	char	**split;
-
-	(void)c;
-	save_quotes(v[1]);
-	split = shell_split(v[1], -1);
-	for(int i = 0; split[i]; i++)
-		printf("%s\n", split[i]);
-	free_split(split);
 }
