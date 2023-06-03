@@ -97,15 +97,66 @@ void	exit_builtin();
 void	try_command();
 
 
-struct s_command {
-	char	*path;
-	char	**command;
-	int		input;
-	int		output;
-	int		is_last;
-	int		commands;
-	exe		execute;
-} ;
+
+typedef struct s_command {
+	char		*exec_path;
+	char		**flags;
+	char		**terminal;
+	int			instream;
+	int			outstream;
+	int			is_last;
+	int			counter;
+	t_control	*main;
+	exe			execute;
+} t_command;
+
+char	*build_executable_path(t_control *get, char *command)
+{
+	int		i;
+	char	*full_path;
+
+	if (!access(command, F_OK))
+		return (ft_strdup(command));
+	i = 0;
+	while (get->paths[i])
+	{
+		full_path = ft_strjoin(get->paths[i++], command);
+		if (!access(full_path, F_OK))
+			return (full_path);
+		free(full_path);
+	}
+	return (ft_strjoin(get->paths[0], command));
+}
+
+t_command	*new_command(t_control *get)
+{
+	t_command	*new;
+
+	new = ft_calloc(sizeof(t_command), 1);
+	new->main = get;
+	return (new);
+}
+
+	// write (2, "command not found: ", 19);
+	// i = 0;
+	// while (command[i])
+	// 	write (2, &command[i++], 1);
+	// write (2, "\n", 1);
+
+
+// If flags are found, I need to take care so that it doenst got trhough the parser again.
+void	try_command(t_command *get, int index)
+{
+	get->exec_path = build_executable_path(get->main, get->terminal[index]);
+	get->execute = execve;
+	if (get->terminal[index + 1] && get->terminal[index + 1][0] == '-')
+	{
+		get->flags = ft_split(get->terminal[index + 1], ' ');
+		get->terminal[index + 1][0] = -1;
+	}
+	else
+		get->flags = ft_split(get->terminal[index], ' ');
+}
 
 exe	solve(char *find)
 {
@@ -116,7 +167,7 @@ exe	solve(char *find)
 		"|", "echo", "cd", "pwd",
 		"export", "unset", "env",
 		"exit", NULL
-	} ;
+	};
 	static exe	functions[13] = {
 		output_direct, input_direct, output_direct, here_doc,
 		pipe_output, echo_builtin, cd_builtin, pwd_builtin,

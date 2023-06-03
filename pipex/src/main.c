@@ -73,7 +73,7 @@ char	*build_command(t_vars *get, char *command)
 	while (command[i])
 		write (2, &command[i++], 1);
 	write (2, "\n", 1);
-	return (ft_strjoin(get->paths[--i], command));
+	return (ft_strjoin(get->paths[0], command));
 }
 
 /*

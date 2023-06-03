@@ -42,12 +42,12 @@ struct s_func {
 	char	*type;
 } ;
 
-struct s_command {
-	char	*path;
-	char	**command;
-	int		input;
-	int		output;
-} ;
+// struct s_command {
+// 	char	*path;
+// 	char	**command;
+// 	int		input;
+// 	int		output;
+// } ;
 
 char	*sttc_itoa(int number);
 void	free_biarray(void **arg, int size);
