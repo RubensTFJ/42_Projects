@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:44:21 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/06/05 16:07:48 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/06/05 19:24:12 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,11 @@ struct s_control {
 	t_list		*commands;
 } ;
 
-struct s_func {
-	t_exe	pointer;
-	char	*type;
-} ;
-
 typedef struct s_command {
 	char		*exec_path;
 	char		**flags;
 	char		**terminal;
+	char		*aux;
 	int			id;
 	int			instream;
 	int			pipe[2];
@@ -70,6 +66,13 @@ void	free_split(char **arg);
 void	normalize_input(t_control *get);
 int		ignore_quotes(char *string);
 void	free_shellsplit(char ***arg);
+
+void	execve_aux(t_command *get);
+void	setup(t_control *get, char **envp);
+void	structure_commands(t_control *get);
+void	run_input(t_list *node);
+
+
 
 
 #endif
