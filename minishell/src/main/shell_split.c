@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split.c                                            :+:      :+:    :+:   */
+/*   shell_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 20:09:16 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/06/02 13:08:20 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:20:30 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-
 static int	getwords(char *s, char c);
 static int	fill_list(char *s, char **list, char c);
 static char	*checkmalloc(int size, int members, char **list);
+
+static int	split_case(char *line)
+{
+	if (!*line)
+		return (0);
+	else if (*line == '<' && *(line + 1) && *(line + 1) == '<')
+		return (2);
+	else if (*line == '>' && *(line + 1) && *(line + 1) == '>')
+		return (2);
+	else if (*line == '>' || *line == '<')
+		return (1);
+	else if (*line == '|')
+		return (1);
+	return (0);
+}
 
 char	**shell_split(char *s, char c)
 {
@@ -35,38 +49,6 @@ char	**shell_split(char *s, char c)
 	return (list);
 }
 
-int	split_case(char *line)
-{
-	if (!*line)
-		return (0);
-	else if (*line == '<' && *(line + 1) && *(line + 1) == '<')
-		return (2);
-	else if (*line == '>' && *(line + 1) && *(line + 1) == '>')
-		return (2);
-	else if (*line == '>' || *line == '<')
-		return (1);
-	else if (*line == '|')
-		return (1);
-	return (0);
-}
-
-int	ignore_quotes(char *string)
-{
-	int		i;
-	char	stop;
-
-	i = 0;
-	if (string[i] == '\"' || string[i] == '\'')
-	{
-		stop = string[i++];
-		while (string[i] && string[i] != stop)
-			i++;
-		if (string[i] != stop)
-			return (0);
-	}
-	return (i);
-}
-
 static int	getwords(char *s, char c)
 {
 	int		i;
@@ -81,7 +63,7 @@ static int	getwords(char *s, char c)
 			i++;
 		size = split_case(&s[i]);
 		count += (s[i] && (s[i] != c));
-		i += size + ignore_quotes(&s[i]); 
+		i += size + ignore_quotes(&s[i]);
 		while (s[i] && s[i] != c && !split_case(&s[i]) && !size)
 			i++;
 	}
@@ -99,7 +81,7 @@ static int	fill_list(char *s, char **list, char c)
 	while (s[i] != '\0')
 	{
 		while (s[i] && s[i] == c)
-			i += 1;
+			i++;
 		word = split_case(&s[i]);
 		while (s[i + word] && s[i + word] != c && !split_case(&s[i])
 			&& !split_case(&s[i + word]))
@@ -134,14 +116,4 @@ static char	*checkmalloc(int size, int members, char **list)
 		return (NULL);
 	}
 	return (string);
-}
-
-void	free_split(char **arg)
-{
-	int		i;
-
-	i = 0;
-	while (arg[i])
-		free(arg[i++]);
-	free(arg);
 }

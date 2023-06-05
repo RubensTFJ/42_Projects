@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 17:44:31 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/31 18:02:39 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:20:45 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_stradd(char **original, char *add)
 	if (!(*original) || !add)
 		return (NULL);
 	joined = ft_calloc(sizeof(char),
-		(ft_strlen((*original)) + ft_strlen(add) + 1));
+			(ft_strlen((*original)) + ft_strlen(add) + 1));
 	if (!joined)
 		return (NULL);
 	i = -1;

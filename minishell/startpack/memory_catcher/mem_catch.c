@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:24:58 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/05/09 13:41:09 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:18:26 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	clear_alloc(void)
 		list = temp;
 	}
 }
-
 
 void	*keep_alloc(size_t size)
 {

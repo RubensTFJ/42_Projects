@@ -6,7 +6,7 @@
 /*   By: rteles-f <rteles-f@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 13:43:59 by rteles-f          #+#    #+#             */
-/*   Updated: 2023/06/01 22:47:28 by rteles-f         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:08:27 by rteles-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,29 +36,28 @@
 // // 	return (1);
 // // }
 
+t_list	**list_functions(void)
+{
+	static t_list	*f;
 
-// t_list	**list_functions(void)
-// {
-// 	static t_list	*f;
+	return (&f);
+}
 
-// 	return (&f);
-// }
+t_exe	functions(char *find)
+{
+	t_list	*node;
+	t_func	*function;
 
-// exe	functions(char *find)
-// {
-// 	t_list	*node;
-// 	t_func	*function;
-
-// 	node = *list_functions();
-// 	while (node)
-// 	{
-// 		function = node->content;
-// 		if (!ft_strncmp(function->type, find, ft_strlen(find)))
-// 			return (function->pointer);
-// 		node = node->next;
-// 	}
-// 	return (NULL);
-// }
+	node = *list_functions();
+	while (node)
+	{
+		function = node->content;
+		if (!ft_strncmp(function->type, find, ft_strlen(find)))
+			return (function->pointer);
+		node = node->next;
+	}
+	return (NULL);
+}
 
 // // void	set_functions(t_control *get)
 // // {
@@ -70,80 +69,64 @@
 // // 	get->test[4] = "";
 // // }
 
+void	finish_list_with(char **list, char *put)
+{
+	char	*temp;
 
-// void	finish_list_with(char **list, char *put)
-// {
-// 	char	*temp;
+	while (*list)
+	{
+		temp = ft_strjoin(*list, put);
+		free(*list);
+		*list = temp;
+		list++;
+	}
+}
 
-// 	while (*list)
-// 	{
-// 		temp = ft_strjoin(*list, put);
-// 		free(*list);
-// 		*list = temp;
-// 		list++;
-// 	}
-// }
+int	get_paths(char **envp, t_control *get)
+{
+	int		i;
 
-// int	get_paths(char **envp, t_control *get)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while (envp[i])
-// 	{
-// 		if (!ft_strncmp("PATH", envp[i], 4))
-// 		{
-// 			get->paths = ft_split(envp[i] + 5, ':');
-// 			finish_list_with(get->paths, "/");
-// 			return (1);
-// 		}
-// 		i++;
-// 	}
-// 	return (0);
-// }
-
-// void	set_separators(t_control *get)
-// {
-// 	get->separators[0] = "<<";
-// 	get->separators[1] = ">>";
-// 	get->separators[2] = ">";
-// 	get->separators[3] = "<";
-// }
-
-// void	setup(t_control *get, char **envp)
-// {
-// 	get->envp = envp;
-// 	get->paths = get_paths(envp, get);
-// }
-
+	i = 0;
+	while (envp[i])
+	{
+		if (!ft_strncmp("PATH", envp[i], 4))
+		{
+			get->paths = ft_split(envp[i] + 5, ':');
+			finish_list_with(get->paths, "/");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 // void	run_input(t_control *get)
 // {
 // 	(void)get;
 // }
 
-// char	*build_command(t_control *get, char *command)
-// {
-// 	int		i;
-// 	char	*full_path;
+char	*build_command(t_control *get, char *command)
+{
+	int		i;
+	char	*full_path;
 
-// 	if (!access(command, F_OK))
-// 		return (ft_strdup(command));
-// 	i = 0;
-// 	while (get->paths[i])
-// 	{
-// 		full_path = ft_strjoin(get->paths[i++], command);
-// 		if (!access(full_path, F_OK))
-// 			return (full_path);
-// 		free(full_path);
-// 	}
-// 	write (2, "command not found: ", 19);
-// 	i = 0;
-// 	while (command[i])
-// 		write (2, &command[i++], 1);
-// 	write (2, "\n", 1);
-// 	return (ft_strjoin(get->paths[--i], command));
-// }
+	if (!access(command, F_OK))
+		return (ft_strdup(command));
+	i = 0;
+	while (get->paths[i])
+	{
+		full_path = ft_strjoin(get->paths[i++], command);
+		if (!access(full_path, F_OK))
+			return (full_path);
+		free(full_path);
+	}
+	write (2, "command not found: ", 19);
+	i = 0;
+	while (command[i])
+		write (2, &command[i++], 1);
+	write (2, "\n", 1);
+	return (ft_strjoin(get->paths[--i], command));
+}
 
 // void	structure_commands(t_control *get)
 // {
@@ -151,24 +134,40 @@
 
 // 	while (get->argv[i])
 // 	{
-		
+
 // 	}
 // }
 
 
+void	printf_input(t_control *get)
+{
+	ft_printf("\nInput-->\n");
+	for (int i = 0; get->pieces[i]; i++)
+	{
+		ft_printf("command %i->\n", i);
+		for (int j = 0; get->pieces[i][j]; j++)
+			ft_printf("%s\n", get->pieces[i][j]);
+	}
+	ft_printf("end.\n");
+}
 
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	static t_control	get;
+int	main(int argc, char **argv, char **envp)
+{
+	static t_control	get;
 
-// 	(void)argv;
-// 	(void)argc;
-// 	// setup structures and variables.
-// 	setup(&get, envp);
-// 	while (get_next_line(0))
-// 	{
-// 		structure_commands(&get);
-// 		run_input(&get);
-// 	}
-// 	return (1);
-// }
+	(void)argv;
+	(void)argc;
+	// setup structures and variables.
+	setup(&get, envp);
+	while (true)
+	{
+		get.input = get_next_line(0);
+		normalize_input(&get);
+		// structure_commands(&get);
+		printf_input(&get);
+		free_shellsplit(get.pieces);
+		free(get.input);
+		// run_input(&get);
+	}
+	return (1);
+}

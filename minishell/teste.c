@@ -97,21 +97,6 @@ void	exit_builtin();
 void	try_command();
 
 
-
-typedef struct s_command {
-	char		*exec_path;
-	char		**flags;
-	char		**terminal;
-	int			id;
-	int			instream;
-	int			pipe[2];
-	int			is_last;
-	int			counter;
-	int			valid;
-	t_control	*main;
-	exe			execute;
-} t_command;
-
 char	*build_executable_path(t_control *get, char *command)
 {
 	int		i;
@@ -172,7 +157,7 @@ void	do_nothing(void)
 	return ;
 }
 
-exe	solve(char *find)
+t_exe	solve(char *find)
 {
 	int			index;
 	int			length;
@@ -182,7 +167,7 @@ exe	solve(char *find)
 		"pwd", "export", "unset", "env",
 		"exit", NULL
 	};
-	static exe	functions[14] = {
+	static t_exe	functions[14] = {
 		do_nothing, output_direct, input_direct, output_direct,
 		here_doc, pipe_output, echo_builtin, cd_builtin,
 		pwd_builtin, export_builtin, unset_builtin, env_builtin,
@@ -203,7 +188,7 @@ void	structure_commands(t_control *get, char **input)
 
 	command = new_command(get);
 	i = 0;
-	while (input[i] && command->valid)
+	while (input[i] && (input[i - 1] && input[i - 1] != '|') && command->valid)
 	{
 		solve(input[i])(command, i);
 		i++;
