@@ -1,3 +1,4 @@
+[cub3d](https://github.com/42rteles-f/cub3d) - My cub3d is a Harry Potter themed game, where you have to fight Dementors and Death Eaters. My Project showcases raycast using the DDA algorithm, OOP, Hashtables for movement and collision, an Well structured game logic using lists and and all original multi-threading API for effiency.<br><br>
 [so_long](https://github.com/42rteles-f/so_long) - A fun puzzle 2d game wrote in C. Made from scratch Using only the MiniLibX Library. My project showcases Object Oriented Programming, pre-rendering for the frames, and a Hashtable for movement and collision. <br><br>
 [philosophers](https://github.com/42rteles-f/philosophers) - The classical Dining Philosophers Problem. The project requires expertise in Threads and Data Races.<br><br>
 [pushswap](https://github.com/42rteles-f/pushswap) - Advanced Sorting Algorithms. A great project to exercise and learn, about efficiency and many different ways a algorithm can behave. <br><br>
