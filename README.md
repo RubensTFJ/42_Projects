@@ -20,4 +20,4 @@
 ***
 ## < Rank 0 ><br>
 [libft](https://github.com/42rteles-f/libft) - A in depth study on the fundamentals of the C language. Recreating basic functions that we take for granted.<br><br>
-          
+***
