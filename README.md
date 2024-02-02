@@ -10,7 +10,7 @@ Inception - coming soon... <br><br>
 ## < Rank 4 ><br>
 [cub3d](https://github.com/42rteles-f/cub3d) - My cub3d is a Harry Potter themed game, where you have to fight Dementors and Death Eaters. My Project showcases raycast using the DDA algorithm, OOP, Hashtables for movement and collision, an Well structured game logic using lists and and all original multi-threading API for effiency.<br><br>
 [CPP_0-4](https://github.com/42rteles-f/CPP_0-4) - The first CPP Piscine. To start the 42's Object Oriented journey, this series of Projects showcases the 4 OOP Pillars: Abstraction, Encapsulation, Polymorphism and Inheritance.<br><br>
-[NetPractice](https://github.com/42rteles-f/NetPractice) - NetPractice is a series of exercies to test your knowledge on: networks, IP Addresses, Submasks and subnetting. Not only that but it also makes it necessary to understand internet protocols such as TCP/IP, HTTP, etc... <br><br>
+[NetPractice](https://github.com/42rteles-f/NetPractice) - NetPractice is a series of exercises to test your knowledge on: networks, IP Addresses, Submasks and subnetting. Not only that but it also encourage you to understand internet protocols such as TCP/IP, HTTP, etc... <br><br>
 ***
 ## < Rank 3 ><br>
 [minishell](https://github.com/42rteles-f/minishell) - minishell is project ironically called mini. Its a fully working basic Shell inspired on Bash. It demands expertise on Processes, Signals, Pipes, File Descriptors, I/O Operations and the Linux Terminal as a whole. My project takes advantage of function pointer and OOP to make functions generic, versatile and easy to manage the many cases a command line can generate.<br><br>
