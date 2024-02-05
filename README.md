@@ -3,8 +3,8 @@
 ft_transcendence - coming 03/24. <br><br>
 ***
 ## < Rank 5 ><br>
-[ft_irc](https://github.com/RubensTFJ/ft_irc) - On going.<br><br>
-[CPP_5-9](https://github.com/42rteles-f/CPP_5-9) - On going.<br><br>
+[ft_irc](https://github.com/RubensTFJ/ft_irc) - Ongoing.<br><br>
+[CPP_5-9](https://github.com/42rteles-f/CPP_5-9) - Ongoing.<br><br>
 Inception - coming soon... <br><br>
 ***
 ## < Rank 4 ><br>
