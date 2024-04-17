@@ -3,7 +3,7 @@
 ft_transcendence - coming 04/24. <br><br>
 ***
 ## < Rank 5 ><br>
-[ft_irc](https://github.com/RubensTFJ/ft_irc) - Ongoing.<br><br>
+[ft_irc](https://github.com/42rteles-f/ft_irc) - One of the most used chat tools of the past, the Internet Relay Chat. This project is about creating a fully functional Server for IRC. Our server was design to work with the HexChat Client. Through a strong foundation and arquitecture, we needed few simple classes to accomplish a reliable, concise, and efficient Server.<br><br>
 [CPP_5-9](https://github.com/42rteles-f/CPP_5-9) - The last CPP Piscine in the Common Core. This series of Projects showcases more advanced tools in the C++ language such as: Throws and Erros, Static/Dynamic/Reinterpret Casts,
 Templates and Containers.<br><br>
 Inception - coming soon... <br><br>
