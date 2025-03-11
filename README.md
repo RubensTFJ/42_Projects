@@ -1,6 +1,6 @@
 ***
 ## < Rank 6 ><br>
-ft_transcendence - coming 04/24. <br><br>
+ft_transcendence - coming 04/25. <br><br>
 ***
 ## < Rank 5 ><br>
 [ft_irc](https://github.com/42rteles-f/ft_irc) - One of the most used chat tools of the past, the Internet Relay Chat. This project is about creating a fully functional Server for IRC. Our server was design to work with the HexChat Client. Through a strong foundation and arquitecture, we needed few simple classes to accomplish a reliable, concise, and efficient Server.<br><br>
