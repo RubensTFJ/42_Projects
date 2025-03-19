@@ -1,12 +1,12 @@
 ***
 ## < Rank 6 ><br>
-ft_transcendence - coming 04/25. <br><br>
+ft_transcendence - coming soon. <br><br>
 ***
 ## < Rank 5 ><br>
 [ft_irc](https://github.com/42rteles-f/ft_irc) - One of the most used chat tools of the past, the Internet Relay Chat. This project is about creating a fully functional Server for IRC. Our server was design to work with the HexChat Client. Through a strong foundation and arquitecture, we needed few simple classes to accomplish a reliable, concise, and efficient Server.<br><br>
 [CPP_5-9](https://github.com/42rteles-f/CPP_5-9) - The last CPP Piscine in the Common Core. This series of Projects showcases more advanced tools in the C++ language such as: Throws and Erros, Static/Dynamic/Reinterpret Casts,
 Templates and Containers.<br><br>
-[Inception](https://github.com/42rteles-f/Inception) - coming soon... <br><br>
+[Inception](https://github.com/42rteles-f/Inception) - The Inception project is designed to broaden your knowledge of system administration through practical application of Docker. In this project, we are tasked with setting up a infrastructure that includes Nginx, MariaDB, and WordPress, all orchestrated using Docker and Docker-Compose. Emphasizing the importance of containerization in modern system administration and providing a valuable experience in deploying and managing services within isolated environments. <br><br>
 ***
 ## < Rank 4 ><br>
 [cub3d](https://github.com/42rteles-f/cub3d) - My cub3d is a Harry Potter themed game, where you have to fight Dementors and Death Eaters. My Project showcases raycast using the DDA algorithm, OOP, Hashtables for movement and collision, an Well structured game logic using lists and and all original multi-threading API for efficiency.<br><br>
