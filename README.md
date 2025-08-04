@@ -1,6 +1,6 @@
 ***
 ## < Rank 6 ><br>
-[ft_transcendence](https://github.com/42rteles-f/Transcendence) - Development <br><br>
+[ft_transcendence](https://github.com/42rteles-f/Transcendence) - Transcendence is a project that pushes you from understanding the basics to applying it to modern real world thinking and functionality. This is a Fullstack Web Project, that requires you to learn JavaScript/TypeScript, HTML, CSS, to understand the many roles involved in the web world, such as servers, APIS, security and much more, and as always a huge oppoturnity to study and apply code arquitecture. <br><br>
 ***
 ## < Rank 5 ><br>
 [ft_irc](https://github.com/42rteles-f/ft_irc) - One of the most used chat tools of the past, the Internet Relay Chat. This project is about creating a fully functional Server for IRC. Our server was design to work with the HexChat Client. Through a strong foundation and arquitecture, we needed few simple classes to accomplish a reliable, concise, and efficient Server.<br><br>
